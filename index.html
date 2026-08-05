@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>미래청년교육연구소</title>
+    <title>미래청년교육연구회</title>
     <meta name="description" content="미래청년교육원은 청년 교육의 새로운 방향을 연구하고, 학교 현장에서 활용 가능한 교육 프로그램을 개발 및 검증하는 비영리 교육 연구 기관입니다.">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
@@ -14,7 +14,21 @@
 <body>
     <div class="splash" id="splash" aria-hidden="true">
         <div class="splash_stage">
+            <span class="splash_glow" aria-hidden="true"></span>
             <svg class="splash_symbol" viewBox="0 0 18.72 22.35" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <clipPath id="splash_symbol_clip">
+                        <path d="M18.72 6.66159C17.5925 6.55833 15.2356 6.74486 13.9437 7.03132C12.6486 7.31778 11.4061 7.76412 10.1865 8.37701C10.8703 8.83335 11.6723 9.51619 12.5368 10.4522C13.2107 11.1816 13.786 11.9178 14.1377 12.5973C15.3276 12.2209 17.7273 12.2542 18.72 12.3608C18.72 12.3608 18.7266 6.66159 18.72 6.66159Z"/>
+                        <path d="M14.0329 12.9638C13.5661 12.3509 12.8495 11.4982 12.1526 10.8553C11.1073 9.88599 10.0784 9.20981 9.23691 8.74681C6.79784 7.36781 2.83682 6.645 0 6.66166V12.3609C1.14393 12.3342 3.51397 12.5207 4.53628 12.8705C2.39305 15.6218 1.32801 18.9161 1.29843 22.347H6.38695C6.38695 22.347 6.38695 22.3436 6.38695 22.3403C6.38695 22.3403 6.38695 22.3436 6.38695 22.347C6.38695 22.3336 6.38695 22.3303 6.38695 22.3303C6.39681 18.7895 9.04626 15.7151 9.18432 15.5619L9.2402 15.5952C9.59192 15.9816 12.008 18.9727 12.008 22.347C12.008 22.347 15.4365 22.3903 17.1228 22.347C17.1392 21.6641 17.1097 21.0579 17.0669 20.5183C16.8565 17.7669 15.7488 15.2454 14.0329 12.9638Z"/>
+                        <path d="M9.45473 -0.00175376L5.50098 4.00464L9.45473 8.01103L13.4085 4.00464L9.45473 -0.00175376Z"/>
+                    </clipPath>
+                    <linearGradient id="splash_shine_gradient" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+                        <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.9"/>
+                        <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+                    </linearGradient>
+                </defs>
+
                 <g class="splash_symbol_body">
                     <path d="M18.72 6.66159C17.5925 6.55833 15.2356 6.74486 13.9437 7.03132C12.6486 7.31778 11.4061 7.76412 10.1865 8.37701C10.8703 8.83335 11.6723 9.51619 12.5368 10.4522C13.2107 11.1816 13.786 11.9178 14.1377 12.5973C15.3276 12.2209 17.7273 12.2542 18.72 12.3608C18.72 12.3608 18.7266 6.66159 18.72 6.66159Z"/>
                     <path d="M14.0329 12.9638C13.5661 12.3509 12.8495 11.4982 12.1526 10.8553C11.1073 9.88599 10.0784 9.20981 9.23691 8.74681C6.79784 7.36781 2.83682 6.645 0 6.66166V12.3609C1.14393 12.3342 3.51397 12.5207 4.53628 12.8705C2.39305 15.6218 1.32801 18.9161 1.29843 22.347H6.38695C6.38695 22.347 6.38695 22.3436 6.38695 22.3403C6.38695 22.3403 6.38695 22.3436 6.38695 22.347C6.38695 22.3336 6.38695 22.3303 6.38695 22.3303C6.39681 18.7895 9.04626 15.7151 9.18432 15.5619L9.2402 15.5952C9.59192 15.9816 12.008 18.9727 12.008 22.347C12.008 22.347 15.4365 22.3903 17.1228 22.347C17.1392 21.6641 17.1097 21.0579 17.0669 20.5183C16.8565 17.7669 15.7488 15.2454 14.0329 12.9638Z"/>
@@ -22,22 +36,23 @@
                 <g class="splash_symbol_diamond">
                     <path d="M9.45473 -0.00175376L5.50098 4.00464L9.45473 8.01103L13.4085 4.00464L9.45473 -0.00175376Z"/>
                 </g>
+
+                <g clip-path="url(#splash_symbol_clip)">
+                    <rect class="splash_shine" x="-7" y="-3" width="6" height="29" fill="url(#splash_shine_gradient)"/>
+                </g>
             </svg>
-            <span class="splash_shine"></span>
         </div>
 
-        <div class="splash_wordmark">
-            <img src="assets/icons/logo_intro_wordmark.svg" alt="">
-            <span class="splash_tagline">Future Youth Education Institute</span>
-        </div>
+        <p class="splash_wordmark">미래청년교육연구회</p>
     </div>
 
     <a class="skip_link" href="#main_content">본문 바로가기</a>
 
     <header class="header" id="header">
         <div class="header_inner">
-            <a class="header_logo" href="/" aria-label="미래청년교육연구소 홈">
-                <img src="assets/icons/logo_header.svg" alt="미래청년교육연구소">
+            <a class="header_logo" href="/" aria-label="미래청년교육연구회 홈">
+                <img class="header_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="header_logo_text">미래청년교육연구회</span>
             </a>
             <button
                 class="header_menu_button"
@@ -80,7 +95,7 @@
 
         <section class="intro" aria-labelledby="intro_title">
             <p class="intro_eyebrow" data-reveal>Beyond Knowledge Build Direction</p>
-            <h2 class="intro_title split_text" id="intro_title">미래청년교육연구소</h2>
+            <h2 class="intro_title split_text" id="intro_title">미래청년교육연구회</h2>
         </section>
 
         <section class="menu_section" id="section_menu" aria-label="주요 메뉴">
@@ -234,7 +249,10 @@
 
     <footer class="footer">
         <div class="footer_inner">
-            <img class="footer_logo" src="assets/icons/logo_footer.svg" alt="미래청년교육연구소">
+            <p class="footer_logo">
+                <img class="footer_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="footer_logo_text">미래청년교육연구회</span>
+            </p>
 
             <address class="footer_address">
                 <p>서울시 강남구 봉은사로</p>
@@ -250,6 +268,13 @@
             <p class="footer_copyright">Copyright ⓒ FeatureYouth All Rights Reserved.</p>
         </div>
     </footer>
+
+    <button class="to_top" id="to_top" type="button" aria-label="맨 위로 이동">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 19.5V5" stroke-linecap="round"/>
+            <path d="M5.5 11.5L12 5L18.5 11.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
 
     <script src="js/main.js"></script>
 </body>

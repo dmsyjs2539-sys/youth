@@ -13,25 +13,42 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 26px;
+    gap: 12px;
     background:
         radial-gradient(120% 80% at 50% 42%, #0d2f52 0%, var(--splash_navy) 46%, var(--splash_navy_deep) 100%);
-    transform-origin: 50% 42%;
-    animation: splash_collapse 0.86s cubic-bezier(0.7, 0, 0.28, 1) 2.42s forwards;
+    transform-origin: 50% 44%;
+    animation: splash_collapse 0.8s cubic-bezier(0.7, 0, 0.28, 1) 2.62s forwards;
 }
 
 .splash.is_done {
     display: none;
 }
 
-/* 심볼 무대 (glow가 잘리지 않도록 여유 패딩) */
+/* 심볼 무대 */
 .splash_stage {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
-    overflow: hidden;
+}
+
+/*
+ * 광원은 반드시 별도 원형 레이어로 만든다.
+ * SVG <g>에 drop-shadow를 걸면 SVG 필터 영역에 잘려 사각형 경계가 드러난다.
+ */
+.splash_glow {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(96, 200, 255, 0.42) 0%,
+        rgba(51, 177, 255, 0.16) 40%,
+        rgba(51, 177, 255, 0) 70%
+    );
+    opacity: 0;
+    animation: splash_glow_pulse 1.9s ease-out 0.35s;
 }
 
 .splash_symbol {
@@ -49,58 +66,30 @@
 }
 
 .splash_symbol_body {
-    animation:
-        splash_body_settle 1.15s cubic-bezier(0.16, 0.9, 0.28, 1) 0.18s forwards,
-        splash_glow 1.5s ease-out 0.4s;
+    animation: splash_body_settle 1s cubic-bezier(0.16, 0.9, 0.28, 1) 0.15s forwards;
 }
 
 .splash_symbol_diamond {
-    animation:
-        splash_diamond_settle 1.15s cubic-bezier(0.16, 0.9, 0.28, 1) 0.42s forwards,
-        splash_glow 1.5s ease-out 0.62s;
+    animation: splash_diamond_settle 1s cubic-bezier(0.16, 0.9, 0.28, 1) 0.35s forwards;
 }
 
-/* 심볼 위를 스치는 반짝임 */
+/* 심볼 실루엣 안에서만 스치는 반짝임 (clipPath로 형태 제한) */
 .splash_shine {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 46%;
-    height: 100%;
-    background: linear-gradient(
-        100deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.85) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    mix-blend-mode: screen;
     opacity: 0;
-    transform: translateX(-160%) skewX(-14deg);
-    animation: splash_shine_sweep 1.05s ease-in-out 1.16s;
+    animation: splash_shine_sweep 0.85s ease-in-out 1.4s;
 }
 
 /* 로고타입 */
 .splash_wordmark {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 9px;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    text-align: center;
     opacity: 0;
     transform: translateY(18px);
-    animation: splash_wordmark_rise 0.82s cubic-bezier(0.22, 0.61, 0.36, 1) 1.5s forwards;
-}
-
-.splash_wordmark img {
-    width: 176px;
-    height: auto;
-}
-
-.splash_tagline {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    animation: splash_wordmark_rise 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) 1.72s forwards;
 }
 
 /* 본문 스크롤 잠금 */
@@ -136,32 +125,35 @@ body.is_splash_active {
     }
 }
 
-@keyframes splash_glow {
+@keyframes splash_glow_pulse {
     0% {
-        filter: drop-shadow(0 0 0 rgba(51, 177, 255, 0));
+        opacity: 0;
+        transform: scale(0.6);
     }
     45% {
-        filter: drop-shadow(0 0 18px rgba(96, 200, 255, 0.95));
+        opacity: 1;
+        transform: scale(1.05);
     }
     100% {
-        filter: drop-shadow(0 0 6px rgba(51, 177, 255, 0.35));
+        opacity: 0.32;
+        transform: scale(0.92);
     }
 }
 
 @keyframes splash_shine_sweep {
     0% {
         opacity: 0;
-        transform: translateX(-160%) skewX(-14deg);
+        transform: translateX(0) skewX(-12deg);
     }
-    18% {
+    15% {
         opacity: 1;
     }
-    82% {
+    85% {
         opacity: 1;
     }
     100% {
         opacity: 0;
-        transform: translateX(320%) skewX(-14deg);
+        transform: translateX(32px) skewX(-12deg);
     }
 }
 
@@ -191,6 +183,7 @@ body.is_splash_active {
     .splash_symbol_diamond,
     .splash_symbol_body,
     .splash_shine,
+    .splash_glow,
     .splash_wordmark {
         animation: none;
     }

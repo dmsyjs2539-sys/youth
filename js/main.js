@@ -2,14 +2,16 @@
     "use strict";
 
     var SCROLL_THRESHOLD = 24;
+    var TO_TOP_THRESHOLD = 520;
     var NAV_CLOSE_DURATION = 420;
     var HERO_START_DELAY = 220;
-    var SPLASH_DURATION = 3280;
+    var SPLASH_DURATION = 3800;
 
     var header = document.getElementById("header");
     var menuButton = document.getElementById("menu_button");
     var globalNav = document.getElementById("global_nav");
     var splash = document.getElementById("splash");
+    var toTopButton = document.getElementById("to_top");
     var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     var navCloseTimer = null;
 
@@ -165,6 +167,14 @@
 
     function handleScroll() {
         header.classList.toggle("is_scrolled", window.scrollY > SCROLL_THRESHOLD);
+        toTopButton.classList.toggle("is_visible", window.scrollY > TO_TOP_THRESHOLD);
+    }
+
+    function handleToTopClick() {
+        window.scrollTo({
+            top: 0,
+            behavior: isMotionReduced() ? "auto" : "smooth"
+        });
     }
 
     /* ---------- 진입 인트로 ---------- */
@@ -251,6 +261,7 @@
     }
 
     menuButton.addEventListener("click", handleMenuClick);
+    toTopButton.addEventListener("click", handleToTopClick);
     globalNav.addEventListener("click", handleNavClick);
     document.addEventListener("keydown", handleDocumentKeydown);
     window.addEventListener("scroll", handleScroll, { passive: true });

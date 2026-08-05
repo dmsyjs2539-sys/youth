@@ -232,8 +232,22 @@
 }
 
 .footer_logo {
-    height: 33px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.footer_logo_symbol {
+    height: 26px;
     width: auto;
+}
+
+.footer_logo_text {
+    color: var(--color_text);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
 }
 
 .footer_address {
@@ -257,6 +271,50 @@
 .footer_policy a:hover,
 .footer_policy a:focus-visible {
     text-decoration: underline;
+}
+
+.to_top {
+    position: fixed;
+    right: 18px;
+    bottom: 22px;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(140deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
+    box-shadow: 0 6px 18px rgba(43, 161, 255, 0.38);
+    opacity: 0;
+    transform: translateY(14px) scale(0.9);
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease,
+        transform 0.36s var(--ease_out_soft);
+}
+
+.to_top.is_visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+.to_top svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+
+.to_top:hover,
+.to_top:focus-visible {
+    box-shadow: 0 8px 22px rgba(43, 161, 255, 0.55);
+}
+
+.to_top:active {
+    transform: scale(0.94);
 }
 
 .footer_copyright {
