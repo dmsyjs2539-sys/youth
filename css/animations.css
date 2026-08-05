@@ -1,0 +1,126 @@
+:root {
+    --ease_out_soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --ease_morph: cubic-bezier(0.65, 0.05, 0.36, 1);
+    --char_stagger: 26ms;
+    --item_stagger: 90ms;
+}
+
+/* 햄버거 아이콘 모핑 */
+.menu_icon {
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 16px;
+}
+
+.menu_icon_bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2.4px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    transition:
+        transform 0.38s var(--ease_morph),
+        opacity 0.2s ease;
+}
+
+.menu_icon_bar:nth-child(1) {
+    top: 0;
+}
+
+.menu_icon_bar:nth-child(2) {
+    top: 6.8px;
+}
+
+.menu_icon_bar:nth-child(3) {
+    top: 13.6px;
+}
+
+.header_menu_button.is_open .menu_icon_bar:nth-child(1) {
+    transform: translateY(6.8px) rotate(45deg);
+}
+
+.header_menu_button.is_open .menu_icon_bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.2);
+}
+
+.header_menu_button.is_open .menu_icon_bar:nth-child(3) {
+    transform: translateY(-6.8px) rotate(-45deg);
+}
+
+/* 내비게이션 열림 + 메뉴 항목 순차 등장 */
+.global_nav {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+        opacity 0.32s ease,
+        transform 0.38s var(--ease_out_soft);
+}
+
+.global_nav.is_open {
+    opacity: 1;
+    transform: none;
+}
+
+.global_nav_list > li {
+    opacity: 0;
+    transform: translateY(-12px);
+    transition:
+        opacity 0.42s ease,
+        transform 0.48s var(--ease_out_soft);
+}
+
+.global_nav.is_open .global_nav_list > li {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(var(--nav_index, 0) * 65ms + 90ms);
+}
+
+/* 텍스트 스플릿 등장 */
+.split_line {
+    display: block;
+}
+
+.split_char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.5em);
+    transition:
+        opacity 0.5s ease,
+        transform 0.62s var(--ease_out_soft);
+}
+
+.split_text.is_visible .split_char {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(var(--char_index, 0) * var(--char_stagger));
+}
+
+/* 스크롤 진입 시 슬라이드업 페이드인 */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.62s ease,
+        transform 0.72s var(--ease_out_soft);
+}
+
+[data-reveal].is_visible {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(var(--reveal_index, 0) * var(--item_stagger));
+}
+
+/* 모션 최소화 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+    .split_char,
+    [data-reveal],
+    .global_nav,
+    .global_nav_list > li {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

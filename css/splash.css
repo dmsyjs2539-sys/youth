@@ -1,0 +1,201 @@
+/* 진입 인트로(스플래시) 오버레이 */
+
+:root {
+    --splash_navy: #071a2f;
+    --splash_navy_deep: #03101f;
+}
+
+.splash {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    background:
+        radial-gradient(120% 80% at 50% 42%, #0d2f52 0%, var(--splash_navy) 46%, var(--splash_navy_deep) 100%);
+    transform-origin: 50% 42%;
+    animation: splash_collapse 0.86s cubic-bezier(0.7, 0, 0.28, 1) 2.42s forwards;
+}
+
+.splash.is_done {
+    display: none;
+}
+
+/* 심볼 무대 (glow가 잘리지 않도록 여유 패딩) */
+.splash_stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow: hidden;
+}
+
+.splash_symbol {
+    width: 74px;
+    height: auto;
+    overflow: visible;
+    fill: #33b1ff;
+}
+
+.splash_symbol_diamond,
+.splash_symbol_body {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+}
+
+.splash_symbol_body {
+    animation:
+        splash_body_settle 1.15s cubic-bezier(0.16, 0.9, 0.28, 1) 0.18s forwards,
+        splash_glow 1.5s ease-out 0.4s;
+}
+
+.splash_symbol_diamond {
+    animation:
+        splash_diamond_settle 1.15s cubic-bezier(0.16, 0.9, 0.28, 1) 0.42s forwards,
+        splash_glow 1.5s ease-out 0.62s;
+}
+
+/* 심볼 위를 스치는 반짝임 */
+.splash_shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 46%;
+    height: 100%;
+    background: linear-gradient(
+        100deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.85) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    mix-blend-mode: screen;
+    opacity: 0;
+    transform: translateX(-160%) skewX(-14deg);
+    animation: splash_shine_sweep 1.05s ease-in-out 1.16s;
+}
+
+/* 로고타입 */
+.splash_wordmark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: splash_wordmark_rise 0.82s cubic-bezier(0.22, 0.61, 0.36, 1) 1.5s forwards;
+}
+
+.splash_wordmark img {
+    width: 176px;
+    height: auto;
+}
+
+.splash_tagline {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* 본문 스크롤 잠금 */
+body.is_splash_active {
+    overflow: hidden;
+}
+
+@keyframes splash_diamond_settle {
+    0% {
+        opacity: 0;
+        transform: rotate(-160deg) scale(0.3);
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+@keyframes splash_body_settle {
+    0% {
+        opacity: 0;
+        transform: rotate(115deg) scale(0.42);
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+@keyframes splash_glow {
+    0% {
+        filter: drop-shadow(0 0 0 rgba(51, 177, 255, 0));
+    }
+    45% {
+        filter: drop-shadow(0 0 18px rgba(96, 200, 255, 0.95));
+    }
+    100% {
+        filter: drop-shadow(0 0 6px rgba(51, 177, 255, 0.35));
+    }
+}
+
+@keyframes splash_shine_sweep {
+    0% {
+        opacity: 0;
+        transform: translateX(-160%) skewX(-14deg);
+    }
+    18% {
+        opacity: 1;
+    }
+    82% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(320%) skewX(-14deg);
+    }
+}
+
+@keyframes splash_wordmark_rise {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes splash_collapse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        clip-path: circle(140% at 50% 42%);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.06);
+        clip-path: circle(0% at 50% 42%);
+    }
+}
+
+/* 모션 최소화 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+    .splash,
+    .splash_symbol_diamond,
+    .splash_symbol_body,
+    .splash_shine,
+    .splash_wordmark {
+        animation: none;
+    }
+
+    .splash {
+        display: none;
+    }
+}

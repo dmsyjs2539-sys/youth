@@ -1,0 +1,126 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+:root {
+    --color_brand: #2ba1ff;
+    --color_brand_light: #4ad4ff;
+    --color_text: #000000;
+    --color_text_muted: #1b1616;
+    --color_surface: #ffffff;
+    --color_card: #6b6b6b;
+    --color_card_deep: #4f4f4f;
+    --color_scrim: rgba(0, 0, 0, 0.35);
+
+    --font_body: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+
+    --space_1: 4px;
+    --space_2: 8px;
+    --space_3: 12px;
+    --space_4: 16px;
+    --space_5: 20px;
+    --space_6: 24px;
+    --space_8: 32px;
+    --space_10: 40px;
+    --space_14: 56px;
+
+    --radius_card: 15px;
+    --radius_pill: 50px;
+
+    --page_padding: 23px;
+    --header_height: 58px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: var(--color_surface);
+    color: var(--color_text);
+    font-family: var(--font_body);
+    font-size: 16px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+address {
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+address {
+    font-style: normal;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color_brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.skip_link {
+    position: absolute;
+    top: -100px;
+    left: var(--space_4);
+    z-index: 100;
+    padding: var(--space_2) var(--space_4);
+    background-color: var(--color_brand);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 0 0 8px 8px;
+    transition: top 0.2s ease;
+}
+
+.skip_link:focus {
+    top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
