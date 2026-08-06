@@ -5,6 +5,7 @@
     --color_brand_light: #4ad4ff;
     --color_text: #000000;
     --color_text_muted: #1b1616;
+    --color_text_sub: #6f7680;
     --color_surface: #ffffff;
     --color_card: #6b6b6b;
     --color_card_deep: #4f4f4f;
@@ -27,6 +28,9 @@
 
     --page_padding: 23px;
     --header_height: 58px;
+
+    /* 데스크톱에서 콘텐츠가 무한정 늘어나지 않도록 제한하는 최대 폭 */
+    --content_max: 1200px;
 }
 
 *,
@@ -59,7 +63,8 @@ address {
     margin: 0;
 }
 
-ul {
+ul,
+ol {
     margin: 0;
     padding: 0;
     list-style: none;

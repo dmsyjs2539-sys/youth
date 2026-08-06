@@ -1,0 +1,415 @@
+/* 반응형 규칙 (Mobile First)
+ *
+ * Mobile  : ~ 767px          → base/layout/components.css의 기본 스타일이 담당
+ * Tablet  : 768px ~ 1023px   → 그리드 컬럼 확장, 여백·타이포 스케일업
+ * Desktop : 1024px ~         → 최대 폭 제한 + 중앙 정렬, 데스크톱 전용 GNB
+ *
+ * 브랜드 소개 페이지 전용 반응형은 css/brand.css 하단에 있다.
+ */
+
+/* ========== Tablet: 768px ~ ========== */
+
+@media (min-width: 768px) {
+    :root {
+        --page_padding: 40px;
+        --header_height: 68px;
+    }
+
+    /* 헤더 --------------------------------------------------- */
+
+    .header {
+        display: flex;
+        align-items: center;
+        padding: 0 var(--page_padding);
+    }
+
+    .header_inner {
+        width: 100%;
+        height: auto;
+    }
+
+    .header_logo_symbol {
+        height: 26px;
+    }
+
+    .header_logo_text {
+        font-size: 19px;
+    }
+
+    .global_nav {
+        padding: var(--space_5) var(--page_padding) var(--space_8);
+    }
+
+    .global_nav_link {
+        font-size: 18px;
+    }
+
+    /* 히어로 ------------------------------------------------- */
+
+    .hero {
+        min-height: 620px;
+        padding-bottom: 86px;
+    }
+
+    .hero_title {
+        font-size: 46px;
+    }
+
+    /* 인트로 ------------------------------------------------- */
+
+    .intro {
+        padding-top: var(--space_14);
+    }
+
+    .intro_eyebrow {
+        font-size: 18px;
+    }
+
+    .intro_title {
+        font-size: 38px;
+    }
+
+    /* 메뉴 카드 ---------------------------------------------- */
+
+    .menu_section {
+        padding-top: var(--space_8);
+    }
+
+    .menu_grid {
+        gap: var(--space_4);
+    }
+
+    .menu_card {
+        aspect-ratio: 4 / 3;
+        padding: 28px 26px;
+    }
+
+    .menu_card_title {
+        font-size: 24px;
+    }
+
+    .menu_card_arrow {
+        left: 26px;
+        bottom: 24px;
+        width: 30px;
+        height: 30px;
+    }
+
+    /* 기관 소개 ---------------------------------------------- */
+
+    .about {
+        padding: 76px var(--page_padding);
+    }
+
+    .about_text {
+        font-size: 21px;
+        text-align: center;
+    }
+
+    /* 연구 분야 ---------------------------------------------- */
+
+    .field_title {
+        font-size: 38px;
+    }
+
+    .field_list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space_5);
+        margin-top: var(--space_8);
+    }
+
+    .field_card {
+        align-content: start;
+    }
+
+    /* 관련 시스템 링크 ---------------------------------------- */
+
+    .link_list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: var(--space_10);
+    }
+
+    .link_item:nth-child(2) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .link_title {
+        font-size: 26px;
+    }
+
+    /* 푸터 --------------------------------------------------- */
+
+    .footer {
+        padding: 48px var(--page_padding);
+    }
+
+    .footer_inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--space_10);
+        row-gap: 26px;
+        align-items: start;
+    }
+
+    .footer_policy {
+        justify-self: end;
+        margin-top: 0;
+        gap: var(--space_10);
+    }
+
+    .footer_copyright {
+        grid-column: 1 / -1;
+        padding-top: var(--space_5);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* 맨 위로 버튼 -------------------------------------------- */
+
+    .to_top {
+        right: 28px;
+        bottom: 28px;
+        width: 52px;
+        height: 52px;
+    }
+
+    .to_top svg {
+        width: 23px;
+        height: 23px;
+    }
+}
+
+/* ========== Desktop: 1024px ~ ========== */
+
+@media (min-width: 1024px) {
+    :root {
+        --page_padding: 48px;
+        --header_height: 76px;
+    }
+
+    /* 헤더 + 데스크톱 전용 GNB ---------------------------------- */
+
+    .header_inner {
+        max-width: var(--content_max);
+        margin-inline: auto;
+    }
+
+    .header_logo_symbol {
+        height: 28px;
+    }
+
+    .header_logo_text {
+        font-size: 21px;
+    }
+
+    /* 햄버거 버튼은 데스크톱에서 사용하지 않는다. */
+    .header_menu_button {
+        display: none;
+    }
+
+    /*
+     * 데스크톱에서는 전체 메뉴를 헤더 줄에 가로로 펼친다.
+     * .global_nav는 header의 형제 요소라 static으로 바꾸면 헤더 밖으로 나가므로,
+     * 헤더와 같은 높이의 fixed 레이어로 겹쳐 두고 pointer-events로 로고 클릭을 살린다.
+     */
+    .global_nav,
+    .global_nav[hidden] {
+        display: flex;
+        top: 0;
+        height: var(--header_height);
+        align-items: center;
+        justify-content: center;
+        z-index: 31;
+        padding: 0 var(--page_padding);
+        background: none;
+        backdrop-filter: none;
+        opacity: 1;
+        transform: none;
+        transition: none;
+        pointer-events: none;
+    }
+
+    .global_nav_list {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+        max-width: var(--content_max);
+    }
+
+    .global_nav_list > li {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .global_nav_link {
+        pointer-events: auto;
+        padding: 4px 0;
+        border-bottom: 2px solid transparent;
+        font-size: 16px;
+        white-space: nowrap;
+        transition:
+            color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    .global_nav_link:hover,
+    .global_nav_link:focus-visible {
+        color: var(--color_brand_light);
+        border-bottom-color: var(--color_brand_light);
+    }
+
+    .global_nav_link[aria-current="page"] {
+        color: var(--color_brand_light);
+        border-bottom-color: var(--color_brand_light);
+    }
+
+    /* 히어로 ------------------------------------------------- */
+
+    .hero {
+        min-height: 760px;
+        padding-bottom: 110px;
+    }
+
+    .hero_title {
+        width: 100%;
+        max-width: var(--content_max);
+        margin-inline: auto;
+        font-size: 60px;
+    }
+
+    /* 최대 폭 제한 + 중앙 정렬 ---------------------------------- */
+
+    .intro,
+    .menu_section,
+    .field,
+    .link_section {
+        max-width: calc(var(--content_max) + var(--page_padding) * 2);
+        margin-inline: auto;
+    }
+
+    .about_text,
+    .footer_inner {
+        max-width: var(--content_max);
+        margin-inline: auto;
+    }
+
+    /* 인트로 ------------------------------------------------- */
+
+    .intro {
+        padding-top: 96px;
+    }
+
+    .intro_eyebrow {
+        font-size: 20px;
+    }
+
+    .intro_title {
+        font-size: 46px;
+    }
+
+    /* 메뉴 카드 ---------------------------------------------- */
+
+    .menu_section {
+        padding-top: var(--space_10);
+    }
+
+    .menu_grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space_5);
+    }
+
+    .menu_card {
+        aspect-ratio: 173 / 176;
+        padding: 26px 24px;
+    }
+
+    /* 기관 소개 ---------------------------------------------- */
+
+    .about {
+        margin-top: 96px;
+        padding: 110px var(--page_padding);
+    }
+
+    .about_text {
+        font-size: 26px;
+        line-height: 1.6;
+    }
+
+    /* 연구 분야 ---------------------------------------------- */
+
+    .field {
+        padding-top: 110px;
+    }
+
+    .field_title {
+        font-size: 44px;
+    }
+
+    .field_list {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space_5);
+        margin-top: var(--space_10);
+    }
+
+    .field_card {
+        padding: 34px 26px 32px;
+    }
+
+    .field_card_lead {
+        font-size: 17px;
+    }
+
+    /* 관련 시스템 링크 ---------------------------------------- */
+
+    .link_section {
+        padding-block: 110px;
+    }
+
+    .link_list {
+        column-gap: 80px;
+    }
+
+    .link_anchor {
+        padding: var(--space_6) 0;
+    }
+
+    .link_title {
+        font-size: 30px;
+    }
+
+    /* 푸터 --------------------------------------------------- */
+
+    .footer {
+        padding: 60px var(--page_padding);
+    }
+
+    .footer_logo_symbol {
+        height: 30px;
+    }
+
+    .footer_logo_text {
+        font-size: 22px;
+    }
+
+    .footer_address,
+    .footer_policy,
+    .footer_copyright {
+        font-size: 13px;
+    }
+}
+
+/* ========== 큰 데스크톱: 1440px ~ ========== */
+
+@media (min-width: 1440px) {
+    :root {
+        --page_padding: 60px;
+    }
+
+    .hero {
+        min-height: 820px;
+    }
+}

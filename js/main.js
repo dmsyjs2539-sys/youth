@@ -6,6 +6,7 @@
     var NAV_CLOSE_DURATION = 420;
     var HERO_START_DELAY = 220;
     var SPLASH_DURATION = 3800;
+    var DESKTOP_MIN_WIDTH = 1024;
 
     var header = document.getElementById("header");
     var menuButton = document.getElementById("menu_button");
@@ -13,10 +14,15 @@
     var splash = document.getElementById("splash");
     var toTopButton = document.getElementById("to_top");
     var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var desktopQuery = window.matchMedia("(min-width: " + DESKTOP_MIN_WIDTH + "px)");
     var navCloseTimer = null;
 
     function isMotionReduced() {
         return motionQuery.matches;
+    }
+
+    function isDesktopNav() {
+        return desktopQuery.matches;
     }
 
     /* ---------- 텍스트 스플릿 ---------- */
@@ -121,7 +127,31 @@
 
     /* ---------- 내비게이션 ---------- */
 
+    /*
+     * 데스크톱에서는 전체 메뉴가 헤더에 항상 펼쳐져 있으므로
+     * hidden 속성과 열림 상태를 초기화해 CSS 레이아웃과 어긋나지 않게 한다.
+     */
+    function syncNavMode() {
+        if (!isDesktopNav()) {
+            if (!globalNav.classList.contains("is_open")) {
+                globalNav.hidden = true;
+            }
+            return;
+        }
+
+        window.clearTimeout(navCloseTimer);
+        globalNav.hidden = false;
+        globalNav.classList.remove("is_open");
+        menuButton.classList.remove("is_open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "전체 메뉴 열기");
+    }
+
     function setNavOpen(isOpen) {
+        if (isDesktopNav()) {
+            return;
+        }
+
         window.clearTimeout(navCloseTimer);
 
         menuButton.setAttribute("aria-expanded", String(isOpen));
@@ -266,7 +296,14 @@
     document.addEventListener("keydown", handleDocumentKeydown);
     window.addEventListener("scroll", handleScroll, { passive: true });
 
+    if (desktopQuery.addEventListener) {
+        desktopQuery.addEventListener("change", syncNavMode);
+    } else {
+        desktopQuery.addListener(syncNavMode);
+    }
+
     initNavStagger();
+    syncNavMode();
     handleScroll();
 
     // 인트로는 폰트 로드를 기다리지 않고 즉시 시작해 스크롤 잠금이 늦지 않게 한다.

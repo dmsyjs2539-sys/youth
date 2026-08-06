@@ -1,10 +1,21 @@
 # 미래청년교육연구회 현재 상태
 
-마지막 업데이트: 2026-08-06
+마지막 업데이트: 2026-08-07
 
 ## 구현 완료
 
-- 모바일 메인페이지 단일 뷰 (Figma node 34:517 기준)
+- 메인페이지 (Figma node 34:517 기준)
+- 브랜드(연구회) 소개 페이지 `brand/index.html` (Figma node 34:679 기준)
+  - 히어로: 배경 이미지 + eyebrow / 그라데이션 기관명 / 소개 문구
+  - 철학: "Beyond Meta-Cognition, Towards Youth Future" + Vision(좌) / Mission(우)
+  - Our Core Values: 카드 4종 (Self Awareness / Metacognition / Growth / Connection)
+  - Our History: 중앙 라인 좌우 교차 타임라인 5개 (2019.05 ~ 2024.02)
+  - 메인페이지의 헤더·GNB·푸터·맨 위로 버튼과 스크롤/스플릿 모션을 그대로 재사용
+- 전체 반응형 (Mobile ~767px / Tablet 768~1023px / Desktop 1024px~)
+  - 공통·메인페이지 반응형: `css/responsive.css`
+  - 브랜드 페이지 반응형: `css/brand.css` 하단
+  - 데스크톱(1024px~)에서 햄버거를 숨기고 GNB를 헤더에 가로로 펼침
+  - 데스크톱에서 `--content_max: 1200px`로 최대 폭 제한 + 중앙 정렬
 - 헤더: 고정 헤더, 스크롤 시 배경 강화, 햄버거 메뉴 토글
 - 히어로: 배경 이미지 + 하단 그라데이션 오버레이, 메인 카피
 - 인트로: eyebrow 텍스트 + 그라데이션 기관명
@@ -33,7 +44,12 @@
 
 - 전체 메뉴는 닫힌 상태로 시작하며, 메뉴 항목 클릭 또는 Escape 키로 닫힘
 - 메뉴 버튼은 aria-expanded / aria-label을 상태에 맞게 갱신
-- 이번 작업 범위는 모바일 전용 단일 뷰 (데스크톱·태블릿 반응형 미포함)
+- 데스크톱(1024px~)에서는 전체 메뉴가 헤더에 항상 펼쳐져 있고 햄버거 버튼은 숨김.
+  JS `syncNavMode()`가 hidden 속성과 열림 상태를 breakpoint에 맞춰 초기화하며,
+  `setNavOpen()`은 데스크톱에서 아무 것도 하지 않는다.
+- 브랜드 소개 페이지에는 진입 인트로(스플래시)를 넣지 않는다.
+  인트로는 메인페이지 진입 시에만 재생한다. (main.js는 splash 요소가 없으면 건너뜀)
+- 브랜드 소개 페이지의 GNB '연구회 소개' 항목은 aria-current="page"로 현재 위치 표시
 - 등장 애니메이션은 1회만 재생 (등장 후 observer unobserve)
 - prefers-reduced-motion 설정 시 모든 모션을 끄고 콘텐츠를 즉시 노출
 - 인트로는 메인페이지 로드 시마다 재생 (약 3.3초). 세션당 1회로 바꾸려면
@@ -76,6 +92,13 @@
   사용자 요청에 따라 4개 카드로 확장하고 문구를 사용자 제공안으로 교체함.
 - 회색 단색 배경이 더미처럼 보이는 문제를 보완하기 위해 카드에 그라데이션 배경,
   상단 브랜드 액센트 라인, 번호 인덱스(01~04), 카테고리 아이콘을 추가함.
+- **Our Core Values 카드 4종의 사진**: Figma 원본은 청년 실루엣 / 노트북 / 도시 야경 /
+  회의실 사진을 쓰지만 해당 에셋이 저장소에 없고 Figma MCP에 이미지 다운로드 기능이
+  없어, 기존 assets/images의 실제 사진으로 대체함 (placeholder URL 미사용).
+  자기이해→card_partner.jpg, 메타인지→card_research.jpg,
+  성장→hero_building.jpg, 연결→card_lecture.jpg. 원본 사진 확보 시 교체 필요.
+- 브랜드 페이지 히어로의 기관명은 Figma 원문이 '미래청년교육연구소'이나
+  확정 브랜드명인 '미래청년교육연구회'로 표기함.
 
 ## 사용 중인 라이브러리
 
@@ -87,14 +110,43 @@
 
 ## 알려진 문제
 
-- 없음
+- Our Core Values 사진 4종이 Figma 원본과 다른 대체 이미지 (위 '디자인과 다르게 구현한 부분' 참고)
 
 ## 다음 작업
 
-1. 메뉴 카드 및 링크의 실제 이동 경로 연결 (현재 앵커 placeholder)
-2. 하위 페이지(연구회 소개 등) 구현
+1. Core Values 원본 사진 4종 확보 후 교체
+2. 남은 메뉴 카드·링크의 실제 이동 경로 연결
+   (연구회 소개 → brand/index.html 연결 완료, 나머지는 앵커 placeholder)
+3. 하위 페이지(연구 자료, 교류 기관, 강의 및 컨설팅 신청) 구현
 
-## 마지막 검증 결과
+## 마지막 검증 결과 (2026-08-07, 반응형 + 브랜드 페이지)
+
+- 실행 명령: node 정적 서버 (http://localhost:4173)
+- 확인 화면: 360px, 375px, 768px, 820px, 1280px (메인 / 브랜드 소개 두 페이지)
+- 통과한 항목
+  - 두 페이지·전 브레이크포인트에서 가로 스크롤 없음(docW=clientW), 넘치는 요소 0개
+  - 콘솔 오류 0건, 리소스 전체 200 OK, 깨진 이미지 0건
+  - 토큰 전환: --page_padding 23 → 40 → 48px, --header_height 58 → 68 → 76px
+  - 메인 menu_grid 2열(360·820px) → 4열(1280px), field_list 1열 → 2열 → 4열,
+    link_list·footer_inner 1열 → 2열
+  - 브랜드 value_list 1열 → 2열(327px) → 4열(277px),
+    history_track 데스크톱에서 900px 폭 중앙 정렬
+  - 데스크톱 GNB: 햄버거 display:none, 전체 메뉴가 헤더에 가로 배치(우측 정렬),
+    로고·nav 링크 모두 elementFromPoint 히트 테스트 통과(pointer-events 충돌 없음)
+  - 링크: 메인 GNB '연구회 소개'·소개 카드 → brand/index.html,
+    브랜드 로고 → index.html, 브랜드 GNB 나머지 → ../index.html#앵커
+  - 375px·768px 스크린샷으로 히어로 / Vision·Mission / Core Values / History 시각 확인
+- 확인하지 못한 부분
+  - 데스크톱(1280px) 스크린샷은 히어로·GNB만 확보. 이후 미리보기 창이 hidden 상태가 되어
+    나머지 섹션은 DOM 측정값(위치·크기·컬럼 수)으로만 검증함
+  - 미리보기 창이 hidden이면 IntersectionObserver·requestAnimationFrame이 멈추므로
+    해당 상태에서의 스크롤 등장 모션·메뉴 토글 실동작은 재현 불가.
+    375px·768px 가시 상태에서는 정상 동작 확인함
+  - 창 크기를 실시간으로 바꿀 때의 GNB 모드 전환(matchMedia change)은
+    이 환경에서 change 이벤트가 발생하지 않아 미검증. 각 폭에서 새로고침 시에는 정상
+  - 실기기 테스트
+
+## 이전 검증 결과 (2026-08-06, 모바일 메인페이지)
 
 - 실행 명령: node 정적 서버 (http://localhost:4173)
 - 결과: 통과
