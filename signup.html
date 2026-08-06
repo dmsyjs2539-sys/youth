@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인 | 미래청년교육연구소</title>
-    <meta name="description" content="미래청년교육연구소 회원 로그인 페이지입니다.">
+    <title>회원가입 | 미래청년교육연구소</title>
+    <meta name="description" content="미래청년교육연구소 회원가입 페이지입니다.">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
@@ -34,11 +34,11 @@
 
             <div class="header_actions">
                 <ul class="auth_list">
-                    <li><a class="auth_link auth_link_login" href="login.html" aria-current="page">로그인</a></li>
-                    <li><a class="auth_link auth_link_signup" href="signup.html">회원가입</a></li>
+                    <li><a class="auth_link auth_link_login" href="login.html">로그인</a></li>
+                    <li><a class="auth_link auth_link_signup" href="signup.html" aria-current="page">회원가입</a></li>
                 </ul>
 
-                <a class="header_account" href="login.html" aria-current="page" aria-label="로그인 · 회원가입">
+                <a class="header_account" href="login.html" aria-label="로그인 · 회원가입">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <circle cx="12" cy="8.2" r="3.6"/>
                         <path d="M4.9 20.2a7.1 7.1 0 0 1 14.2 0" stroke-linecap="round"/>
@@ -66,29 +66,42 @@
     <main class="auth_page" id="main_content">
         <div class="auth_intro" data-reveal>
             <p class="auth_eyebrow">Beyond Knowledge Build Direction</p>
-            <h1 class="auth_headline">로그인</h1>
+            <h1 class="auth_headline">회원가입</h1>
             <p class="auth_lead">
-                로그인하면 연구 자료 열람, 강의 및 컨설팅 신청 내역 확인,
-                교류 기관 소식 구독을 한 곳에서 이용할 수 있습니다.
+                이름과 이메일만 입력하면 연구 자료 열람, 강의 및 컨설팅 신청,
+                교류 기관 소식 구독을 바로 시작할 수 있습니다.
             </p>
         </div>
 
         <div class="auth_panel">
-            <section class="auth_card" aria-labelledby="login_title">
-                <h2 class="auth_card_title" id="login_title">이메일로 로그인</h2>
-                <p class="auth_card_desc">가입하신 이메일 주소와 비밀번호를 입력해 주세요.</p>
+            <section class="auth_card" aria-labelledby="signup_title">
+                <h2 class="auth_card_title" id="signup_title">회원 정보 입력</h2>
+                <p class="auth_card_desc">가입 후 입력하신 이메일로 인증 메일이 발송됩니다.</p>
 
                 <form
                     class="auth_form"
-                    id="login_form"
-                    data-pending-message="인증 서버가 아직 연결되지 않아 실제 로그인은 처리되지 않습니다."
+                    id="signup_form"
+                    data-pending-message="인증 서버가 아직 연결되지 않아 실제 가입은 처리되지 않습니다."
                     novalidate
                 >
                     <div class="auth_field">
-                        <label class="auth_field_label" for="login_email">이메일</label>
+                        <label class="auth_field_label" for="signup_name">이름</label>
                         <input
                             class="auth_field_input"
-                            id="login_email"
+                            id="signup_name"
+                            name="name"
+                            type="text"
+                            autocomplete="name"
+                            placeholder="홍길동"
+                            required
+                        >
+                    </div>
+
+                    <div class="auth_field">
+                        <label class="auth_field_label" for="signup_email">이메일</label>
+                        <input
+                            class="auth_field_input"
+                            id="signup_email"
                             name="email"
                             type="email"
                             autocomplete="email"
@@ -98,32 +111,34 @@
                     </div>
 
                     <div class="auth_field">
-                        <label class="auth_field_label" for="login_password">비밀번호</label>
+                        <label class="auth_field_label" for="signup_password">비밀번호</label>
                         <input
                             class="auth_field_input"
-                            id="login_password"
+                            id="signup_password"
                             name="password"
                             type="password"
-                            autocomplete="current-password"
+                            autocomplete="new-password"
+                            minlength="8"
                             required
+                            aria-describedby="signup_password_hint"
                         >
+                        <p class="auth_field_hint" id="signup_password_hint">영문과 숫자를 포함해 8자 이상 입력해 주세요.</p>
                     </div>
 
                     <div class="auth_row">
-                        <label class="auth_checkbox" for="keep_signed_in">
-                            <input type="checkbox" id="keep_signed_in" name="keep_signed_in">
-                            <span>로그인 상태 유지</span>
+                        <label class="auth_checkbox" for="agree_terms">
+                            <input type="checkbox" id="agree_terms" name="agree_terms" required>
+                            <span>이용약관 및 개인정보처리방침 동의</span>
                         </label>
-                        <a class="auth_text_link" href="#find_password">비밀번호 찾기</a>
                     </div>
 
-                    <button class="auth_submit" type="submit">로그인</button>
+                    <button class="auth_submit" type="submit">회원가입</button>
 
-                    <p class="auth_message" id="login_message" role="status" hidden></p>
+                    <p class="auth_message" id="signup_message" role="status" hidden></p>
                 </form>
 
                 <p class="auth_switch">
-                    아직 계정이 없으신가요? <a href="signup.html">회원가입하기</a>
+                    이미 계정이 있으신가요? <a href="login.html">로그인하기</a>
                 </p>
             </section>
         </div>

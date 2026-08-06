@@ -15,9 +15,11 @@
   - 공통·메인페이지 반응형: `css/responsive.css`
   - 브랜드 페이지 반응형: `css/brand.css` 하단
   - 데스크톱에서 `--content_max: 1200px`로 최대 폭 제한 + 중앙 정렬
-- 로그인 / 회원가입 페이지 `login.html` (+ `css/login.css`, `js/login.js`)
-  - 로그인 카드 + 회원가입 카드 2단 (모바일 1단)
-  - 인증 서버 미연결 상태이므로 제출은 막고 상태 메시지만 노출
+- 로그인 `login.html` / 회원가입 `signup.html` (공용 `css/auth.css`, `js/auth.js`)
+  - 각 페이지에 카드 1개만 두고, 카드 하단 텍스트 링크로 서로 이동한다
+  - 헤더 '회원가입' 버튼과 로그인 카드 하단 '회원가입하기'가 모두 signup.html로 연결
+  - 인증 서버 미연결 상태이므로 제출은 막고 상태 메시지만 노출.
+    성공 문구는 각 폼의 `data-pending-message` 속성에서 읽는다
 - GNB 3분할 개편 + hover 인터랙션 (2026-08-07)
 - 헤더: 고정 헤더, 스크롤 시 배경 강화, 햄버거 메뉴 토글
 - 히어로: 배경 이미지 + 하단 그라데이션 오버레이, 메인 카피
@@ -77,7 +79,7 @@
   (2026-08-07 스크롤 전/후 top·left·width 동일 확인).
 - hover 효과는 `@media (min-width: 768px) and (hover: hover)`로 분리한다.
   터치 기기에서 hover가 눌린 채 남는 것을 막고, 키보드는 `:focus-visible`이 담당한다.
-- 밝은 배경 페이지(login.html)는 `.header_solid`를 함께 붙여 헤더를 불투명하게 만든다.
+- 밝은 배경 페이지(login.html, signup.html)는 `.header_solid`를 함께 붙여 헤더를 불투명하게 만든다.
   기본 헤더 배경은 어두운 히어로 위를 전제로 한 반투명 스크림이라 흰 글자가 묻힌다.
 - **클래스 이름 충돌 주의**: `.field`는 이미 메인페이지 '연구 분야' 섹션이 쓰고 있다
   (`layout.css`, `padding: 56px 23px 0`). 로그인 폼은 `.auth_field*`로 접두사를 붙였다.
@@ -146,12 +148,12 @@
 ## 알려진 문제
 
 - Core Values 이미지 4장 합계 4.4MB (PNG). 최적화 미적용
-- login.html은 화면 틀만 있고 인증 서버가 없다. 제출 시 안내 메시지만 노출
+- login.html / signup.html은 화면 틀만 있고 인증 서버가 없다. 제출 시 안내 메시지만 노출
 - 비밀번호 찾기(`#find_password`)는 앵커 placeholder
 
 ## 다음 작업
 
-1. 인증 API 연동 (login.html 제출 처리, 로그인 상태에 따른 헤더 전환)
+1. 인증 API 연동 (login.html / signup.html 제출 처리, 로그인 상태에 따른 헤더 전환)
 2. 남은 메뉴 카드·링크의 실제 이동 경로 연결
    (연구소 소개 → brand/index.html 연결 완료, 나머지는 앵커 placeholder)
 3. 하위 페이지(연구 자료, 교류 기관, 강의 및 컨설팅 신청) 구현

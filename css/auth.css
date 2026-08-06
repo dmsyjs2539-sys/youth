@@ -1,5 +1,6 @@
-/* 로그인 / 회원가입 페이지 전용 스타일
+/* 로그인(login.html) / 회원가입(signup.html) 공용 스타일
  * 색상·폰트·간격·모션 토큰은 base.css / animations.css를 그대로 계승한다.
+ * 두 페이지 모두 카드 1개만 두고, 서로는 카드 하단 텍스트 링크로 오간다.
  */
 
 .auth_page {
@@ -45,11 +46,9 @@
     word-break: keep-all;
 }
 
-.auth_grid {
-    display: grid;
-    gap: var(--space_5);
+.auth_panel {
     width: 100%;
-    max-width: 520px;
+    max-width: 460px;
     margin-top: var(--space_10);
 }
 
@@ -250,11 +249,8 @@
         font-size: 16px;
     }
 
-    .auth_grid {
-        max-width: 960px;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space_6);
-        align-items: start;
+    .auth_panel {
+        max-width: 500px;
     }
 
     .auth_intro {
@@ -280,9 +276,8 @@
         font-size: 42px;
     }
 
-    .auth_grid {
-        max-width: var(--content_max);
-        gap: var(--space_8);
+    .auth_panel {
+        max-width: 520px;
     }
 
     .auth_card {
