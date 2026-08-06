@@ -1,0 +1,300 @@
+/* 연구 자료 상세 페이지 (research.html) 임시 레이아웃
+ * 색상·폰트·간격·모션 토큰은 base.css / animations.css를 그대로 계승한다.
+ */
+
+/* ---------- 헤더 로그인 상태 영역 ---------- */
+
+.header_user {
+    display: flex;
+    align-items: center;
+    gap: var(--space_2);
+}
+
+/* 좁은 화면에서는 이메일이 길어 헤더를 밀어내므로 768px부터 노출한다. */
+.header_user_email {
+    display: none;
+    max-width: 220px;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* ---------- 페이지 ---------- */
+
+.research_page {
+    padding: calc(var(--header_height) + var(--space_10)) var(--page_padding) 96px;
+}
+
+.research_inner {
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.research_back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space_2);
+    color: var(--color_brand);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    transition: gap 0.22s var(--ease_out_soft);
+}
+
+.research_back svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+/* ---------- 자료 헤더 ---------- */
+
+.research_header {
+    margin-top: var(--space_6);
+    padding-bottom: var(--space_6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.research_tag {
+    display: inline-flex;
+    padding: 5px 12px;
+    border-radius: var(--radius_pill);
+    background-color: rgba(43, 161, 255, 0.12);
+    color: var(--color_brand);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.research_title {
+    margin-top: var(--space_4);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.research_meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space_2) var(--space_4);
+    margin-top: var(--space_5);
+    color: var(--color_text_sub);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.research_meta dt {
+    display: inline;
+    font-weight: 600;
+}
+
+.research_meta dd {
+    display: inline;
+    margin: 0 0 0 var(--space_1);
+}
+
+.research_meta > div {
+    display: flex;
+    align-items: center;
+    gap: var(--space_1);
+}
+
+/* ---------- 대표 이미지 ---------- */
+
+.research_cover {
+    margin-top: var(--space_8);
+    border-radius: var(--radius_card);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+}
+
+.research_cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------- 본문 ---------- */
+
+.research_summary {
+    margin-top: var(--space_8);
+    padding: 22px 20px;
+    border-left: 3px solid var(--color_brand);
+    border-radius: 0 10px 10px 0;
+    background-color: rgba(43, 161, 255, 0.06);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.75;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.research_section {
+    margin-top: var(--space_10);
+}
+
+.research_section_title {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+}
+
+.research_section p {
+    margin-top: var(--space_3);
+    color: var(--color_text_muted);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.8;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.research_points {
+    display: grid;
+    gap: var(--space_3);
+    margin-top: var(--space_4);
+}
+
+.research_points li {
+    position: relative;
+    padding-left: var(--space_5);
+    color: var(--color_text_muted);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.research_points li::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 7px;
+    height: 7px;
+    transform: rotate(-45deg);
+    background: linear-gradient(135deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
+}
+
+/* ---------- 첨부 자료 ---------- */
+
+.research_files {
+    display: grid;
+    gap: var(--space_3);
+    margin-top: var(--space_5);
+}
+
+.research_file {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space_4);
+    padding: 16px 18px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    transition:
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.22s var(--ease_out_soft);
+}
+
+.research_file_name {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.research_file_size {
+    flex-shrink: 0;
+    color: var(--color_text_sub);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+/* ---------- 임시 레이아웃 안내 ---------- */
+
+.research_notice {
+    margin-top: var(--space_10);
+    padding: 14px 16px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.04);
+    color: var(--color_text_sub);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+/* ========================================================
+ * 반응형
+ * ======================================================== */
+
+@media (min-width: 768px) {
+    .header_user_email {
+        display: block;
+    }
+
+    .research_page {
+        padding-top: calc(var(--header_height) + 64px);
+        padding-bottom: 120px;
+    }
+
+    .research_title {
+        font-size: 34px;
+    }
+
+    .research_meta {
+        font-size: 14px;
+    }
+
+    .research_summary {
+        padding: 26px 24px;
+        font-size: 16px;
+    }
+
+    .research_section_title {
+        font-size: 22px;
+    }
+
+    .research_section p,
+    .research_points li {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .research_page {
+        padding-top: calc(var(--header_height) + 88px);
+    }
+
+    .research_title {
+        font-size: 40px;
+    }
+}
+
+@media (hover: hover) {
+    .research_back:hover {
+        gap: var(--space_3);
+    }
+
+    .research_file:hover {
+        border-color: var(--color_brand);
+        box-shadow: 0 6px 18px rgba(43, 161, 255, 0.16);
+        transform: translateY(-2px);
+    }
+}
