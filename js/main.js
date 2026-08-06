@@ -6,7 +6,7 @@
     var NAV_CLOSE_DURATION = 420;
     var HERO_START_DELAY = 220;
     var SPLASH_DURATION = 3800;
-    var DESKTOP_MIN_WIDTH = 1024;
+    var INLINE_NAV_MIN_WIDTH = 768;
 
     var header = document.getElementById("header");
     var menuButton = document.getElementById("menu_button");
@@ -14,15 +14,15 @@
     var splash = document.getElementById("splash");
     var toTopButton = document.getElementById("to_top");
     var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    var desktopQuery = window.matchMedia("(min-width: " + DESKTOP_MIN_WIDTH + "px)");
+    var inlineNavQuery = window.matchMedia("(min-width: " + INLINE_NAV_MIN_WIDTH + "px)");
     var navCloseTimer = null;
 
     function isMotionReduced() {
         return motionQuery.matches;
     }
 
-    function isDesktopNav() {
-        return desktopQuery.matches;
+    function isInlineNav() {
+        return inlineNavQuery.matches;
     }
 
     /* ---------- 텍스트 스플릿 ---------- */
@@ -128,11 +128,11 @@
     /* ---------- 내비게이션 ---------- */
 
     /*
-     * 데스크톱에서는 전체 메뉴가 헤더에 항상 펼쳐져 있으므로
+     * 768px 이상에서는 전체 메뉴가 헤더 안에 가로로 항상 펼쳐져 있으므로
      * hidden 속성과 열림 상태를 초기화해 CSS 레이아웃과 어긋나지 않게 한다.
      */
     function syncNavMode() {
-        if (!isDesktopNav()) {
+        if (!isInlineNav()) {
             if (!globalNav.classList.contains("is_open")) {
                 globalNav.hidden = true;
             }
@@ -148,7 +148,7 @@
     }
 
     function setNavOpen(isOpen) {
-        if (isDesktopNav()) {
+        if (isInlineNav()) {
             return;
         }
 
@@ -296,10 +296,10 @@
     document.addEventListener("keydown", handleDocumentKeydown);
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    if (desktopQuery.addEventListener) {
-        desktopQuery.addEventListener("change", syncNavMode);
+    if (inlineNavQuery.addEventListener) {
+        inlineNavQuery.addEventListener("change", syncNavMode);
     } else {
-        desktopQuery.addListener(syncNavMode);
+        inlineNavQuery.addListener(syncNavMode);
     }
 
     initNavStagger();

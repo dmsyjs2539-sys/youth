@@ -15,6 +15,14 @@
     backdrop-filter: blur(8px);
 }
 
+/*
+ * 헤더 기본 배경은 어두운 히어로 위를 전제로 한 반투명 스크림이다.
+ * 로그인처럼 배경이 밝은 페이지에서는 흰 글자가 묻히므로 불투명하게 깐다.
+ */
+.header_solid {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
 .header_inner {
     display: flex;
     align-items: center;
@@ -41,6 +49,13 @@
     white-space: nowrap;
 }
 
+/* 헤더 우측 액션 묶음 — 모바일은 계정 아이콘 + 햄버거, 768px부터는 로그인/회원가입 */
+.header_actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space_3);
+}
+
 .header_menu_button {
     display: flex;
     align-items: center;
@@ -49,9 +64,63 @@
     height: 29px;
 }
 
+.header_account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 29px;
+    height: 29px;
+    color: #ffffff;
+    transition: color 0.22s ease;
+}
+
+.header_account svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+}
+
+/* 로그인·회원가입 텍스트 링크는 768px 이상에서만 노출한다. */
+.auth_list {
+    display: none;
+    align-items: center;
+    gap: var(--space_2);
+}
+
+.auth_link {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 15px;
+    border: 1px solid transparent;
+    border-radius: var(--radius_pill);
+    color: rgba(255, 255, 255, 0.86);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    transition:
+        color 0.22s ease,
+        background-color 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.22s var(--ease_out_soft);
+}
+
+.auth_link_signup {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+}
+
+/*
+ * 모바일 전체 메뉴는 헤더 아래로 펼쳐지는 드롭다운이다.
+ * .header가 스크롤 시 backdrop-filter를 갖는데, backdrop-filter는 position:fixed의
+ * 컨테이닝 블록이 되어 스크롤 전후로 기준이 바뀐다. absolute로 헤더 패딩 박스에
+ * 고정해 두면 그 영향을 받지 않는다.
+ */
 .global_nav {
-    position: fixed;
-    top: var(--header_height);
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     z-index: 29;

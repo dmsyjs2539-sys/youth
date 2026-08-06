@@ -1,0 +1,310 @@
+/* 로그인 / 회원가입 페이지 전용 스타일
+ * 색상·폰트·간격·모션 토큰은 base.css / animations.css를 그대로 계승한다.
+ */
+
+.auth_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: calc(var(--header_height) + var(--space_14)) var(--page_padding) 96px;
+    background:
+        radial-gradient(120% 70% at 50% 0%, rgba(43, 161, 255, 0.14) 0%, rgba(43, 161, 255, 0) 62%),
+        var(--color_surface);
+}
+
+.auth_intro {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+}
+
+.auth_eyebrow {
+    color: var(--color_brand);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+}
+
+.auth_headline {
+    margin-top: var(--space_2);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.auth_lead {
+    margin-top: var(--space_4);
+    color: var(--color_text_sub);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.auth_grid {
+    display: grid;
+    gap: var(--space_5);
+    width: 100%;
+    max-width: 520px;
+    margin-top: var(--space_10);
+}
+
+.auth_card {
+    padding: 32px 24px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius_card);
+    background-color: var(--color_surface);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.auth_card_title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.auth_card_desc {
+    margin-top: var(--space_2);
+    color: var(--color_text_sub);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+/* ---------- 폼 ---------- */
+
+.auth_form {
+    display: grid;
+    gap: var(--space_4);
+    margin-top: var(--space_6);
+}
+
+.auth_field {
+    display: grid;
+    gap: var(--space_2);
+}
+
+.auth_field_label {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.auth_field_input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: var(--color_text);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition:
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.auth_field_input::placeholder {
+    color: rgba(0, 0, 0, 0.32);
+}
+
+.auth_field_input:focus {
+    outline: none;
+    border-color: var(--color_brand);
+    box-shadow: 0 0 0 3px rgba(43, 161, 255, 0.18);
+}
+
+.auth_field_input:focus-visible {
+    outline: none;
+}
+
+.auth_field_hint {
+    color: var(--color_text_sub);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+}
+
+.auth_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space_3);
+}
+
+.auth_checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space_2);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+}
+
+.auth_checkbox input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color_brand);
+    cursor: pointer;
+}
+
+.auth_text_link {
+    color: var(--color_brand);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    transition: color 0.22s ease;
+}
+
+/* ---------- 버튼 ---------- */
+
+.auth_submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px;
+    border-radius: var(--radius_pill);
+    background: linear-gradient(135deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    box-shadow: 0 6px 18px rgba(43, 161, 255, 0.3);
+    transition:
+        box-shadow 0.22s ease,
+        transform 0.22s var(--ease_out_soft);
+}
+
+.auth_submit_ghost {
+    background: none;
+    border: 1px solid var(--color_brand);
+    color: var(--color_brand);
+    box-shadow: none;
+}
+
+.auth_submit:active {
+    transform: scale(0.98);
+}
+
+/* ---------- 상태 메시지 ---------- */
+
+.auth_message {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background-color: rgba(43, 161, 255, 0.1);
+    color: var(--color_brand);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.auth_message.has_error {
+    background-color: rgba(214, 45, 45, 0.08);
+    color: #c62828;
+}
+
+.auth_switch {
+    margin-top: var(--space_5);
+    color: var(--color_text_sub);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    text-align: center;
+}
+
+.auth_switch a {
+    color: var(--color_brand);
+    font-weight: 600;
+}
+
+/* ========================================================
+ * 반응형
+ * ======================================================== */
+
+@media (min-width: 768px) {
+    .auth_page {
+        padding-top: calc(var(--header_height) + 72px);
+    }
+
+    .auth_headline {
+        font-size: 36px;
+    }
+
+    .auth_lead {
+        font-size: 16px;
+    }
+
+    .auth_grid {
+        max-width: 960px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space_6);
+        align-items: start;
+    }
+
+    .auth_intro {
+        max-width: 640px;
+    }
+
+    .auth_card {
+        padding: 40px 32px;
+    }
+
+    .auth_card_title {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .auth_page {
+        padding-top: calc(var(--header_height) + 96px);
+        padding-bottom: 120px;
+    }
+
+    .auth_headline {
+        font-size: 42px;
+    }
+
+    .auth_grid {
+        max-width: var(--content_max);
+        gap: var(--space_8);
+    }
+
+    .auth_card {
+        padding: 48px 40px;
+    }
+}
+
+@media (hover: hover) {
+    .auth_submit:hover {
+        box-shadow: 0 10px 26px rgba(43, 161, 255, 0.48);
+        transform: translateY(-2px);
+    }
+
+    .auth_submit_ghost:hover {
+        background-color: rgba(43, 161, 255, 0.08);
+        box-shadow: none;
+        transform: translateY(-2px);
+    }
+
+    .auth_text_link:hover,
+    .auth_switch a:hover {
+        color: var(--color_brand_light);
+        text-decoration: underline;
+    }
+}

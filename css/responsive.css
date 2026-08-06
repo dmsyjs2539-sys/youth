@@ -15,7 +15,7 @@
         --header_height: 68px;
     }
 
-    /* 헤더 --------------------------------------------------- */
+    /* 헤더 + 가로형 GNB ---------------------------------------- */
 
     .header {
         display: flex;
@@ -23,25 +23,114 @@
         padding: 0 var(--page_padding);
     }
 
+    /*
+     * [좌] 로고 · [중앙] 전체 메뉴 · [우] 로그인/회원가입
+     * 양쪽을 1fr로 잡아 가운데 열이 화면 정중앙에 오게 하고,
+     * 그리드라 세 영역이 서로 겹칠 수 없다.
+     */
     .header_inner {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: var(--space_4);
         width: 100%;
         height: auto;
+    }
+
+    .header_logo {
+        justify-self: start;
     }
 
     .header_logo_symbol {
         height: 26px;
     }
 
+    /* 768~1023px는 가로 폭이 빠듯해 로고 글자를 숨기고 심볼만 노출한다.
+       접근 가능한 이름은 .header_logo의 aria-label이 유지한다. */
     .header_logo_text {
-        font-size: 19px;
+        display: none;
     }
 
-    .global_nav {
-        padding: var(--space_5) var(--page_padding) var(--space_8);
+    .header_actions {
+        justify-self: end;
+    }
+
+    /* 모바일 드롭다운을 헤더 안 가로 메뉴로 전환 */
+    .global_nav,
+    .global_nav[hidden] {
+        display: block;
+        position: static;
+        justify-self: center;
+        z-index: auto;
+        padding: 0;
+        background: none;
+        backdrop-filter: none;
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .global_nav_list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .global_nav_list > li {
+        opacity: 1;
+        transform: none;
+        transition: none;
     }
 
     .global_nav_link {
-        font-size: 18px;
+        position: relative;
+        padding: 8px 2px;
+        border-bottom: 0;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: color 0.22s ease;
+    }
+
+    /* 밑줄이 왼쪽에서 오른쪽으로 차오르는 hover 피드백 */
+    .global_nav_link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 2px;
+        border-radius: 2px;
+        background-color: var(--color_brand_light);
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 0.28s var(--ease_out_soft);
+    }
+
+    .global_nav_link:focus-visible,
+    .global_nav_link[aria-current="page"] {
+        color: #ffffff;
+    }
+
+    .global_nav_link:focus-visible::after,
+    .global_nav_link[aria-current="page"]::after {
+        transform: scaleX(1);
+    }
+
+    .header_account,
+    .header_menu_button {
+        display: none;
+    }
+
+    .auth_list {
+        display: flex;
+    }
+
+    .auth_link {
+        font-size: 13px;
+        padding: 6px 13px;
     }
 
     /* 히어로 ------------------------------------------------- */
@@ -188,7 +277,7 @@
         --header_height: 76px;
     }
 
-    /* 헤더 + 데스크톱 전용 GNB ---------------------------------- */
+    /* 헤더 --------------------------------------------------- */
 
     .header_inner {
         max-width: var(--content_max);
@@ -199,72 +288,23 @@
         height: 28px;
     }
 
+    /* 폭에 여유가 생기므로 로고 글자를 다시 노출한다. */
     .header_logo_text {
+        display: block;
         font-size: 21px;
     }
 
-    /* 햄버거 버튼은 데스크톱에서 사용하지 않는다. */
-    .header_menu_button {
-        display: none;
-    }
-
-    /*
-     * 데스크톱에서는 전체 메뉴를 헤더 줄에 가로로 펼친다.
-     * .global_nav는 header의 형제 요소라 static으로 바꾸면 헤더 밖으로 나가므로,
-     * 헤더와 같은 높이의 fixed 레이어로 겹쳐 두고 pointer-events로 로고 클릭을 살린다.
-     */
-    .global_nav,
-    .global_nav[hidden] {
-        display: flex;
-        top: 0;
-        height: var(--header_height);
-        align-items: center;
-        justify-content: center;
-        z-index: 31;
-        padding: 0 var(--page_padding);
-        background: none;
-        backdrop-filter: none;
-        opacity: 1;
-        transform: none;
-        transition: none;
-        pointer-events: none;
-    }
-
     .global_nav_list {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
         gap: 30px;
-        width: 100%;
-        max-width: var(--content_max);
-    }
-
-    .global_nav_list > li {
-        opacity: 1;
-        transform: none;
-        transition: none;
     }
 
     .global_nav_link {
-        pointer-events: auto;
-        padding: 4px 0;
-        border-bottom: 2px solid transparent;
-        font-size: 16px;
-        white-space: nowrap;
-        transition:
-            color 0.2s ease,
-            border-color 0.2s ease;
+        font-size: 15px;
     }
 
-    .global_nav_link:hover,
-    .global_nav_link:focus-visible {
-        color: var(--color_brand_light);
-        border-bottom-color: var(--color_brand_light);
-    }
-
-    .global_nav_link[aria-current="page"] {
-        color: var(--color_brand_light);
-        border-bottom-color: var(--color_brand_light);
+    .auth_link {
+        font-size: 14px;
+        padding: 7px 16px;
     }
 
     /* 히어로 ------------------------------------------------- */
@@ -400,6 +440,54 @@
     .footer_copyright {
         font-size: 13px;
     }
+}
+
+/* ==========================================================
+ * 마우스 hover 피드백 (768px 이상 + 실제 포인터가 있는 환경)
+ *
+ * 터치 기기에서 hover 상태가 눌린 채로 남는 것을 막기 위해
+ * (hover: hover)로 분리한다. 키보드 대응은 위쪽 :focus-visible이 담당한다.
+ * ========================================================== */
+
+@media (min-width: 768px) and (hover: hover) {
+    .global_nav_link:hover {
+        color: #ffffff;
+    }
+
+    .global_nav_link:hover::after {
+        transform: scaleX(1);
+    }
+
+    .auth_link_login:hover {
+        background-color: rgba(255, 255, 255, 0.16);
+        color: #ffffff;
+    }
+
+    .auth_link_signup:hover {
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
+        color: #ffffff;
+        box-shadow: 0 6px 16px rgba(43, 161, 255, 0.42);
+        transform: translateY(-1px);
+    }
+
+    .header_logo:hover .header_logo_symbol {
+        transform: scale(1.06);
+    }
+}
+
+@media (hover: hover) {
+    .header_account:hover {
+        color: var(--color_brand_light);
+    }
+}
+
+.header_logo_symbol {
+    transition: transform 0.28s var(--ease_out_soft);
+}
+
+.auth_link:active {
+    transform: translateY(0) scale(0.97);
 }
 
 /* ========== 큰 데스크톱: 1440px ~ ========== */

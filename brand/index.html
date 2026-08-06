@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>연구회 소개 | 미래청년교육연구회</title>
-    <meta name="description" content="미래청년교육연구회는 청년이 주체적으로 미래를 설계하도록 데이터 기반 맞춤형 프로그램을 연구·검증하는 비영리 교육 연구 기관입니다.">
+    <title>연구소 소개 | 미래청년교육연구소</title>
+    <meta name="description" content="미래청년교육연구소는 청년이 주체적으로 미래를 설계하도록 데이터 기반 맞춤형 프로그램을 연구·검증하는 비영리 교육 연구 기관입니다.">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/components.css">
@@ -17,36 +17,50 @@
 
     <header class="header" id="header">
         <div class="header_inner">
-            <a class="header_logo" href="../index.html" aria-label="미래청년교육연구회 홈">
+            <a class="header_logo" href="../index.html" aria-label="미래청년교육연구소 홈">
                 <img class="header_logo_symbol" src="../assets/icons/logo_symbol.svg" alt="">
-                <span class="header_logo_text">미래청년교육연구회</span>
+                <span class="header_logo_text">미래청년교육연구소</span>
             </a>
-            <button
-                class="header_menu_button"
-                type="button"
-                id="menu_button"
-                aria-label="전체 메뉴 열기"
-                aria-expanded="false"
-                aria-controls="global_nav"
-            >
-                <span class="menu_icon" aria-hidden="true">
-                    <span class="menu_icon_bar"></span>
-                    <span class="menu_icon_bar"></span>
-                    <span class="menu_icon_bar"></span>
-                </span>
-            </button>
+            <nav class="global_nav" id="global_nav" aria-label="전체 메뉴" hidden>
+                <ul class="global_nav_list">
+                    <li><a class="global_nav_link" href="./index.html" aria-current="page">연구소 소개</a></li>
+                    <li><a class="global_nav_link" href="../index.html#section_menu">연구 자료</a></li>
+                    <li><a class="global_nav_link" href="../index.html#section_menu">교류 기관</a></li>
+                    <li><a class="global_nav_link" href="../index.html#section_menu">강의 및 컨설팅 신청</a></li>
+                    <li><a class="global_nav_link" href="../index.html#section_field">연구 분야</a></li>
+                </ul>
+            </nav>
+
+            <div class="header_actions">
+                <ul class="auth_list">
+                    <li><a class="auth_link auth_link_login" href="../login.html">로그인</a></li>
+                    <li><a class="auth_link auth_link_signup" href="../login.html#signup">회원가입</a></li>
+                </ul>
+
+                <a class="header_account" href="../login.html" aria-label="로그인 · 회원가입">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8.2" r="3.6"/>
+                        <path d="M4.9 20.2a7.1 7.1 0 0 1 14.2 0" stroke-linecap="round"/>
+                    </svg>
+                </a>
+
+                <button
+                    class="header_menu_button"
+                    type="button"
+                    id="menu_button"
+                    aria-label="전체 메뉴 열기"
+                    aria-expanded="false"
+                    aria-controls="global_nav"
+                >
+                    <span class="menu_icon" aria-hidden="true">
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                    </span>
+                </button>
+            </div>
         </div>
     </header>
-
-    <nav class="global_nav" id="global_nav" aria-label="전체 메뉴" hidden>
-        <ul class="global_nav_list">
-            <li><a class="global_nav_link" href="./index.html" aria-current="page">연구회 소개</a></li>
-            <li><a class="global_nav_link" href="../index.html#section_menu">연구 자료</a></li>
-            <li><a class="global_nav_link" href="../index.html#section_menu">교류 기관</a></li>
-            <li><a class="global_nav_link" href="../index.html#section_menu">강의 및 컨설팅 신청</a></li>
-            <li><a class="global_nav_link" href="../index.html#section_field">연구 분야</a></li>
-        </ul>
-    </nav>
 
     <main id="main_content">
         <section class="brand_hero" aria-labelledby="brand_hero_title">
@@ -56,9 +70,9 @@
 
             <div class="brand_hero_body">
                 <p class="brand_hero_eyebrow" data-reveal>Beyond Knowledge Build Direction</p>
-                <h1 class="brand_hero_title split_text" id="brand_hero_title" data-split-load>미래청년교육연구회</h1>
+                <h1 class="brand_hero_title split_text" id="brand_hero_title" data-split-load>미래청년교육연구소</h1>
                 <p class="brand_hero_desc" data-reveal>
-                    미래청년교육연구회는 청년이 주체적으로<br>
+                    미래청년교육연구소는 청년이 주체적으로<br>
                     미래를 설계하도록 데이터 기반 맞춤형 프로그램을<br>
                     연구·검증하는 비영리 교육 연구 기관입니다.
                 </p>
@@ -104,7 +118,7 @@
 
             <ul class="value_list">
                 <li class="value_card" data-reveal>
-                    <img class="value_card_image" src="../assets/images/card_partner.jpg" alt="" aria-hidden="true">
+                    <img class="value_card_image" src="../assets/images/unsplash_zdSoe8za6Hs.png" alt="" aria-hidden="true">
                     <span class="value_card_scrim" aria-hidden="true"></span>
                     <span class="value_card_label">
                         <span class="value_card_en">Self Awareness</span>
@@ -118,7 +132,7 @@
                 </li>
 
                 <li class="value_card" data-reveal>
-                    <img class="value_card_image" src="../assets/images/card_research.jpg" alt="" aria-hidden="true">
+                    <img class="value_card_image" src="../assets/images/unsplash_6jYoil2GhVk.png" alt="" aria-hidden="true">
                     <span class="value_card_scrim" aria-hidden="true"></span>
                     <span class="value_card_label">
                         <span class="value_card_en">Metacognition</span>
@@ -131,7 +145,7 @@
                 </li>
 
                 <li class="value_card" data-reveal>
-                    <img class="value_card_image" src="../assets/images/hero_building.jpg" alt="" aria-hidden="true">
+                    <img class="value_card_image" src="../assets/images/unsplash_qQT7l54ERZM.png" alt="" aria-hidden="true">
                     <span class="value_card_scrim" aria-hidden="true"></span>
                     <span class="value_card_label">
                         <span class="value_card_en">Growth</span>
@@ -144,7 +158,7 @@
                 </li>
 
                 <li class="value_card" data-reveal>
-                    <img class="value_card_image" src="../assets/images/card_lecture.jpg" alt="" aria-hidden="true">
+                    <img class="value_card_image" src="../assets/images/unsplash_nzuSrCfX7Eo.png" alt="" aria-hidden="true">
                     <span class="value_card_scrim" aria-hidden="true"></span>
                     <span class="value_card_label">
                         <span class="value_card_en">Connection</span>
@@ -165,7 +179,7 @@
                 <ol class="history_list">
                     <li class="history_item" data-reveal>
                         <span class="history_date">2019.05</span>
-                        <p class="history_name">미래청년교육연구회 설립</p>
+                        <p class="history_name">미래청년교육연구소 설립</p>
                         <p class="history_desc">메타인지 기반 청년교육 연구 시작</p>
                     </li>
                     <li class="history_item" data-reveal>
@@ -197,7 +211,7 @@
         <div class="footer_inner">
             <p class="footer_logo">
                 <img class="footer_logo_symbol" src="../assets/icons/logo_symbol.svg" alt="">
-                <span class="footer_logo_text">미래청년교육연구회</span>
+                <span class="footer_logo_text">미래청년교육연구소</span>
             </p>
 
             <address class="footer_address">

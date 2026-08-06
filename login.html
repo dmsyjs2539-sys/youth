@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 · 회원가입 | 미래청년교육연구소</title>
+    <meta name="description" content="미래청년교육연구소 회원 로그인 및 회원가입 페이지입니다.">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <a class="skip_link" href="#main_content">본문 바로가기</a>
+
+    <header class="header header_solid" id="header">
+        <div class="header_inner">
+            <a class="header_logo" href="index.html" aria-label="미래청년교육연구소 홈">
+                <img class="header_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="header_logo_text">미래청년교육연구소</span>
+            </a>
+
+            <nav class="global_nav" id="global_nav" aria-label="전체 메뉴" hidden>
+                <ul class="global_nav_list">
+                    <li><a class="global_nav_link" href="brand/index.html">연구소 소개</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_menu">연구 자료</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_menu">교류 기관</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_menu">강의 및 컨설팅 신청</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_field">연구 분야</a></li>
+                </ul>
+            </nav>
+
+            <div class="header_actions">
+                <ul class="auth_list">
+                    <li><a class="auth_link auth_link_login" href="login.html" aria-current="page">로그인</a></li>
+                    <li><a class="auth_link auth_link_signup" href="#signup">회원가입</a></li>
+                </ul>
+
+                <a class="header_account" href="login.html" aria-current="page" aria-label="로그인 · 회원가입">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8.2" r="3.6"/>
+                        <path d="M4.9 20.2a7.1 7.1 0 0 1 14.2 0" stroke-linecap="round"/>
+                    </svg>
+                </a>
+
+                <button
+                    class="header_menu_button"
+                    type="button"
+                    id="menu_button"
+                    aria-label="전체 메뉴 열기"
+                    aria-expanded="false"
+                    aria-controls="global_nav"
+                >
+                    <span class="menu_icon" aria-hidden="true">
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth_page" id="main_content">
+        <div class="auth_intro" data-reveal>
+            <p class="auth_eyebrow">Beyond Knowledge Build Direction</p>
+            <h1 class="auth_headline">미래청년교육연구소 회원</h1>
+            <p class="auth_lead">
+                로그인하면 연구 자료 열람, 강의 및 컨설팅 신청 내역 확인,
+                교류 기관 소식 구독을 한 곳에서 이용할 수 있습니다.
+            </p>
+        </div>
+
+        <div class="auth_grid">
+            <section class="auth_card" aria-labelledby="login_title">
+                <h2 class="auth_card_title" id="login_title">로그인</h2>
+                <p class="auth_card_desc">가입하신 이메일 주소로 로그인해 주세요.</p>
+
+                <form class="auth_form" id="login_form" novalidate>
+                    <div class="auth_field">
+                        <label class="auth_field_label" for="login_email">이메일</label>
+                        <input
+                            class="auth_field_input"
+                            id="login_email"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            placeholder="name@example.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="auth_field">
+                        <label class="auth_field_label" for="login_password">비밀번호</label>
+                        <input
+                            class="auth_field_input"
+                            id="login_password"
+                            name="password"
+                            type="password"
+                            autocomplete="current-password"
+                            required
+                        >
+                    </div>
+
+                    <div class="auth_row">
+                        <label class="auth_checkbox" for="keep_signed_in">
+                            <input type="checkbox" id="keep_signed_in" name="keep_signed_in">
+                            <span>로그인 상태 유지</span>
+                        </label>
+                        <a class="auth_text_link" href="#find_password">비밀번호 찾기</a>
+                    </div>
+
+                    <button class="auth_submit" type="submit">로그인</button>
+
+                    <p class="auth_message" id="login_message" role="status" hidden></p>
+                </form>
+
+                <p class="auth_switch">
+                    아직 계정이 없으신가요? <a href="#signup">회원가입하기</a>
+                </p>
+            </section>
+
+            <section class="auth_card" id="signup" aria-labelledby="signup_title">
+                <h2 class="auth_card_title" id="signup_title">회원가입</h2>
+                <p class="auth_card_desc">이름과 이메일만 입력하면 바로 시작할 수 있습니다.</p>
+
+                <form class="auth_form" id="signup_form" novalidate>
+                    <div class="auth_field">
+                        <label class="auth_field_label" for="signup_name">이름</label>
+                        <input
+                            class="auth_field_input"
+                            id="signup_name"
+                            name="name"
+                            type="text"
+                            autocomplete="name"
+                            placeholder="홍길동"
+                            required
+                        >
+                    </div>
+
+                    <div class="auth_field">
+                        <label class="auth_field_label" for="signup_email">이메일</label>
+                        <input
+                            class="auth_field_input"
+                            id="signup_email"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            placeholder="name@example.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="auth_field">
+                        <label class="auth_field_label" for="signup_password">비밀번호</label>
+                        <input
+                            class="auth_field_input"
+                            id="signup_password"
+                            name="password"
+                            type="password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                            aria-describedby="signup_password_hint"
+                        >
+                        <p class="auth_field_hint" id="signup_password_hint">영문과 숫자를 포함해 8자 이상 입력해 주세요.</p>
+                    </div>
+
+                    <div class="auth_row">
+                        <label class="auth_checkbox" for="agree_terms">
+                            <input type="checkbox" id="agree_terms" name="agree_terms" required>
+                            <span>이용약관 및 개인정보처리방침 동의</span>
+                        </label>
+                    </div>
+
+                    <button class="auth_submit auth_submit_ghost" type="submit">회원가입</button>
+
+                    <p class="auth_message" id="signup_message" role="status" hidden></p>
+                </form>
+
+                <p class="auth_switch">
+                    이미 계정이 있으신가요? <a href="#login_title">로그인하기</a>
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer_inner">
+            <p class="footer_logo">
+                <img class="footer_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="footer_logo_text">미래청년교육연구소</span>
+            </p>
+
+            <address class="footer_address">
+                <p>서울시 강남구 봉은사로</p>
+                <p>이메일: <a href="mailto:featureyouth@gmail.com">featureyouth@gmail.com</a></p>
+                <p>전화: <a href="tel:01000000000">010 -0000- 0000</a></p>
+            </address>
+
+            <ul class="footer_policy">
+                <li><a href="index.html#terms">서비스 이용약관</a></li>
+                <li><a href="index.html#privacy">개인정보처리방침</a></li>
+            </ul>
+
+            <p class="footer_copyright">Copyright ⓒ FeatureYouth All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="to_top" id="to_top" type="button" aria-label="맨 위로 이동">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 19.5V5" stroke-linecap="round"/>
+            <path d="M5.5 11.5L12 5L18.5 11.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>
