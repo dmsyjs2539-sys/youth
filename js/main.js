@@ -17,6 +17,9 @@
     var inlineNavQuery = window.matchMedia("(min-width: " + INLINE_NAV_MIN_WIDTH + "px)");
     var navCloseTimer = null;
 
+    // 숫자가 1에서 목표값까지 올라가는 데 걸리는 시간(ms).
+    var COUNT_DURATION = 1400;
+
     function isMotionReduced() {
         return motionQuery.matches;
     }
@@ -99,6 +102,75 @@
 
     function showElement(element) {
         element.classList.add("is_visible");
+        startCounters(element);
+    }
+
+    /* ---------- 숫자 카운팅 ---------- */
+
+    /*
+     * data-count_to를 가진 숫자를 1부터 목표값까지 굴린다.
+     * 화면에 들어올 때 한 번만 돌도록 이미 끝난 요소는 data-count_done으로 표시한다.
+     */
+    function countUp(element) {
+        var target = Number(element.dataset.count_to);
+
+        if (!isFinite(target) || target < 1) {
+            return;
+        }
+
+        element.dataset.count_done = "true";
+
+        var format = function (value) {
+            return value.toLocaleString("ko-KR");
+        };
+
+        if (isMotionReduced()) {
+            element.textContent = format(target);
+            return;
+        }
+
+        var started = null;
+
+        function step(now) {
+            if (started === null) {
+                started = now;
+            }
+
+            var progress = Math.min((now - started) / COUNT_DURATION, 1);
+            // 처음엔 빠르게, 끝에서 부드럽게 멈춘다.
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var value = Math.round(1 + (target - 1) * eased);
+
+            element.textContent = format(value);
+
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        }
+
+        element.textContent = format(1);
+        window.requestAnimationFrame(step);
+
+        /*
+         * 탭이 백그라운드면 requestAnimationFrame이 멈춰 숫자가 중간값에 머문다.
+         * 타이머는 그런 상황에서도 (느리게나마) 도니 마지막에 목표값을 한 번 확정한다.
+         * 정상 재생이면 이미 목표값이라 아무 변화가 없다.
+         */
+        window.setTimeout(function () {
+            element.textContent = format(target);
+        }, COUNT_DURATION + 400);
+    }
+
+    function startCounters(element) {
+        var targets = Array.prototype.slice.call(
+            element.querySelectorAll("[data-count_to]:not([data-count_done])")
+        );
+
+        if (element.hasAttribute("data-count_to") && !element.dataset.count_done) {
+            targets.push(element);
+        }
+
+        targets.forEach(countUp);
     }
 
     function observeElements(elements) {

@@ -11,6 +11,10 @@
 
 @media (min-width: 768px) {
     :root {
+        --section_space: 96px;
+    }
+
+    :root {
         --page_padding: 40px;
         --header_height: 68px;
     }
@@ -146,10 +150,6 @@
 
     /* 인트로 ------------------------------------------------- */
 
-    .intro {
-        padding-top: var(--space_14);
-    }
-
     .intro_eyebrow {
         font-size: 18px;
     }
@@ -159,10 +159,6 @@
     }
 
     /* 메뉴 카드 ---------------------------------------------- */
-
-    .menu_section {
-        padding-top: var(--space_8);
-    }
 
     .menu_grid {
         gap: var(--space_4);
@@ -184,10 +180,11 @@
         height: 30px;
     }
 
-    /* 기관 소개 ---------------------------------------------- */
+    /* 기관 소개 / 최신 연구보고서 (풀블리드 밴드) ---------------- */
 
-    .about {
-        padding: 76px var(--page_padding);
+    .about,
+    .report {
+        padding-block: 76px;
     }
 
     .about_text {
@@ -210,20 +207,29 @@
         font-size: 30px;
     }
 
+    .result_title {
+        font-size: 42px;
+    }
+
+    .result_lead {
+        font-size: 16px;
+    }
+
+    /* 카드 3장을 나란히 놓는다. */
+    .result .stat_list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space_4);
+    }
+
     .result .stat_card {
-        min-height: 176px;
-        padding: var(--space_5);
+        padding: 30px 24px 32px;
     }
 
-    .result .stat_label {
-        font-size: 14px;
+    .stat_icon {
+        width: 68px;
+        height: 68px;
     }
 
-    .result .stat_value {
-        font-size: 32px;
-    }
-
-    .result_title,
     .report_title {
         font-size: 38px;
     }
@@ -232,24 +238,45 @@
         font-size: 18px;
     }
 
-    /*
-     * 태블릿부터는 보고서 3장이 한 줄에 다 들어가므로 가로 스크롤을 끄고
-     * 남는 폭을 카드가 나눠 갖게 한다.
-     */
-    .report_scroller {
-        overflow-x: visible;
-    }
-
+    /* 태블릿부터는 표지 3장이 한 줄에 들어가며 남는 폭을 나눠 갖는다. */
     .report_list {
-        display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: var(--space_5);
-        width: auto;
-        padding-bottom: 0;
     }
 
     .report_card {
-        width: auto;
+        max-width: none;
+    }
+
+    /* 연구 성과 ---------------------------------------------- */
+
+    .result_title {
+        font-size: 48px;
+    }
+
+    .result_lead {
+        font-size: 17px;
+    }
+
+    .result .stat_list {
+        gap: var(--space_5);
+    }
+
+    .result .stat_card {
+        padding: 32px 26px 34px;
+    }
+
+    .result .stat_label {
+        font-size: 21px;
+    }
+
+    .result .stat_value {
+        font-size: 38px;
+    }
+
+    .stat_icon {
+        width: 76px;
+        height: 76px;
     }
 
     /* 최신 연구보고서 ------------------------------------------ */
@@ -336,6 +363,10 @@
 
 @media (min-width: 1024px) {
     :root {
+        --section_space: 128px;
+    }
+
+    :root {
         --page_padding: 48px;
         --header_height: 76px;
     }
@@ -404,10 +435,6 @@
 
     /* 인트로 ------------------------------------------------- */
 
-    .intro {
-        padding-top: 96px;
-    }
-
     .intro_eyebrow {
         font-size: 20px;
     }
@@ -417,10 +444,6 @@
     }
 
     /* 메뉴 카드 ---------------------------------------------- */
-
-    .menu_section {
-        padding-top: var(--space_10);
-    }
 
     .menu_grid {
         grid-template-columns: repeat(4, 1fr);
@@ -432,22 +455,16 @@
         padding: 26px 24px;
     }
 
-    /* 기관 소개 ---------------------------------------------- */
+    /* 기관 소개 / 최신 연구보고서 (풀블리드 밴드) ---------------- */
 
-    .about {
-        margin-top: 96px;
-        padding: 110px var(--page_padding);
+    .about,
+    .report {
+        padding-block: 104px;
     }
 
     .about_text {
         font-size: 26px;
         line-height: 1.6;
-    }
-
-    /* 연구 분야 ---------------------------------------------- */
-
-    .field {
-        padding-top: 110px;
     }
 
     .field_title {
@@ -466,12 +483,6 @@
 
     .field_card_lead {
         font-size: 17px;
-    }
-
-    /* 관련 시스템 링크 ---------------------------------------- */
-
-    .link_section {
-        padding-block: 110px;
     }
 
     .link_list {
@@ -542,6 +553,13 @@
 }
 
 @media (hover: hover) {
+    .result .stat_card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+            0 26px 52px rgba(43, 161, 255, 0.22),
+            inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
     .header_account:hover {
         color: var(--color_brand_light);
     }
@@ -553,6 +571,26 @@
 
 .auth_link:active {
     transform: translateY(0) scale(0.97);
+}
+
+/* ========== 와이드 데스크톱: 1280px ~ ========== */
+
+@media (min-width: 1280px) {
+    /* 폭에 여유가 생기면 제목을 왼쪽으로 빼고 카드가 오른쪽을 차지한다. */
+    .result_inner {
+        display: grid;
+        grid-template-columns: minmax(240px, 300px) 1fr;
+        gap: 64px;
+        align-items: start;
+    }
+
+    .result .stat_list {
+        margin-top: 0;
+    }
+
+    .result_title {
+        font-size: 52px;
+    }
 }
 
 /* ========== 큰 데스크톱: 1440px ~ ========== */

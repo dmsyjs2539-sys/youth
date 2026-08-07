@@ -168,17 +168,18 @@
 }
 
 .intro {
-    padding: var(--space_8) var(--page_padding) 0;
+    padding: var(--section_space) var(--page_padding) 0;
 }
 
+/* 메뉴 카드는 인트로 문구에 딸린 묶음이라 사이를 좁게 둔다. */
 .menu_section {
-    padding: var(--space_6) var(--page_padding) 0;
+    padding: var(--space_8) var(--page_padding) 0;
 }
 
 .about {
     position: relative;
-    margin-top: var(--space_14);
-    padding: var(--space_10) var(--page_padding);
+    margin-top: var(--section_space);
+    padding: 56px var(--page_padding);
     overflow: hidden;
 }
 
@@ -201,34 +202,40 @@
     background-color: rgba(0, 0, 0, 0.62);
 }
 
+/* 글래스 카드가 비칠 바탕이 필요해 옅은 파란 그라데이션을 깐다. */
 .result {
-    padding: var(--space_14) var(--page_padding) 0;
+    padding: var(--section_space) var(--page_padding);
+    background:
+        radial-gradient(90% 60% at 85% 0%, rgba(43, 161, 255, 0.12) 0%, rgba(43, 161, 255, 0) 60%),
+        linear-gradient(180deg, #f5f9ff 0%, #ffffff 100%);
 }
 
-.result_list {
-    margin-top: var(--space_6);
+.result_inner {
+    width: 100%;
+    max-width: var(--content_max);
+    margin-inline: auto;
 }
 
 /* 보고서 띠는 화면 폭을 꽉 채우므로 좌우 여백을 스크롤러 안쪽에서 준다. */
 .report {
-    margin-top: var(--space_14);
-    padding: var(--space_10) var(--page_padding);
+    margin-top: var(--section_space);
+    padding: 56px var(--page_padding);
     background: linear-gradient(135deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
 }
 
 .field {
-    padding: var(--space_14) var(--page_padding) 0;
+    padding: var(--section_space) var(--page_padding) 0;
 }
 
 .field_list {
     display: flex;
     flex-direction: column;
     gap: var(--space_4);
-    margin-top: var(--space_6);
+    margin-top: var(--space_8);
 }
 
 .link_section {
-    padding: var(--space_14) var(--page_padding) var(--space_14);
+    padding: var(--section_space) var(--page_padding);
 }
 
 .footer {

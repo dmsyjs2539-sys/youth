@@ -1,0 +1,40 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="conf_board" x1="18" y1="16" x2="76" y2="62" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#b9dcff"/>
+    </linearGradient>
+    <linearGradient id="conf_shadow" x1="22" y1="22" x2="72" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d8ecff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#5cb5ff" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="conf_bar" x1="34" y1="48" x2="34" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2ba1ff"/>
+      <stop offset="1" stop-color="#4ad4ff"/>
+    </linearGradient>
+    <linearGradient id="conf_stand" x1="48" y1="62" x2="48" y2="80" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8fc9ff"/>
+      <stop offset="1" stop-color="#2ba1ff" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 뒤로 어긋난 판 — 두께감 -->
+  <rect x="22" y="20" width="56" height="42" rx="8" fill="url(#conf_shadow)"/>
+
+  <!-- 발표 보드 -->
+  <rect x="16" y="14" width="56" height="42" rx="8" fill="url(#conf_board)"/>
+  <rect x="16" y="14" width="56" height="42" rx="8" stroke="#ffffff" stroke-opacity="0.95" stroke-width="1.2"/>
+
+  <!-- 보드 위 막대그래프 -->
+  <rect x="26" y="36" width="7" height="12" rx="3.5" fill="url(#conf_bar)" fill-opacity="0.75"/>
+  <rect x="37" y="29" width="7" height="19" rx="3.5" fill="url(#conf_bar)"/>
+  <rect x="48" y="33" width="7" height="15" rx="3.5" fill="url(#conf_bar)" fill-opacity="0.85"/>
+  <rect x="59" y="25" width="7" height="23" rx="3.5" fill="url(#conf_bar)" fill-opacity="0.65"/>
+
+  <!-- 받침대 -->
+  <rect x="45" y="56" width="6" height="18" rx="3" fill="url(#conf_stand)"/>
+  <rect x="30" y="74" width="36" height="6" rx="3" fill="url(#conf_stand)"/>
+
+  <!-- 유리 하이라이트 -->
+  <path d="M20 18h18L22 34h-2z" fill="#ffffff" fill-opacity="0.6"/>
+</svg>

@@ -1,0 +1,42 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="journal_face" x1="18" y1="20" x2="74" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#9ecdff" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="journal_mid" x1="22" y1="28" x2="70" y2="76" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d8ecff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#5cb5ff" stop-opacity="0.72"/>
+    </linearGradient>
+    <linearGradient id="journal_top" x1="26" y1="16" x2="72" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#b9dcff"/>
+    </linearGradient>
+    <linearGradient id="journal_spine" x1="30" y1="18" x2="30" y2="70" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2ba1ff"/>
+      <stop offset="1" stop-color="#4ad4ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 아래로 겹친 두 권 — 두께로 입체감을 만든다 -->
+  <rect x="16" y="40" width="56" height="38" rx="7" fill="url(#journal_face)"/>
+  <rect x="16" y="40" width="56" height="38" rx="7" stroke="#ffffff" stroke-opacity="0.9" stroke-width="1.2"/>
+
+  <rect x="20" y="30" width="56" height="38" rx="7" fill="url(#journal_mid)"/>
+  <rect x="20" y="30" width="56" height="38" rx="7" stroke="#ffffff" stroke-opacity="0.9" stroke-width="1.2"/>
+
+  <!-- 맨 위 표지 -->
+  <rect x="24" y="18" width="56" height="38" rx="7" fill="url(#journal_top)"/>
+  <rect x="24" y="18" width="56" height="38" rx="7" stroke="#ffffff" stroke-opacity="0.95" stroke-width="1.2"/>
+
+  <!-- 책등 -->
+  <rect x="24" y="18" width="9" height="38" rx="4" fill="url(#journal_spine)" fill-opacity="0.85"/>
+
+  <!-- 표지 위 본문 줄 -->
+  <rect x="40" y="28" width="30" height="3.4" rx="1.7" fill="#2ba1ff" fill-opacity="0.55"/>
+  <rect x="40" y="36" width="22" height="3.4" rx="1.7" fill="#2ba1ff" fill-opacity="0.35"/>
+  <rect x="40" y="44" width="26" height="3.4" rx="1.7" fill="#2ba1ff" fill-opacity="0.25"/>
+
+  <!-- 유리 하이라이트 -->
+  <path d="M28 22h20l-16 16H28z" fill="#ffffff" fill-opacity="0.55"/>
+</svg>
