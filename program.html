@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강의 및 컨설팅 절차 | 미래청년교육연구소</title>
+    <meta name="description" content="미래청년교육연구소의 강의 절차와 컨설팅 절차를 안내하고, 컨설팅 신청을 접수합니다.">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/program.css">
+</head>
+<body>
+    <a class="skip_link" href="#main_content">본문 바로가기</a>
+
+    <header class="header" id="header">
+        <div class="header_inner">
+            <a class="header_logo" href="index.html" aria-label="미래청년교육연구소 홈">
+                <img class="header_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="header_logo_text">미래청년교육연구소</span>
+            </a>
+
+            <nav class="global_nav" id="global_nav" aria-label="전체 메뉴" hidden>
+                <ul class="global_nav_list">
+                    <li><a class="global_nav_link" href="brand/index.html">연구소 소개</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_menu">연구 자료</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_menu">교류 기관</a></li>
+                    <li><a class="global_nav_link" href="program.html" aria-current="page">강의 및 컨설팅 신청</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_field">연구 분야</a></li>
+                </ul>
+            </nav>
+
+            <div class="header_actions">
+                <ul class="auth_list">
+                    <li><a class="auth_link auth_link_login" href="login.html">로그인</a></li>
+                    <li><a class="auth_link auth_link_signup" href="signup.html">회원가입</a></li>
+                </ul>
+
+                <a class="header_account" href="login.html" aria-label="로그인 · 회원가입">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8.2" r="3.6"/>
+                        <path d="M4.9 20.2a7.1 7.1 0 0 1 14.2 0" stroke-linecap="round"/>
+                    </svg>
+                </a>
+
+                <button
+                    class="header_menu_button"
+                    type="button"
+                    id="menu_button"
+                    aria-label="전체 메뉴 열기"
+                    aria-expanded="false"
+                    aria-controls="global_nav"
+                >
+                    <span class="menu_icon" aria-hidden="true">
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main_content">
+        <section class="program_hero" aria-labelledby="program_hero_title">
+            <div class="program_hero_media">
+                <img src="assets/images/unsplash_nzuSrCfX7Eo.png" alt="" aria-hidden="true">
+            </div>
+
+            <div class="program_hero_body">
+                <div class="program_hero_text">
+                    <h1 class="program_hero_title split_text" id="program_hero_title" data-split-load>강의 및 컨설팅 절차</h1>
+                    <p class="program_hero_desc" data-reveal>
+                        청년의 가능성을 발견하고<br>
+                        성장을 함께 설계합니다
+                    </p>
+                </div>
+
+                <ul class="program_hero_icons" aria-hidden="true">
+                    <li><img src="assets/icons/icon_step_apply.svg" alt=""></li>
+                    <li><img src="assets/icons/icon_step_present.svg" alt=""></li>
+                    <li><img src="assets/icons/icon_step_curriculum.svg" alt=""></li>
+                    <li><img src="assets/icons/icon_step_talk.svg" alt=""></li>
+                    <li><img src="assets/icons/icon_step_calendar.svg" alt=""></li>
+                </ul>
+            </div>
+        </section>
+
+        <nav class="program_tabs" id="program_tabs" aria-label="강의 및 컨설팅 세부 메뉴">
+            <div class="program_tabs_inner" role="tablist">
+                <button
+                    class="program_tab"
+                    type="button"
+                    role="tab"
+                    id="tab_lecture"
+                    aria-controls="panel_lecture"
+                    aria-selected="true"
+                >강의 절차</button>
+                <button
+                    class="program_tab"
+                    type="button"
+                    role="tab"
+                    id="tab_consulting"
+                    aria-controls="panel_consulting"
+                    aria-selected="false"
+                >컨설팅 절차</button>
+                <button
+                    class="program_tab"
+                    type="button"
+                    role="tab"
+                    id="tab_apply"
+                    aria-controls="panel_apply"
+                    aria-selected="false"
+                >컨설팅 신청</button>
+            </div>
+        </nav>
+
+        <!-- 강의 절차 -->
+        <section
+            class="program_panel"
+            id="panel_lecture"
+            role="tabpanel"
+            aria-labelledby="tab_lecture"
+            tabindex="0"
+        >
+            <div class="program_inner">
+                <header class="program_panel_head">
+                    <h2 class="program_panel_title">강의 절차</h2>
+                    <p class="program_panel_desc">
+                        문의부터 결과 리포트까지, 교육 목표에 맞춰 커리큘럼을 설계하고 함께 운영합니다.
+                    </p>
+                </header>
+
+                <ol class="step_list">
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_apply.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 01</p>
+                            <h3 class="step_title">강의 문의</h3>
+                            <p class="step_desc">원하시는 주제와 일정, 대상 인원을 알려주시면 담당 연구원이 확인합니다</p>
+                        </div>
+                    </li>
+
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_talk.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 02</p>
+                            <h3 class="step_title">사전 협의</h3>
+                            <p class="step_desc">교육 목표와 대상의 특성을 함께 정리해 강의 방향을 맞춥니다</p>
+                        </div>
+                    </li>
+
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_curriculum.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 03</p>
+                            <h3 class="step_title">커리큘럼 설계</h3>
+                            <p class="step_desc">협의 내용을 바탕으로 회차별 구성과 교안, 워크북을 준비합니다</p>
+                        </div>
+                    </li>
+
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_present.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 04</p>
+                            <h3 class="step_title">강의 진행</h3>
+                            <p class="step_desc">현장 또는 온라인으로 진행하며 참여형 활동을 함께 운영합니다</p>
+                        </div>
+                    </li>
+
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_report.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 05</p>
+                            <h3 class="step_title">결과 리포트</h3>
+                            <p class="step_desc">참여자 반응과 사전·사후 진단 결과를 정리해 전달합니다</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 컨설팅 절차 -->
+        <section
+            class="program_panel"
+            id="panel_consulting"
+            role="tabpanel"
+            aria-labelledby="tab_consulting"
+            tabindex="0"
+        >
+            <div class="program_inner">
+                <header class="program_panel_head">
+                    <h2 class="program_panel_title">컨설팅 절차</h2>
+                    <p class="program_panel_desc">
+                        사전 진단으로 시작해 1:1 상담과 실행 계획까지, 한 사람의 성장 경로를 함께 정리합니다.
+                    </p>
+                </header>
+
+                <ol class="step_list">
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_apply.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 01</p>
+                            <h3 class="step_title">신청서 작성</h3>
+                            <p class="step_desc">사전 검사를 통해 보다 정확한 상담을 제공합니다</p>
+                        </div>
+                    </li>
+
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_diagnosis.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 02</p>
+                            <h3 class="step_title">사전 진단</h3>
+                            <p class="step_desc">메타인지와 자기이해 진단을 실시하고 결과를 분석합니다</p>
+                        </div>
+                    </li>
+
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_calendar.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 03</p>
+                            <h3 class="step_title">상담 일정 확정</h3>
+                            <p class="step_desc">담당 연구원을 배정하고 일정과 진행 방식을 안내합니다</p>
+                        </div>
+                    </li>
+
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_talk.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 04</p>
+                            <h3 class="step_title">1:1 컨설팅</h3>
+                            <p class="step_desc">진단 결과를 바탕으로 강점과 성장 방향을 함께 정리합니다</p>
+                        </div>
+                    </li>
+
+                    <li class="step_item" data-reveal>
+                        <span class="step_icon" aria-hidden="true">
+                            <img src="assets/icons/icon_step_report.svg" alt="">
+                        </span>
+                        <div class="step_body">
+                            <p class="step_index">STEP 05</p>
+                            <h3 class="step_title">실행 계획 전달</h3>
+                            <p class="step_desc">상담 내용을 리포트로 정리하고 이후 학습 계획을 제안합니다</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 컨설팅 신청 -->
+        <section
+            class="program_panel"
+            id="panel_apply"
+            role="tabpanel"
+            aria-labelledby="tab_apply"
+            tabindex="0"
+        >
+            <div class="program_inner">
+                <header class="program_panel_head">
+                    <h2 class="program_panel_title">컨설팅 신청</h2>
+                    <p class="program_panel_desc">
+                        아래 신청서를 작성해 주시면 담당 연구원이 영업일 기준 3일 이내에 연락드립니다.
+                    </p>
+                </header>
+
+                <form
+                    class="apply_form"
+                    id="apply_form"
+                    data-pending-message="신청이 확인되었습니다. 다만 접수 서버가 아직 연결되지 않아 실제로 전송되지는 않습니다."
+                    novalidate
+                >
+                    <fieldset class="apply_group">
+                        <legend class="apply_legend">신청 정보</legend>
+
+                        <div class="apply_field">
+                            <label class="apply_label" for="apply_type">신청 유형</label>
+                            <select class="apply_input" id="apply_type" name="type" required>
+                                <option value="">선택해 주세요</option>
+                                <option value="lecture">강의</option>
+                                <option value="consulting">1:1 컨설팅</option>
+                                <option value="both">강의 + 컨설팅</option>
+                                <option value="etc">기타 문의</option>
+                            </select>
+                        </div>
+
+                        <div class="apply_row">
+                            <div class="apply_field">
+                                <label class="apply_label" for="apply_name">이름</label>
+                                <input
+                                    class="apply_input"
+                                    id="apply_name"
+                                    name="name"
+                                    type="text"
+                                    autocomplete="name"
+                                    placeholder="홍길동"
+                                    required
+                                >
+                            </div>
+
+                            <div class="apply_field">
+                                <label class="apply_label" for="apply_org">소속</label>
+                                <input
+                                    class="apply_input"
+                                    id="apply_org"
+                                    name="organization"
+                                    type="text"
+                                    autocomplete="organization"
+                                    placeholder="○○대학교 / ○○기관"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="apply_row">
+                            <div class="apply_field">
+                                <label class="apply_label" for="apply_email">이메일</label>
+                                <input
+                                    class="apply_input"
+                                    id="apply_email"
+                                    name="email"
+                                    type="email"
+                                    autocomplete="email"
+                                    placeholder="name@example.com"
+                                    required
+                                >
+                            </div>
+
+                            <div class="apply_field">
+                                <label class="apply_label" for="apply_phone">연락처</label>
+                                <input
+                                    class="apply_input"
+                                    id="apply_phone"
+                                    name="phone"
+                                    type="tel"
+                                    autocomplete="tel"
+                                    placeholder="010-0000-0000"
+                                    required
+                                >
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="apply_group">
+                        <legend class="apply_legend">진행 희망 사항</legend>
+
+                        <div class="apply_row">
+                            <div class="apply_field">
+                                <label class="apply_label" for="apply_date">희망 일정</label>
+                                <input
+                                    class="apply_input"
+                                    id="apply_date"
+                                    name="date"
+                                    type="date"
+                                >
+                            </div>
+
+                            <div class="apply_field">
+                                <label class="apply_label" for="apply_count">참여 인원</label>
+                                <input
+                                    class="apply_input"
+                                    id="apply_count"
+                                    name="count"
+                                    type="number"
+                                    min="1"
+                                    placeholder="예: 30"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="apply_field">
+                            <label class="apply_label" for="apply_message">문의 내용</label>
+                            <textarea
+                                class="apply_input apply_textarea"
+                                id="apply_message"
+                                name="message"
+                                rows="5"
+                                placeholder="교육 목표, 대상의 특성, 그 밖에 미리 알려주실 내용을 자유롭게 적어주세요."
+                                required
+                            ></textarea>
+                        </div>
+                    </fieldset>
+
+                    <div class="apply_agree">
+                        <label class="apply_checkbox" for="apply_privacy">
+                            <input type="checkbox" id="apply_privacy" name="privacy" required>
+                            <span>개인정보 수집 및 이용에 동의합니다</span>
+                        </label>
+                        <p class="apply_hint">
+                            수집 항목: 이름, 소속, 이메일, 연락처 · 이용 목적: 신청 상담 회신 · 보유 기간: 상담 종료 후 1년
+                        </p>
+                    </div>
+
+                    <button class="apply_submit" type="submit">신청서 제출</button>
+
+                    <p class="apply_message" id="apply_message_status" role="status" hidden></p>
+                </form>
+
+                <p class="apply_notice">
+                    이 신청서는 화면 틀입니다. 접수 서버가 연결되어 있지 않아 실제로 전송되지 않으며,
+                    급한 문의는 <a href="mailto:featureyouth@gmail.com">featureyouth@gmail.com</a>으로 보내주세요.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer_inner">
+            <p class="footer_logo">
+                <img class="footer_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="footer_logo_text">미래청년교육연구소</span>
+            </p>
+
+            <address class="footer_address">
+                <p>서울시 강남구 봉은사로</p>
+                <p>이메일: <a href="mailto:featureyouth@gmail.com">featureyouth@gmail.com</a></p>
+                <p>전화: <a href="tel:01000000000">010 -0000- 0000</a></p>
+            </address>
+
+            <ul class="footer_policy">
+                <li><a href="index.html#terms">서비스 이용약관</a></li>
+                <li><a href="index.html#privacy">개인정보처리방침</a></li>
+            </ul>
+
+            <p class="footer_copyright">Copyright ⓒ FeatureYouth All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="to_top" id="to_top" type="button" aria-label="맨 위로 이동">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 19.5V5" stroke-linecap="round"/>
+            <path d="M5.5 11.5L12 5L18.5 11.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script src="js/program.js"></script>
+</body>
+</html>

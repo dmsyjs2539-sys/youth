@@ -96,6 +96,7 @@
     border: 1px solid transparent;
     border-radius: var(--radius_pill);
     color: rgba(255, 255, 255, 0.86);
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.02em;
     white-space: nowrap;

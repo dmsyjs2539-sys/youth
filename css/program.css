@@ -1,0 +1,544 @@
+/* 강의 및 컨설팅 절차 페이지 (program.html)
+ * 색상·폰트·간격·모션 토큰은 base.css / animations.css를 그대로 계승한다.
+ * 세부 메뉴는 탭이며, 탭 전환은 js/program.js가 담당한다.
+ */
+
+/* ========== 히어로 ========== */
+
+.program_hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 340px;
+    padding: calc(var(--header_height) + var(--space_10)) var(--page_padding) var(--space_10);
+    overflow: hidden;
+}
+
+.program_hero_media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.program_hero_media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.program_hero_media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.62) 55%, rgba(0, 0, 0, 0.74) 100%);
+}
+
+.program_hero_body {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space_5);
+    width: 100%;
+    max-width: var(--content_max);
+    margin-inline: auto;
+}
+
+.program_hero_title {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.program_hero_desc {
+    margin-top: var(--space_4);
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.65;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+/* 히어로 우측 장식 아이콘 묶음 — 절차 아이콘을 작게 모아 배치한다. */
+.program_hero_icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space_2);
+    flex-shrink: 0;
+    width: 108px;
+}
+
+.program_hero_icons img {
+    width: 28px;
+    height: 28px;
+    opacity: 0.9;
+}
+
+/* ========== 세부 메뉴 (탭) ========== */
+
+.program_tabs {
+    position: sticky;
+    top: var(--header_height);
+    z-index: 20;
+    padding: var(--space_4) var(--page_padding);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+}
+
+.program_tabs_inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space_2);
+    max-width: 560px;
+    margin-inline: auto;
+}
+
+.program_tab {
+    padding: 11px 6px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius_pill);
+    color: var(--color_text_sub);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    transition:
+        color 0.22s ease,
+        border-color 0.22s ease,
+        background-color 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.22s var(--ease_out_soft);
+}
+
+.program_tab[aria-selected="true"] {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(43, 161, 255, 0.32);
+}
+
+/* ========== 패널 공통 ========== */
+
+.program_panel {
+    padding: var(--space_14) var(--page_padding) 96px;
+}
+
+/* JS가 선택되지 않은 패널에 붙인다. JS가 없으면 세 패널이 모두 이어서 보인다. */
+.program_panel.is_hidden {
+    display: none;
+}
+
+.program_inner {
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.program_panel_title {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.program_panel_desc {
+    margin-top: var(--space_3);
+    color: var(--color_text_sub);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.program_panel_head {
+    padding-bottom: var(--space_6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ========== 절차 타임라인 ========== */
+
+.step_list {
+    position: relative;
+    display: grid;
+    gap: var(--space_8);
+    margin-top: var(--space_10);
+}
+
+/*
+ * 아이콘 원 중앙(28px)을 지나는 세로 라인.
+ * 첫 아이콘 중앙에서 시작해 마지막 아이콘 중앙에서 끝나도록 위아래를 깎는다.
+ */
+.step_list::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    bottom: 28px;
+    left: 27px;
+    width: 2px;
+    background-color: rgba(43, 161, 255, 0.28);
+}
+
+.step_item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: var(--space_4);
+    align-items: start;
+}
+
+.step_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: rgba(43, 161, 255, 0.12);
+    /* 라인이 원 뒤로 지나가지 않도록 원을 위로 올린다. */
+    position: relative;
+    z-index: 1;
+}
+
+.step_icon img {
+    width: 30px;
+    height: 30px;
+}
+
+.step_body {
+    padding-top: var(--space_2);
+}
+
+.step_index {
+    color: var(--color_brand);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+}
+
+.step_title {
+    margin-top: var(--space_1);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.step_desc {
+    margin-top: var(--space_2);
+    color: var(--color_text_sub);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+/* ========== 신청서 ========== */
+
+.apply_form {
+    display: grid;
+    gap: var(--space_8);
+    margin-top: var(--space_10);
+}
+
+.apply_group {
+    display: grid;
+    gap: var(--space_5);
+    padding: 26px 22px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius_card);
+}
+
+.apply_legend {
+    padding-inline: var(--space_2);
+    color: var(--color_brand);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.apply_row {
+    display: grid;
+    gap: var(--space_5);
+}
+
+.apply_field {
+    display: grid;
+    gap: var(--space_2);
+}
+
+.apply_label {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.apply_input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: var(--color_text);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition:
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.apply_input::placeholder {
+    color: rgba(0, 0, 0, 0.32);
+}
+
+.apply_input:focus {
+    outline: none;
+    border-color: var(--color_brand);
+    box-shadow: 0 0 0 3px rgba(43, 161, 255, 0.18);
+}
+
+.apply_input:focus-visible {
+    outline: none;
+}
+
+.apply_textarea {
+    resize: vertical;
+    min-height: 128px;
+    line-height: 1.7;
+}
+
+/* select에도 기본 화살표를 남겨 두되 높이만 맞춘다. */
+select.apply_input {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.45) 50%),
+        linear-gradient(135deg, rgba(0, 0, 0, 0.45) 50%, transparent 50%);
+    background-position: calc(100% - 19px) 21px, calc(100% - 14px) 21px;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    padding-right: 40px;
+}
+
+.apply_agree {
+    display: grid;
+    gap: var(--space_2);
+}
+
+.apply_checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space_2);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+}
+
+.apply_checkbox input {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    accent-color: var(--color_brand);
+    cursor: pointer;
+}
+
+.apply_hint {
+    color: var(--color_text_sub);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.apply_submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    border-radius: var(--radius_pill);
+    background: linear-gradient(135deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    box-shadow: 0 6px 18px rgba(43, 161, 255, 0.3);
+    transition:
+        box-shadow 0.22s ease,
+        transform 0.22s var(--ease_out_soft);
+}
+
+.apply_submit:active {
+    transform: scale(0.98);
+}
+
+.apply_message {
+    padding: 13px 15px;
+    border-radius: 10px;
+    background-color: rgba(43, 161, 255, 0.1);
+    color: var(--color_brand);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.apply_message.has_error {
+    background-color: rgba(214, 45, 45, 0.08);
+    color: #c62828;
+}
+
+.apply_notice {
+    margin-top: var(--space_6);
+    padding: 14px 16px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.04);
+    color: var(--color_text_sub);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.apply_notice a {
+    color: var(--color_brand);
+    font-weight: 600;
+}
+
+/* ========================================================
+ * 반응형
+ * ======================================================== */
+
+@media (min-width: 768px) {
+    .program_hero {
+        min-height: 420px;
+        padding-bottom: var(--space_14);
+    }
+
+    .program_hero_title {
+        font-size: 42px;
+    }
+
+    .program_hero_desc {
+        font-size: 18px;
+    }
+
+    .program_hero_icons {
+        width: 148px;
+        gap: var(--space_3);
+    }
+
+    .program_hero_icons img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .program_tab {
+        font-size: 15px;
+        padding: 12px 10px;
+    }
+
+    .program_panel_title {
+        font-size: 32px;
+    }
+
+    .program_panel_desc {
+        font-size: 16px;
+    }
+
+    .step_list {
+        gap: var(--space_10);
+    }
+
+    .step_list::before {
+        top: 32px;
+        bottom: 32px;
+        left: 31px;
+    }
+
+    .step_item {
+        grid-template-columns: 64px 1fr;
+        gap: var(--space_6);
+    }
+
+    .step_icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .step_icon img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .step_title {
+        font-size: 22px;
+    }
+
+    .step_desc {
+        font-size: 15px;
+    }
+
+    .apply_group {
+        padding: 32px 28px;
+    }
+
+    /* 두 칸짜리 줄은 태블릿부터 나란히 놓는다. */
+    .apply_row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space_5);
+    }
+}
+
+@media (min-width: 1024px) {
+    .program_hero {
+        min-height: 480px;
+    }
+
+    .program_hero_title {
+        font-size: 50px;
+    }
+
+    .program_panel {
+        padding-top: 80px;
+        padding-bottom: 120px;
+    }
+
+    .program_panel_title {
+        font-size: 38px;
+    }
+}
+
+@media (hover: hover) {
+    .program_tab:hover {
+        border-color: var(--color_brand);
+        color: var(--color_brand);
+        transform: translateY(-1px);
+    }
+
+    .program_tab[aria-selected="true"]:hover {
+        border-color: transparent;
+        color: #ffffff;
+        box-shadow: 0 10px 22px rgba(43, 161, 255, 0.45);
+    }
+
+    .apply_submit:hover {
+        box-shadow: 0 10px 26px rgba(43, 161, 255, 0.48);
+        transform: translateY(-2px);
+    }
+
+    .apply_notice a:hover {
+        text-decoration: underline;
+    }
+}
