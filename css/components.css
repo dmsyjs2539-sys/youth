@@ -113,6 +113,9 @@
         linear-gradient(160deg, var(--color_card) 0%, var(--color_card_deep) 100%);
     overflow: hidden;
     isolation: isolate;
+    transition:
+        transform 0.32s var(--ease_out_soft),
+        box-shadow 0.32s ease;
 }
 
 .field_card::before {
@@ -123,6 +126,9 @@
     width: 100%;
     height: 3px;
     background: linear-gradient(90deg, var(--color_brand) 0%, var(--color_brand_light) 42%, rgba(74, 212, 255, 0) 100%);
+    transition:
+        height 0.32s ease,
+        background 0.32s ease;
 }
 
 .field_card_index {
@@ -146,6 +152,9 @@
     border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 14px;
     background-color: rgba(255, 255, 255, 0.1);
+    transition:
+        border-color 0.32s ease,
+        background-color 0.32s ease;
 }
 
 .field_card_icon img {
@@ -159,6 +168,9 @@
     border: 1px solid rgba(255, 255, 255, 0.32);
     border-radius: var(--radius_pill);
     color: #ffffff;
+    transition:
+        border-color 0.32s ease,
+        color 0.32s ease;
     font-size: 13px;
     font-weight: 600;
     line-height: 1.3;
@@ -518,6 +530,18 @@
     width: 9cqw;
     height: 9cqw;
 }
+
+/* 보고서 목록 아래 파트너십 안내 — 파란 띠 위라 흰 글씨로 둔다. */
+.report_note {
+    margin-top: var(--space_6);
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+}
+
 
 .link_list {
     display: flex;

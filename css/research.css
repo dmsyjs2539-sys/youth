@@ -10,7 +10,10 @@
     gap: var(--space_2);
 }
 
-/* 좁은 화면에서는 이메일이 길어 헤더를 밀어내므로 768px부터 노출한다. */
+/*
+ * 이메일은 길어서 헤더를 밀어낸다.
+ * 1023px 이하에서는 감추고 로그아웃 버튼만 두며, 1024px부터 노출한다.
+ */
 .header_user_email {
     display: none;
     max-width: 220px;
@@ -577,10 +580,6 @@
         font-size: 16px;
     }
 
-    .header_user_email {
-        display: block;
-    }
-
     .research_page {
         padding-top: calc(var(--header_height) + 64px);
         padding-bottom: 120px;
@@ -610,6 +609,10 @@
 }
 
 @media (min-width: 1024px) {
+    .header_user_email {
+        display: inline;
+    }
+
     /* 데스크톱은 3열 */
     .research_list {
         grid-template-columns: repeat(3, 1fr);
