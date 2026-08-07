@@ -28,6 +28,7 @@
                     <li><a class="global_nav_link" href="login.html">연구 자료</a></li>
                     <li><a class="global_nav_link" href="login.html">교류 기관</a></li>
                     <li><a class="global_nav_link" href="program.html">강의 및 컨설팅 신청</a></li>
+                    <li><a class="global_nav_link" href="archive.html">데이터 아카이브</a></li>
                     <li><a class="global_nav_link" href="login.html">연구 분야</a></li>
                 </ul>
             </nav>
@@ -104,17 +105,21 @@
                         >
                     </div>
 
-                    <div class="apply_field">
-                        <label class="apply_field_label" for="apply_birth">생년월일</label>
-                        <input
-                            class="apply_field_input apply_field_date"
-                            id="apply_birth"
-                            name="birth"
-                            type="date"
-                            autocomplete="bday"
-                            required
-                        >
-                    </div>
+                    <fieldset class="apply_field">
+                        <legend class="apply_field_label">생년월일</legend>
+
+                        <div class="apply_birth">
+                            <select class="apply_field_input apply_field_select" id="apply_birth_year" aria-label="출생 연도" name="birth_year" required>
+                                <option value="">연도</option>
+                            </select>
+                            <select class="apply_field_input apply_field_select" id="apply_birth_month" aria-label="태어난 월" name="birth_month" required>
+                                <option value="">월</option>
+                            </select>
+                            <select class="apply_field_input apply_field_select" id="apply_birth_day" aria-label="태어난 일" name="birth_day" required>
+                                <option value="">일</option>
+                            </select>
+                        </div>
+                    </fieldset>
 
                     <fieldset class="apply_field">
                         <legend class="apply_field_label">성별</legend>

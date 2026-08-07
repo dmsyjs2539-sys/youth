@@ -1,6 +1,6 @@
 /*
  * 컨설팅 신청 단계 페이지 공통 스크립트.
- * - 신청자 정보 입력 확인 (apply_step1.html)
+ * - 신청자 정보 입력 확인 + 생년월일 연/월/일 드롭다운 (apply_step1.html)
  * - 희망 일정 달력 다중 선택 (apply_step2.html)
  * - 약관 동의 상태 연동 (apply_step3.html, apply_terms_*.html)
  *
@@ -12,6 +12,8 @@
 
     var STORAGE_KEY = "youth_apply_draft";
     var WEEKDAY_LABELS = ["일", "월", "화", "수", "목", "금", "토"];
+    // 신청자로 받을 수 있는 출생 연도 범위(현재 연도 기준).
+    var BIRTH_YEAR_SPAN = 100;
 
     /* ========== 임시 저장소 ========== */
 
@@ -87,6 +89,133 @@
         }
     }
 
+
+    /* ========== 생년월일 드롭다운 ========== */
+
+    /*
+     * 그레고리력 윤년 규칙: 4로 나뉘면 윤년, 100으로 나뉘면 평년, 400으로 나뉘면 다시 윤년.
+     * Date로 계산해도 되지만 규칙을 그대로 드러내는 편이 읽기 쉬워 직접 쓴다.
+     */
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
+
+    function daysInMonth(year, month) {
+        if (month === 2) {
+            return isLeapYear(year) ? 29 : 28;
+        }
+
+        return [4, 6, 9, 11].indexOf(month) !== -1 ? 30 : 31;
+    }
+
+    function fillOptions(select, values, format) {
+        // 첫 옵션(연도/월/일 안내)은 남기고 나머지만 다시 채운다.
+        while (select.options.length > 1) {
+            select.remove(1);
+        }
+
+        values.forEach(function (value) {
+            var option = document.createElement("option");
+
+            option.value = String(value);
+            option.textContent = format(value);
+            select.appendChild(option);
+        });
+    }
+
+    function range(from, to, step) {
+        var list = [];
+        var value = from;
+
+        while (step > 0 ? value <= to : value >= to) {
+            list.push(value);
+            value += step;
+        }
+
+        return list;
+    }
+
+    function initBirthSelects(draft) {
+        var yearSelect = document.getElementById("apply_birth_year");
+        var monthSelect = document.getElementById("apply_birth_month");
+        var daySelect = document.getElementById("apply_birth_day");
+
+        if (!yearSelect || !monthSelect || !daySelect) {
+            return null;
+        }
+
+        var thisYear = new Date().getFullYear();
+
+        fillOptions(yearSelect, range(thisYear, thisYear - BIRTH_YEAR_SPAN, -1), function (y) {
+            return y + "년";
+        });
+        fillOptions(monthSelect, range(1, 12, 1), function (m) {
+            return String(m).padStart(2, "0") + "월";
+        });
+
+        function syncDays() {
+            var year = Number(yearSelect.value);
+            var month = Number(monthSelect.value);
+
+            if (!year || !month) {
+                // 연/월이 정해지기 전에는 31일까지 열어두되 선택값은 건드리지 않는다.
+                fillOptions(daySelect, range(1, 31, 1), function (d) {
+                    return String(d).padStart(2, "0") + "일";
+                });
+                return;
+            }
+
+            var last = daysInMonth(year, month);
+            var previous = daySelect.value;
+
+            fillOptions(daySelect, range(1, last, 1), function (d) {
+                return String(d).padStart(2, "0") + "일";
+            });
+
+            // 2월 30일처럼 사라진 날짜를 고른 상태였다면 비워 다시 고르게 한다.
+            daySelect.value = previous && Number(previous) <= last ? previous : "";
+        }
+
+        yearSelect.addEventListener("change", function () {
+            syncDays();
+            clearMessage();
+        });
+        monthSelect.addEventListener("change", function () {
+            syncDays();
+            clearMessage();
+        });
+        daySelect.addEventListener("change", clearMessage);
+
+        // 이전 단계에서 돌아온 경우 저장해 둔 값을 되살린다.
+        var saved = typeof draft.birth === "string" ? draft.birth.split("-") : [];
+
+        if (saved.length === 3) {
+            yearSelect.value = String(Number(saved[0]));
+            monthSelect.value = String(Number(saved[1]));
+            syncDays();
+            daySelect.value = String(Number(saved[2]));
+        } else {
+            syncDays();
+        }
+
+        return {
+            year: yearSelect,
+            month: monthSelect,
+            day: daySelect,
+            getValue: function () {
+                if (!yearSelect.value || !monthSelect.value || !daySelect.value) {
+                    return "";
+                }
+
+                return [
+                    yearSelect.value,
+                    monthSelect.value.padStart(2, "0"),
+                    daySelect.value.padStart(2, "0")
+                ].join("-");
+            }
+        };
+    }
+
     /* ========== 1단계: 신청자 정보 ========== */
 
     function initStepOne() {
@@ -97,6 +226,7 @@
         }
 
         var draft = readDraft();
+        var birth = initBirthSelects(draft);
         var genderInput = document.getElementById("apply_gender");
         var genderButtons = Array.prototype.slice.call(
             form.querySelectorAll(".apply_choice_button")
@@ -113,8 +243,8 @@
             });
         }
 
-        // 이전 단계에서 돌아온 경우 입력값을 되살린다.
-        ["name", "phone", "birth"].forEach(function (key) {
+        // 이전 단계에서 돌아온 경우 입력값을 되살린다. (생년월일은 initBirthSelects가 처리)
+        ["name", "phone"].forEach(function (key) {
             var field = form.elements[key];
 
             if (field && typeof draft[key] === "string") {
@@ -138,7 +268,7 @@
 
             var name = form.elements.name.value.trim();
             var phone = form.elements.phone.value.trim();
-            var birth = form.elements.birth.value;
+            var birthValue = birth ? birth.getValue() : "";
 
             if (!name) {
                 showMessage("성명을 입력해 주세요.", true);
@@ -153,9 +283,17 @@
                 return;
             }
 
-            if (!birth) {
-                showMessage("생년월일을 선택해 주세요.", true);
-                form.elements.birth.focus();
+            if (!birthValue) {
+                showMessage("생년월일을 모두 선택해 주세요.", true);
+
+                if (!birth.year.value) {
+                    birth.year.focus();
+                } else if (!birth.month.value) {
+                    birth.month.focus();
+                } else {
+                    birth.day.focus();
+                }
+
                 return;
             }
 
@@ -168,7 +306,7 @@
             updateDraft({
                 name: name,
                 phone: phone,
-                birth: birth,
+                birth: birthValue,
                 gender: genderInput.value
             });
 

@@ -336,15 +336,6 @@
     word-break: keep-all;
 }
 
-.history_desc {
-    margin-top: var(--space_1);
-    color: var(--color_text_sub);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: -0.02em;
-    word-break: keep-all;
-}
 
 /* ========================================================
  * 반응형
@@ -456,9 +447,6 @@
         font-size: 18px;
     }
 
-    .history_desc {
-        font-size: 14px;
-    }
 }
 
 /* ---------- Desktop: 1024px ~ ---------- */
@@ -582,7 +570,4 @@
         font-size: 20px;
     }
 
-    .history_desc {
-        font-size: 15px;
-    }
 }
