@@ -36,8 +36,6 @@
 .program_hero_body {
     display: flex;
     align-items: flex-end;
-    justify-content: space-between;
-    gap: var(--space_5);
     width: 100%;
     max-width: var(--content_max);
     margin-inline: auto;
@@ -60,21 +58,6 @@
     line-height: 1.65;
     letter-spacing: -0.02em;
     word-break: keep-all;
-}
-
-/* 히어로 우측 장식 아이콘 묶음 — 절차 아이콘을 작게 모아 배치한다. */
-.program_hero_icons {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space_2);
-    flex-shrink: 0;
-    width: 108px;
-}
-
-.program_hero_icons img {
-    width: 28px;
-    height: 28px;
-    opacity: 0.9;
 }
 
 /* ========== 세부 메뉴 (탭) ========== */
@@ -208,6 +191,11 @@
     height: 30px;
 }
 
+/* STEP 라벨이 없는 항목 — 제목 위 여백은 라벨용이므로 없앤다. */
+.step_item_plain .step_title {
+    margin-top: 0;
+}
+
 .step_body {
     padding-top: var(--space_2);
 }
@@ -306,24 +294,6 @@
     margin-inline: auto;
 }
 
-.apply_notice {
-    margin-top: var(--space_6);
-    padding: 14px 16px;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.04);
-    color: var(--color_text_sub);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.6;
-    letter-spacing: -0.02em;
-    word-break: keep-all;
-}
-
-.apply_notice a {
-    color: var(--color_brand);
-    font-weight: 600;
-}
-
 /* ========================================================
  * 반응형
  * ======================================================== */
@@ -340,16 +310,6 @@
 
     .program_hero_desc {
         font-size: 18px;
-    }
-
-    .program_hero_icons {
-        width: 148px;
-        gap: var(--space_3);
-    }
-
-    .program_hero_icons img {
-        width: 38px;
-        height: 38px;
     }
 
     .program_tab {
@@ -444,7 +404,4 @@
         transform: translateY(-2px);
     }
 
-    .apply_notice a:hover {
-        text-decoration: underline;
-    }
 }

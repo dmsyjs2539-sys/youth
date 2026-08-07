@@ -347,6 +347,40 @@
     기존 login.html 체크박스에서도 동일하게 반응 없음(도구 한계). 클릭 경로는 정상 확인
   - 실기기 테스트, 실제 접수 서버 연동
 
+## 컨설팅 절차 시안 반영 · 내비게이션 정리 (2026-08-07)
+
+- Figma 시안: 47:2931 (컨설팅 절차 상세 수정본)
+- 완료한 내용
+  - program.html 히어로 우측 아이콘 묶음(.program_hero_icons) 삭제 — 새 시안에 없음
+  - 컨설팅 절차 5단계 → 시안대로 6단계로 교체.
+    신청서 작성 / 사전 검사지 작성 / 프로그램 설계 / 일정 확정 / 교육 진행 / 사후 피드백
+  - 탭(강의 절차 / 컨설팅 절차 / 컨설팅 신청)을 누르면 해당 패널 h2까지 스크롤.
+    sticky 헤더 + 탭 바 높이를 빼서 제목이 가리지 않게 하고, prefers-reduced-motion이면 즉시 이동
+  - "이 신청서는 화면 틀입니다…" 안내 문구 삭제 (.apply_notice 마크업·스타일 모두)
+  - 연구 자료 / 교류 기관(네트워크) / 연구 분야 내비 링크 → 전 페이지에서 login.html
+    (brand/index.html은 ../login.html). 12개 HTML 일괄 적용
+  - index.html menu_section 카드 4장 모두 실제 페이지로 연결:
+    연구소 소개 → brand/index.html, 연구 자료 → login.html,
+    교류 네트워크 → login.html, 강의 및 컨설팅 신청 → program.html
+- 주요 판단
+  - 시안의 컨설팅 절차에는 STEP 라벨이 없어 해당 탭에서만 제거(.step_item_plain).
+    강의 절차 탭은 손대지 않아 STEP 01~05가 그대로 남아 있다
+  - 아이콘은 시안 원본을 새로 받지 않고 기존 파란 선 아이콘 세트를 재사용.
+    시안 그림에 맞춰 프로그램 설계 → icon_step_present(화이트보드),
+    교육 진행 → icon_step_curriculum으로 매핑 변경
+  - research.html의 '연구 자료' 내비에 있던 aria-current="page"는 링크가 login.html로
+    바뀌면서 함께 제거됨
+- 검증 결과 (node 정적 서버 http://localhost:4173)
+  - 탭 클릭 후 h2가 탭 바 바로 아래 16px 지점에 위치 (h2Top 149 / tabsBarBottom 133)
+  - 히어로 아이콘 0개, .apply_notice 0개, 컨설팅 절차 .step_index 0개 확인
+  - 12개 HTML 전체에서 연구 자료·교류 기관·연구 분야 내비가 모두 login.html로 연결됨
+  - 메인 '연구 자료' 카드 클릭 → login.html 이동 확인
+  - 375px 확인, 가로 스크롤 없음, 콘솔 오류 0건
+- 확인하지 못한 부분
+  - 컨설팅 절차 5·6번째 단계는 data-reveal 때문에 처음에는 opacity 0이고
+    스크롤해야 나타난다. 기존 등장 모션 규칙 그대로이며 의도된 동작으로 두었다
+  - 실기기 테스트
+
 ## 이전 검증 결과 (2026-08-06, 모바일 메인페이지)
 
 - 실행 명령: node 정적 서버 (http://localhost:4173)

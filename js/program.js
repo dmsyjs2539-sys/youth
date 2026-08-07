@@ -9,6 +9,9 @@
 (function () {
     "use strict";
 
+    // 제목이 sticky 헤더와 탭 바에 가리지 않도록 띄울 여백.
+    var SCROLL_GAP = 16;
+
     var tabList = document.getElementById("program_tabs");
     var tabs = tabList
         ? Array.prototype.slice.call(tabList.querySelectorAll('[role="tab"]'))
@@ -18,6 +21,31 @@
 
     function panelOf(tab) {
         return document.getElementById(tab.getAttribute("aria-controls"));
+    }
+
+    function isMotionReduced() {
+        return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+
+    /*
+     * 패널의 h2가 고정 헤더와 탭 바 바로 아래에 오도록 스크롤한다.
+     * 탭 바가 sticky라 화면에 남아 있고, 그만큼을 빼지 않으면 제목이 가려진다.
+     */
+    function scrollToPanelHead(panel) {
+        var title = panel ? panel.querySelector(".program_panel_title") : null;
+
+        if (!title) {
+            return;
+        }
+
+        var header = document.getElementById("header");
+        var offset = (header ? header.offsetHeight : 0) + tabList.offsetHeight + SCROLL_GAP;
+        var top = window.scrollY + title.getBoundingClientRect().top - offset;
+
+        window.scrollTo({
+            top: Math.max(top, 0),
+            behavior: isMotionReduced() ? "auto" : "smooth"
+        });
     }
 
     function selectTab(targetTab, shouldFocus) {
@@ -47,6 +75,7 @@
         }
 
         selectTab(tab, false);
+        scrollToPanelHead(panelOf(tab));
         // 새로고침하거나 링크를 공유해도 같은 탭이 열리도록 주소에 남긴다.
         window.history.replaceState(null, "", "#" + tab.id);
     }
@@ -76,6 +105,7 @@
 
         event.preventDefault();
         selectTab(tabs[nextIndex], true);
+        scrollToPanelHead(panelOf(tabs[nextIndex]));
     }
 
     function initTabs() {
