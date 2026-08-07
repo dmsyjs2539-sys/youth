@@ -1,4 +1,4 @@
-# 미래청년교육연구소 현재 상태
+# 미래청년비전연구소 현재 상태
 
 마지막 업데이트: 2026-08-07
 
@@ -98,7 +98,7 @@
 **⚠️ 실제 인증이 아니다. 화면 흐름을 맞추기 위한 임시 장치다.**
 
 - 계정은 `js/auth.js` 맨 위 `DEMO_EMAIL` / `DEMO_PASSWORD` 두 상수에 있다.
-  현재 값: `featureyouth@gmail.com` / `youth1234`. 바꾸려면 이 두 줄만 수정.
+  현재 값: `futureyouth@gmail.com` / `youth1234`. 바꾸려면 이 두 줄만 수정.
 - 로그인 성공 시 `js/session.js`가 sessionStorage에 이메일을 적고 research.html로 이동한다.
   탭을 닫으면 상태가 사라진다(localStorage가 아닌 sessionStorage를 쓰는 이유).
 - `js/research.js`가 `<head>`에서 동기 실행되어, 로그인 안 된 접근은 화면이 그려지기 전에
@@ -142,7 +142,7 @@
 
 ## 브랜드명 표기
 
-- 정식 명칭은 **미래청년교육연구소** (2026-08-07 사용자 확정)
+- 정식 명칭은 **미래청년비전연구소** (2026-08-07 사용자 확정)
   - 2026-08-06에 '연구회'로 확정했다가 2026-08-07에 '연구소'로 되돌림.
     표기를 바꿀 때는 index.html / brand/index.html 전체를 함께 치환해야 한다.
 - 로고는 심볼만 assets/icons/logo_symbol.svg로 분리해 쓰고,
@@ -385,7 +385,7 @@
 
 - 완료한 내용
   - brand/index.html 연혁을 새 14건으로 전면 교체(최신순 2026.08 → 2019.03).
-    마지막 항목은 「미래청년교육연구소 창립」. 새 내용에 설명줄이 없어
+    마지막 항목은 「미래청년비전연구소 창립」. 새 내용에 설명줄이 없어
     history_desc 마크업과 css/brand.css의 관련 규칙을 함께 제거
   - 전 페이지(13개) 내비에 「데이터 아카이브」 추가 → archive.html
     (brand/index.html은 ../archive.html). '강의 및 컨설팅 신청' 다음 자리
@@ -412,7 +412,7 @@
 - 검증 결과 (node 정적 서버 http://localhost:4173)
   - 13개 페이지 전수 검사: 깨진 내부 링크 0, 없는 CSS/JS/이미지 0,
     데이터 아카이브 내비 누락 0, 기관/소속 입력 항목 0
-  - 연혁 14건, 최신순 정렬, 마지막 「미래청년교육연구소 창립」 확인
+  - 연혁 14건, 최신순 정렬, 마지막 「미래청년비전연구소 창립」 확인
   - 연도 탭 2019/2023/2025 클릭 시 해당 패널만 열림 확인
   - 윤년: 2024.02=29일, 2023.02=28일, 2000.02=29일,
     4·6·9·11월=30일, 1·3·5·7·8·10·12월=31일
@@ -467,7 +467,7 @@
   - 지표 수치(1,222 / 1,109 / 613)와 보고서 카드 3건은 시안의 예시 데이터다.
     보고서 표지는 기존 사이트 이미지를 재사용했고 모두 research.html로 연결된다
   - 로그인해도 헤더는 계속 '로그인 / 회원가입'을 보여준다(로그아웃 전환 미구현)
-  - 데모 계정(featureyouth@gmail.com / youth1234)은 auth.js에 그대로 있어 실제 인증이 아니다
+  - 데모 계정(futureyouth@gmail.com / youth1234)은 auth.js에 그대로 있어 실제 인증이 아니다
   - 실기기 테스트
 
 ## 메인페이지 시안 재반영 (2026-08-08)
@@ -637,6 +637,78 @@
   - 데모 계정이 js/auth.js에 그대로 있어 실제 인증이 아니다
   - 실기기 테스트
 
+## 안내 문구 제거 · 기관명 변경 (2026-08-08)
+
+- 완료한 내용
+  - 페이지에 고정으로 붙어 있던 안내 문구 2곳 삭제
+    · research_report.html "본문은 연구보고서 서지 정보와 초록, 목차를 옮긴 화면입니다…"
+    · research.html "이 페이지는 연구 자료 상세 화면의 임시 레이아웃입니다…"
+    마크업과 함께 css/research.css의 .research_notice 규칙, 빈 구획 주석,
+    파일 첫 줄의 "임시 레이아웃" 설명도 정리했다
+  - 기관명 "미래청년교육연구소" → "미래청년비전연구소" 일괄 변경 (84건)
+    html 16개 + js 2개(research_data.js, research_report.js).
+    헤더·푸터 로고 글자, page title, meta description, 본문 모두 포함
+- 손대지 않은 것
+  - 로그인/회원가입 폼의 data-pending-message
+    ("인증 서버가 아직 연결되지 않아 …"). 이건 고정 안내가 아니라
+    제출했을 때만 뜨는 폼 응답이라, 지우면 버튼을 눌러도 아무 반응이 없어진다
+  - "미래청년비전연구소"(개인정보 처리방침 본문 15건), "미래청년교육원"(2건),
+    "미래청년교육 5단계 교육모델" 같은 프로그램·시리즈 이름은 그대로 두었다.
+    요청한 문자열이 아니고 기관명이 아닌 고유명사이기 때문
+  - futureyouth(영문 표기), futureyouth@gmail.com도 그대로
+- 검증 결과 (node 정적 서버 http://localhost:4173)
+  - 15개 페이지에서 옛 기관명 0건, .research_notice 0건
+  - 모든 page title이 "… | 미래청년비전연구소"로 갱신됨
+  - FLOW B 회귀 정상: 비로그인 보고서 B 클릭 → 저장값 research_report.html?id=job_readiness
+    → 로그인 → 해당 상세 도착, 본문 3블록 모두 노출
+  - 연구 자료 목록 4건(기존 1 + 신규 3) 링크 정상, 기존 research.html 본문·첨부 자료 유지
+  - 깨진 링크 0, 없는 에셋 0, 콘솔 오류 0, 가로 스크롤 0
+- 확인하지 못한 부분
+  - 로고 이미지(assets/icons/logo_*.svg)에 글자가 들어 있다면 별도 교체가 필요하다.
+    현재 헤더·푸터는 심볼 SVG + HTML 글자 조합이라 이번 변경으로 충분하다
+  - 실기기 테스트
+
+## 로그인 문구 정리 · 표기 통일 · 파비콘/OG (2026-08-08)
+
+- 완료한 내용
+  - 로그인·회원가입에서 "인증 서버" 표현 삭제
+    · login.html: data-pending-message 제거 (로그인은 handleSignIn이 따로 처리해 쓰이지 않던 속성)
+    · signup.html: "회원가입이 완료되었습니다. 로그인 후 이용해 주세요."로 교체
+    · js/auth.js: DEFAULT_PENDING_MESSAGE → "입력하신 내용이 확인되었습니다.", 주석도 정리
+  - 개인정보 처리방침의 "미래청년교육연구회" → "미래청년비전연구소" 15건
+    (apply_terms_privacy 14건, apply_terms_third_party 1건)
+  - FeatureYouth / featureyouth → futureyouth 44건.
+    저작권 표기와 이메일(futureyouth@gmail.com) 모두 포함.
+    ⚠️ js/auth.js의 데모 계정 이메일도 함께 바뀌었다 → 이제 futureyouth@gmail.com / youth1234
+  - 파비콘·OG 이미지 신규 제작 후 15개 페이지에 메타 삽입
+    · assets/icons/favicon.svg (브랜드 그라데이션 라운드 사각형 + 로고 심볼)
+    · assets/icons/favicon.png (64px), apple_touch_icon.png (180px)
+    · assets/images/og_image.svg (원본), og_image.jpg (1200x630, 85KB)
+    · link rel=icon / alternate icon / apple-touch-icon, theme-color,
+      og:type·site_name·title·description·image(+width/height)·url, twitter:card
+    · 페이지별 title/description을 그대로 og:title/og:description으로 넣어 중복 문구를 만들지 않았다
+- 주요 판단
+  - 로고 심볼 SVG의 path를 그대로 재사용해 파비콘·OG를 만들었다(새 그림 없음)
+  - OG는 SNS가 래스터를 요구해 PNG로 굽고 JPEG로 압축했다(759KB → 85KB).
+    맥에 rsvg-convert·ImageMagick·PIL이 없어 qlmanage로 렌더링했는데,
+    정사각 캔버스에 맞춰 확대/축소하는 성질이 있어
+    1200x1200 래퍼 안에 원본을 얹어 1:1로 렌더링한 뒤 가운데 630px를 잘랐다
+  - og:url의 도메인은 https://futureyouth.example 임시값이다.
+    배포 주소가 정해지면 15개 페이지의 이 문자열만 바꾸면 된다
+- 검증 결과 (node 정적 서버 http://localhost:4173)
+  - 15개 페이지에서 "인증 서버" / FeatureYouth / featureyouth /
+    미래청년교육연구회 / 미래청년교육연구소 모두 0건
+  - 15개 페이지 전부 favicon·apple-touch-icon·og:image·twitter:card 메타 보유
+  - 파비콘/OG 파일 5종 모두 정상 서빙, og_image.jpg 1200x630
+  - 회원가입 제출 → "회원가입이 완료되었습니다…" (서버 언급 없음)
+  - 로그인 실패 → "이메일 또는 비밀번호가 올바르지 않습니다."
+  - 로그인 성공(futureyouth@gmail.com) → research.html 이동, 세션 유지
+  - 없는 에셋 0, 콘솔 오류 0
+- 확인하지 못한 부분
+  - og:url 실제 도메인 미정
+  - SNS 실제 공유 미리보기(카카오·페이스북 디버거)는 배포 후 확인 필요
+  - 실기기 테스트
+
 ## 이전 검증 결과 (2026-08-06, 모바일 메인페이지)
 
 - 실행 명령: node 정적 서버 (http://localhost:4173)
@@ -654,8 +726,8 @@
     1.4s 심볼 내부 반짝임 스윕 → 1.72s 로고타입 → 2.62s 오버레이 수축 → 3.4s DOM 제거
   - 인트로 심볼·로고타입 모두 뷰포트 중앙(201px)에 정확히 정렬, 영문 태그라인 제거
   - 반짝임이 심볼 실루엣 안에서만 스침 (clipPath 적용 확인)
-  - 헤더·푸터·인트로 브랜드명 표기 통일 (당시 확정 명칭 '미래청년교육연구회' 기준.
-    2026-08-07에 '미래청년교육연구소'로 되돌림)
+  - 헤더·푸터·인트로 브랜드명 표기 통일 (당시 확정 명칭 '미래청년비전연구소' 기준.
+    2026-08-07에 '미래청년비전연구소'로 되돌림)
   - 360px에서 헤더 로고(우측 178px)와 메뉴 버튼(좌측 310px) 겹침 없음
   - 인트로 사각형 잔상 제거: g의 drop-shadow 제거 전/후 스크린샷 비교로 원인 확정,
     원형 광원 교체 후 사각 경계 사라진 것 확인

@@ -1,0 +1,36 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="og_bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0d1b2a"/>
+      <stop offset="0.55" stop-color="#0f2f4d"/>
+      <stop offset="1" stop-color="#0b3d66"/>
+    </linearGradient>
+    <linearGradient id="og_mark" x1="0" y1="0" x2="120" y2="140" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4ad4ff"/>
+      <stop offset="1" stop-color="#2ba1ff"/>
+    </linearGradient>
+    <radialGradient id="og_glow" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#2ba1ff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#2ba1ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#og_bg)"/>
+  <circle cx="1010" cy="140" r="320" fill="url(#og_glow)"/>
+  <circle cx="150" cy="560" r="240" fill="url(#og_glow)"/>
+
+  <g transform="translate(96 150) scale(5.1)" fill="url(#og_mark)">
+    <path d="M5.50132 4.00606L9.45508 8.01245L13.4088 4.00606L9.45508 -0.000333694L5.50132 4.00606Z"/>
+    <path d="M18.72 6.66183C17.5925 6.55857 15.2356 6.74511 13.9437 7.03156C12.6519 7.31802 11.4061 7.76437 10.1865 8.37726C10.8703 8.83359 11.6723 9.51643 12.5368 10.4524C13.2107 11.1819 13.786 11.918 14.1377 12.5975C15.3276 12.2211 17.7273 12.2544 18.72 12.361C18.72 12.361 18.7266 6.66183 18.72 6.66183Z"/>
+    <path d="M17.0669 20.5185C16.8565 17.7672 15.7488 15.2456 14.0329 12.964C13.5661 12.3511 12.8495 11.4984 12.1526 10.8555C11.1 9.89327 10.1339 9.19061 9.4501 8.74757C8.76632 9.19061 7.80022 9.89327 6.74763 10.8555C6.05073 11.4984 5.33409 12.3511 4.86729 12.964C3.15141 15.2456 2.04366 17.7672 1.83325 20.5185C1.83325 20.5185 5.15626 22.3499 9.4501 22.3499C13.7439 22.3499 17.0669 20.5185 17.0669 20.5185Z"/>
+    <path d="M4.7626 12.5975C5.11429 11.918 5.68955 11.1819 6.36346 10.4524C7.22799 9.51643 8.02999 8.83359 8.71377 8.37726C7.49419 7.76437 6.24838 7.31802 4.95653 7.03156C3.66468 6.74511 1.30775 6.55857 0.180262 6.66183C0.173687 6.66183 0.180262 12.361 0.180262 12.361C1.17297 12.2544 3.57266 12.2211 4.7626 12.5975Z"/>
+  </g>
+
+  <text x="230" y="238" font-family="Pretendard, 'Apple SD Gothic Neo', sans-serif" font-size="34" font-weight="600" fill="#4ad4ff" letter-spacing="4">MIRAE YOUTH VISION LAB</text>
+  <text x="230" y="322" font-family="Pretendard, 'Apple SD Gothic Neo', sans-serif" font-size="78" font-weight="800" fill="#ffffff" letter-spacing="-2">미래청년비전연구소</text>
+
+  <text x="96" y="452" font-family="Pretendard, 'Apple SD Gothic Neo', sans-serif" font-size="40" font-weight="500" fill="rgba(255,255,255,0.82)">지식을 넘어 스스로 성장하는</text>
+  <text x="96" y="512" font-family="Pretendard, 'Apple SD Gothic Neo', sans-serif" font-size="40" font-weight="500" fill="rgba(255,255,255,0.82)">힘을 설계합니다</text>
+
+  <rect x="96" y="556" width="120" height="5" rx="2.5" fill="url(#og_mark)"/>
+</svg>

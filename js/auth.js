@@ -4,7 +4,7 @@
  * 로그인은 아래 데모 계정과 대조해 일치할 때만 다음 화면으로 넘긴다.
  * 신청하기처럼 로그인이 필요한 링크에서 넘어온 경우에는
  * session.js가 적어둔 원래 주소로 되돌려 보내고, 없으면 연구 자료 페이지로 간다.
- * 회원가입은 아직 인증 서버가 없어 제출하지 않고 안내 문구만 보여준다
+ * 회원가입은 입력값만 확인하고 안내 문구를 보여준다
  * (문구는 각 폼의 data-pending-message 속성에서 읽는다).
  */
 (function () {
@@ -18,11 +18,11 @@
      * 실제로 쓰는 비밀번호를 절대 넣지 말 것.
      * 계정을 바꾸려면 아래 두 값만 수정하면 된다.
      */
-    var DEMO_EMAIL = "featureyouth@gmail.com";
+    var DEMO_EMAIL = "futureyouth@gmail.com";
     var DEMO_PASSWORD = "youth1234";
 
     var SIGNED_IN_REDIRECT = "research.html";
-    var DEFAULT_PENDING_MESSAGE = "인증 서버가 아직 연결되지 않아 실제로는 처리되지 않습니다.";
+    var DEFAULT_PENDING_MESSAGE = "입력하신 내용이 확인되었습니다.";
     var SIGN_IN_FAILED_MESSAGE = "이메일 또는 비밀번호가 올바르지 않습니다.";
 
     function showMessage(messageElement, text, hasError) {
