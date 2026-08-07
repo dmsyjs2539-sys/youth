@@ -182,6 +182,270 @@
     letter-spacing: -0.02em;
 }
 
+/* ========== 지표 카드 (연구 성과 / 데이터 아카이브 공용) ========== */
+
+/* 모바일 2열 → 태블릿 이상에서 넓어진다. */
+.stat_list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space_3);
+    margin-top: var(--space_8);
+}
+
+.stat_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space_2);
+    min-height: 116px;
+    padding: 20px 18px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius_card);
+    background-color: #f7fbff;
+    text-align: center;
+}
+
+.stat_label {
+    color: var(--color_text_sub);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.stat_value {
+    color: var(--color_brand);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.stat_unit {
+    margin-left: 2px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* ========== 연구 성과 ==========
+ * 지표 카드 자체는 데이터 아카이브와 공용(.stat_*)이고,
+ * 메인의 연구 성과 카드만 시안대로 파란 그라데이션 + 아이콘 원으로 덮어쓴다.
+ */
+
+.result_title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.result .stat_list {
+    /* 시안은 좁은 화면에서도 3개가 한 줄이다. */
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space_3);
+}
+
+.result .stat_card {
+    justify-content: flex-start;
+    gap: 0;
+    min-height: 137px;
+    padding: 13px;
+    border: 0;
+    border-radius: 12px;
+    background: linear-gradient(160deg, #bee6ff 0%, #68c5ff 100%);
+    text-align: left;
+}
+
+.result .stat_label {
+    margin-top: auto;
+    color: var(--color_text);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.result .stat_value {
+    margin-top: var(--space_1);
+    color: var(--color_text);
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.28;
+    letter-spacing: -0.03em;
+}
+
+.result .stat_unit {
+    margin-left: 1px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.stat_card_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.56);
+}
+
+.stat_card_icon img {
+    width: 24px;
+    height: 24px;
+}
+
+/* ========== 최신 연구보고서 ========== */
+
+.report_eyebrow {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.report_title {
+    margin-top: var(--space_1);
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+/* 모바일은 가로로 훑어보는 목록이라 카드 폭을 고정하고 스크롤에 맡긴다. */
+.report_scroller {
+    margin-top: var(--space_6);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+.report_list {
+    display: flex;
+    gap: var(--space_2);
+    width: max-content;
+    min-width: 100%;
+    padding-bottom: var(--space_3);
+}
+
+.report_card {
+    display: block;
+    flex-shrink: 0;
+    width: 171px;
+    transition: transform 0.28s var(--ease_out_soft);
+}
+
+/*
+ * 연구보고서 표지.
+ * 시안 비율(171:263)을 유지하고, 안쪽 글자는 카드 폭에 비례하도록 cqw로 잡는다.
+ */
+.report_cover {
+    container-type: inline-size;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 171 / 263;
+    padding: 9% 8%;
+    border-radius: 15px;
+    background-color: var(--color_surface);
+    overflow: hidden;
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.06);
+}
+
+.report_cover_code {
+    position: relative;
+    z-index: 1;
+    align-self: flex-start;
+    padding: 3px 8px;
+    border-radius: var(--radius_pill);
+    background-color: #1b1616;
+    color: #ffffff;
+    font-size: 5.2cqw;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.report_cover_title {
+    position: relative;
+    z-index: 1;
+    margin-top: 7%;
+    color: var(--color_text);
+    font-size: 8.4cqw;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.report_cover_authors {
+    position: relative;
+    z-index: 1;
+    margin-top: 4%;
+    color: var(--color_text_sub);
+    font-size: 5.6cqw;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+/* 표지 오른쪽 아래에 놓이는 안내 문구 */
+.report_cover_note {
+    position: absolute;
+    z-index: 1;
+    right: 8%;
+    bottom: 17%;
+    color: var(--color_text_sub);
+    font-size: 4.6cqw;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    text-align: right;
+}
+
+/*
+ * Figma에서 내려받은 네트워크 일러스트 원본(428x659).
+ * 원본 위쪽이 흰 여백이라 그림이 있는 아래쪽만 잘라 표지 하단에 깔고,
+ * 글자가 가리지 않도록 표지 안에서 가장 아래에 둔다.
+ */
+.report_cover_graphic {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    right: 0;
+    bottom: 11%;
+    height: 46%;
+    overflow: hidden;
+}
+
+.report_cover_graphic img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}
+
+.report_cover_logo {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 3%;
+    margin-top: auto;
+    color: var(--color_text);
+    font-size: 5.4cqw;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+
+.report_cover_logo img {
+    width: 9cqw;
+    height: 9cqw;
+}
+
 .link_list {
     display: flex;
     flex-direction: column;

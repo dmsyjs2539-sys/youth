@@ -195,6 +195,69 @@
         text-align: center;
     }
 
+    /* 연구 성과 / 최신 연구보고서 ------------------------------ */
+
+    .stat_list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space_4);
+    }
+
+    .stat_card {
+        min-height: 132px;
+    }
+
+    .stat_value {
+        font-size: 30px;
+    }
+
+    .result .stat_card {
+        min-height: 176px;
+        padding: var(--space_5);
+    }
+
+    .result .stat_label {
+        font-size: 14px;
+    }
+
+    .result .stat_value {
+        font-size: 32px;
+    }
+
+    .result_title,
+    .report_title {
+        font-size: 38px;
+    }
+
+    .report_eyebrow {
+        font-size: 18px;
+    }
+
+    /*
+     * 태블릿부터는 보고서 3장이 한 줄에 다 들어가므로 가로 스크롤을 끄고
+     * 남는 폭을 카드가 나눠 갖게 한다.
+     */
+    .report_scroller {
+        overflow-x: visible;
+    }
+
+    .report_list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space_5);
+        width: auto;
+        padding-bottom: 0;
+    }
+
+    .report_card {
+        width: auto;
+    }
+
+    /* 최신 연구보고서 ------------------------------------------ */
+
+    .report_list {
+        gap: var(--space_6);
+    }
+
     /* 연구 분야 ---------------------------------------------- */
 
     .field_title {
@@ -325,12 +388,14 @@
 
     .intro,
     .menu_section,
+    .result,
     .field,
     .link_section {
         max-width: calc(var(--content_max) + var(--page_padding) * 2);
         margin-inline: auto;
     }
 
+    .report_inner,
     .about_text,
     .footer_inner {
         max-width: var(--content_max);

@@ -560,6 +560,37 @@
     word-break: keep-all;
 }
 
+/* 접수 확인용 연구원 코드 칩 */
+.apply_done_code {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space_3);
+    margin-top: var(--space_8);
+    padding: 6px 18px;
+    border-radius: 10px;
+    background-color: var(--apply_date);
+    color: #989898;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+}
+
+/* 라벨과 값 사이 구분선 */
+.apply_done_code_label::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    margin-left: var(--space_3);
+    vertical-align: -2px;
+    background-color: currentColor;
+}
+
+.apply_done_code_value {
+    letter-spacing: 0.02em;
+}
+
 /* ---------- 하단 버튼 ---------- */
 
 .apply_footer {

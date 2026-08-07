@@ -61,50 +61,6 @@
     background-color: var(--color_brand_light);
 }
 
-/* 모바일 2열 → 태블릿 이상에서 넓어진다. */
-.stat_list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space_3);
-    margin-top: var(--space_8);
-}
-
-.stat_card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--space_2);
-    min-height: 116px;
-    padding: 20px 18px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: var(--radius_card);
-    background-color: #f7fbff;
-    text-align: center;
-}
-
-.stat_label {
-    color: var(--color_text_sub);
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.4;
-    letter-spacing: -0.02em;
-    word-break: keep-all;
-}
-
-.stat_value {
-    color: var(--color_brand);
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-}
-
-.stat_unit {
-    margin-left: 2px;
-    font-size: 16px;
-    font-weight: 600;
-}
-
 /* ========== 연도별 조사 데이터 ========== */
 
 .year_tabs {
@@ -246,19 +202,6 @@
         font-size: 26px;
     }
 
-    .stat_list {
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--space_4);
-    }
-
-    .stat_card {
-        min-height: 132px;
-    }
-
-    .stat_value {
-        font-size: 30px;
-    }
-
     .year_panel {
         padding: 32px 28px;
     }
@@ -277,13 +220,9 @@
         font-size: 50px;
     }
 
-    .stat_list {
-        /* 지표 5개를 한 줄에 놓는다. */
+    /* 아카이브는 지표가 5종이라 한 줄에 모두 놓는다. */
+    .archive_section .stat_list {
         grid-template-columns: repeat(5, 1fr);
-    }
-
-    .stat_label {
-        font-size: 15px;
     }
 }
 

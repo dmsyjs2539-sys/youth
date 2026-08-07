@@ -201,6 +201,21 @@
     background-color: rgba(0, 0, 0, 0.62);
 }
 
+.result {
+    padding: var(--space_14) var(--page_padding) 0;
+}
+
+.result_list {
+    margin-top: var(--space_6);
+}
+
+/* 보고서 띠는 화면 폭을 꽉 채우므로 좌우 여백을 스크롤러 안쪽에서 준다. */
+.report {
+    margin-top: var(--space_14);
+    padding: var(--space_10) var(--page_padding);
+    background: linear-gradient(135deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
+}
+
 .field {
     padding: var(--space_14) var(--page_padding) 0;
 }
