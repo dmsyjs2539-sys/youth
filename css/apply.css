@@ -1,0 +1,665 @@
+/* 컨설팅 신청 단계 페이지 (apply_step1~3, apply_terms_*, apply_done)
+ * 색상·폰트·간격·모션 토큰은 base.css / animations.css를 그대로 계승한다.
+ * 시안은 402px 모바일 기준이며, 태블릿부터는 카드 폭만 제한하고 구조는 유지한다.
+ */
+
+:root {
+    /* 신청 화면 전용 톤 — 시안에서만 쓰이는 값이라 이 파일 안에 둔다. */
+    --apply_bg: #f9fafc;
+    --apply_panel: #f4faff;
+    --apply_date: #e7f5ff;
+    --apply_date_off: #fafdff;
+    --apply_line: #d9d9d9;
+    --apply_heading: #101010;
+    --apply_label: #404040;
+    --apply_placeholder: #a3a3a3;
+    --apply_sub: #666666;
+}
+
+.apply_page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: calc(var(--header_height) + var(--space_6)) 19px 40px;
+    background-color: var(--apply_bg);
+}
+
+.apply_page_plain {
+    background-color: var(--color_surface);
+}
+
+.apply_shell {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    max-width: 520px;
+    margin-inline: auto;
+}
+
+/* ---------- 뒤로 가기 ---------- */
+
+.apply_back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: -8px;
+    color: var(--apply_sub);
+}
+
+.apply_back svg {
+    width: 13px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+}
+
+.apply_page_title {
+    margin-top: var(--space_2);
+    color: var(--color_text);
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.31;
+    letter-spacing: -0.02em;
+}
+
+/* ---------- 카드 ---------- */
+
+.apply_card {
+    margin-top: var(--space_5);
+    padding: 24px 21px 28px;
+    border-radius: 10px;
+    background-color: var(--color_surface);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.12);
+}
+
+.apply_card_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space_3);
+}
+
+.apply_card_title {
+    color: var(--apply_heading);
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.31;
+    letter-spacing: -0.02em;
+}
+
+.apply_card_hint {
+    margin-top: var(--space_4);
+    color: var(--apply_sub);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.47;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+/* ---------- 입력 필드 ---------- */
+
+.apply_fields {
+    display: grid;
+    gap: 17px;
+    margin-top: var(--space_6);
+}
+
+/* fieldset도 같은 필드로 쓰므로 기본 테두리·여백을 지운다. */
+.apply_field {
+    display: grid;
+    gap: 9px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.apply_field > legend {
+    padding: 0;
+}
+
+.apply_field_label {
+    color: var(--apply_label);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.31;
+    letter-spacing: -0.02em;
+}
+
+.apply_field_input {
+    width: 100%;
+    height: 52px;
+    padding: 0 15px;
+    border: 1px solid var(--apply_line);
+    border-radius: 10px;
+    background-color: var(--apply_bg);
+    color: var(--color_text);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    transition:
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.apply_field_input::placeholder {
+    color: var(--apply_placeholder);
+}
+
+.apply_field_input:focus {
+    outline: none;
+    border-color: var(--color_brand);
+    box-shadow: 0 0 0 3px rgba(43, 161, 255, 0.18);
+}
+
+.apply_field_input:focus-visible {
+    outline: none;
+}
+
+/* 날짜 입력은 시안에서 오른쪽에 화살표가 있는 형태라 기본 아이콘을 감춘다. */
+.apply_field_date {
+    padding-right: 44px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23323232' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px 16px;
+}
+
+.apply_field_date::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.apply_field_error {
+    color: #c62828;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+}
+
+.apply_field_input.has_error {
+    border-color: #c62828;
+}
+
+/* ---------- 성별 선택 ---------- */
+
+.apply_choice {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 11px;
+}
+
+.apply_choice_button {
+    height: 52px;
+    border: 1px solid var(--apply_line);
+    border-radius: 10px;
+    background-color: var(--apply_bg);
+    color: var(--apply_label);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition:
+        border-color 0.22s ease,
+        background-color 0.22s ease,
+        color 0.22s ease;
+}
+
+.apply_choice_button.is_selected {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* ---------- 달력 ---------- */
+
+.apply_calendar_reset {
+    width: 27px;
+    height: 27px;
+    color: #8c8c8c;
+}
+
+.apply_calendar_reset svg {
+    width: 20px;
+    height: 20px;
+}
+
+.apply_calendar {
+    margin-top: var(--space_6);
+    padding: 22px 17px 23px;
+    border-radius: 22px;
+    background-color: var(--apply_panel);
+}
+
+.apply_calendar_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space_3);
+}
+
+.apply_calendar_month {
+    color: var(--apply_heading);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.apply_calendar_nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space_3);
+}
+
+.apply_calendar_nav button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: var(--color_brand);
+}
+
+.apply_calendar_nav svg {
+    width: 10px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+}
+
+.apply_calendar_weekdays,
+.apply_calendar_grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2.5px;
+}
+
+.apply_calendar_weekdays {
+    margin-top: var(--space_5);
+    padding-block: 10px;
+}
+
+.apply_calendar_weekdays span {
+    color: var(--apply_heading);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.apply_calendar_grid {
+    row-gap: 10px;
+}
+
+.apply_date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: var(--apply_date);
+    color: var(--apply_heading);
+    font-size: 13px;
+    font-weight: 700;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+/* 주말은 톤을 낮춰 평일과 구분한다. */
+.apply_date_weekend {
+    background-color: var(--apply_date_off);
+    color: #b9b9b9;
+}
+
+.apply_date.is_selected {
+    background-color: var(--color_brand);
+    color: #ffffff;
+}
+
+.apply_date:disabled {
+    background-color: transparent;
+    color: transparent;
+    cursor: default;
+}
+
+/* ---------- 동의 목록 ---------- */
+
+.apply_agree_all {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    align-items: start;
+    gap: 10px;
+    margin-top: var(--space_6);
+}
+
+.apply_agree_all_title {
+    color: var(--apply_heading);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+}
+
+.apply_agree_all_desc {
+    grid-column: 2;
+    color: var(--apply_sub);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.47;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.apply_agree_divider {
+    height: 1px;
+    margin: var(--space_5) 0;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.apply_agree_list {
+    display: grid;
+    gap: var(--space_4);
+}
+
+.apply_agree_item {
+    display: grid;
+    grid-template-columns: 18px 1fr 20px;
+    align-items: center;
+    gap: 10px;
+}
+
+.apply_agree_text {
+    color: var(--apply_label);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.31;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+    cursor: pointer;
+}
+
+.apply_agree_more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: #b9b9b9;
+}
+
+.apply_agree_more svg {
+    width: 8px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+}
+
+/* 원형 체크 표시 — 실제 상태는 시각적으로 숨긴 checkbox가 가진다. */
+.apply_check {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.apply_check_mark {
+    display: block;
+    flex-shrink: 0;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px #b9b9b9;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b9b9b9' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-8'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px 12px;
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.apply_check:checked + .apply_check_mark {
+    background-color: var(--color_brand);
+    box-shadow: inset 0 0 0 1px var(--color_brand);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-8'/%3E%3C/svg%3E");
+}
+
+.apply_check:focus-visible + .apply_check_mark {
+    outline: 2px solid var(--color_brand);
+    outline-offset: 3px;
+}
+
+.apply_check_mark_large {
+    width: 24px;
+    height: 24px;
+    background-size: 15px 15px;
+}
+
+/* ---------- 약관 본문 ---------- */
+
+.apply_terms_box {
+    max-height: 407px;
+    margin-top: var(--space_6);
+    padding: 20px 16px;
+    border-radius: 10px;
+    background-color: var(--apply_panel);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.apply_terms_text {
+    color: var(--color_text);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.62;
+    letter-spacing: -0.02em;
+    white-space: pre-wrap;
+    word-break: keep-all;
+}
+
+.apply_terms_agree {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: var(--space_5);
+}
+
+.apply_terms_agree_text {
+    cursor: pointer;
+    color: var(--apply_label);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.29;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+/* ---------- 완료 ---------- */
+
+.apply_done {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding-block: var(--space_14);
+    text-align: center;
+}
+
+.apply_done_badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: rgba(43, 161, 255, 0.15);
+}
+
+.apply_done_badge span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background-color: var(--color_brand);
+}
+
+.apply_done_badge svg {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 3;
+}
+
+.apply_done_title {
+    margin-top: var(--space_5);
+    color: var(--apply_heading);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.apply_done_desc {
+    margin-top: var(--space_2);
+    color: #989898;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.53;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+/* ---------- 하단 버튼 ---------- */
+
+.apply_footer {
+    margin-top: auto;
+    padding-top: var(--space_10);
+}
+
+.apply_message {
+    margin-bottom: var(--space_4);
+    padding: 12px 14px;
+    border-radius: 10px;
+    background-color: rgba(43, 161, 255, 0.1);
+    color: var(--color_brand);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.apply_message.has_error {
+    background-color: rgba(214, 45, 45, 0.08);
+    color: #c62828;
+}
+
+/* 로그인 페이지의 .auth_submit과 같은 디자인 — 신청 흐름 전체가 이 버튼을 쓴다. */
+.apply_cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px;
+    border-radius: var(--radius_pill);
+    background: linear-gradient(135deg, var(--color_brand) 0%, var(--color_brand_light) 100%);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    box-shadow: 0 6px 18px rgba(43, 161, 255, 0.3);
+    transition:
+        box-shadow 0.22s ease,
+        transform 0.22s var(--ease_out_soft);
+}
+
+.apply_cta:active {
+    transform: scale(0.98);
+}
+
+/* ========================================================
+ * 반응형
+ * ======================================================== */
+
+@media (min-width: 768px) {
+    .apply_page {
+        padding-top: calc(var(--header_height) + 56px);
+        padding-bottom: 72px;
+    }
+
+    .apply_card {
+        padding: 32px 28px 36px;
+    }
+
+    .apply_calendar_weekdays span,
+    .apply_date {
+        font-size: 15px;
+    }
+
+    .apply_cta {
+        font-size: 17px;
+        padding: 17px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .apply_page {
+        padding-top: calc(var(--header_height) + 80px);
+        padding-bottom: 96px;
+    }
+}
+
+@media (hover: hover) {
+    .apply_cta:hover {
+        box-shadow: 0 10px 26px rgba(43, 161, 255, 0.48);
+        transform: translateY(-2px);
+    }
+
+    .apply_back:hover,
+    .apply_agree_more:hover {
+        color: var(--color_brand);
+    }
+
+    .apply_date:not(:disabled):not(.is_selected):hover {
+        background-color: #cfeaff;
+    }
+
+    .apply_choice_button:not(.is_selected):hover {
+        border-color: var(--color_brand);
+        color: var(--color_brand);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .apply_cta,
+    .apply_choice_button,
+    .apply_date,
+    .apply_check_mark,
+    .apply_field_input {
+        transition: none;
+    }
+}

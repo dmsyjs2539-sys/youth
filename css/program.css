@@ -239,120 +239,39 @@
     word-break: keep-all;
 }
 
-/* ========== 신청서 ========== */
+/* ========== 신청 안내 ========== */
 
-.apply_form {
+.apply_guide {
     display: grid;
-    gap: var(--space_8);
-    margin-top: var(--space_10);
+    gap: var(--space_4);
+    margin: var(--space_10) 0 var(--space_8);
 }
 
-.apply_group {
-    display: grid;
-    gap: var(--space_5);
-    padding: 26px 22px;
+.apply_guide_item {
+    padding: 20px 22px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: var(--radius_card);
 }
 
-.apply_legend {
-    padding-inline: var(--space_2);
+.apply_guide_index {
     color: var(--color_brand);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
-
-.apply_row {
-    display: grid;
-    gap: var(--space_5);
-}
-
-.apply_field {
-    display: grid;
-    gap: var(--space_2);
-}
-
-.apply_label {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.apply_guide_title {
+    margin-top: var(--space_2);
+    font-size: 19px;
+    font-weight: 700;
     line-height: 1.3;
     letter-spacing: -0.02em;
 }
 
-.apply_input {
-    width: 100%;
-    padding: 13px 15px;
-    border: 1px solid rgba(0, 0, 0, 0.14);
-    border-radius: 10px;
-    background-color: #ffffff;
-    color: var(--color_text);
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    transition:
-        border-color 0.22s ease,
-        box-shadow 0.22s ease;
-}
-
-.apply_input::placeholder {
-    color: rgba(0, 0, 0, 0.32);
-}
-
-.apply_input:focus {
-    outline: none;
-    border-color: var(--color_brand);
-    box-shadow: 0 0 0 3px rgba(43, 161, 255, 0.18);
-}
-
-.apply_input:focus-visible {
-    outline: none;
-}
-
-.apply_textarea {
-    resize: vertical;
-    min-height: 128px;
-    line-height: 1.7;
-}
-
-/* select에도 기본 화살표를 남겨 두되 높이만 맞춘다. */
-select.apply_input {
-    appearance: none;
-    background-image: linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.45) 50%),
-        linear-gradient(135deg, rgba(0, 0, 0, 0.45) 50%, transparent 50%);
-    background-position: calc(100% - 19px) 21px, calc(100% - 14px) 21px;
-    background-size: 5px 5px, 5px 5px;
-    background-repeat: no-repeat;
-    padding-right: 40px;
-}
-
-.apply_agree {
-    display: grid;
-    gap: var(--space_2);
-}
-
-.apply_checkbox {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space_2);
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    cursor: pointer;
-}
-
-.apply_checkbox input {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    accent-color: var(--color_brand);
-    cursor: pointer;
-}
-
-.apply_hint {
+.apply_guide_desc {
+    margin-top: var(--space_2);
     color: var(--color_text_sub);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.6;
     letter-spacing: -0.02em;
@@ -381,21 +300,10 @@ select.apply_input {
     transform: scale(0.98);
 }
 
-.apply_message {
-    padding: 13px 15px;
-    border-radius: 10px;
-    background-color: rgba(43, 161, 255, 0.1);
-    color: var(--color_brand);
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.6;
-    letter-spacing: -0.02em;
-    word-break: keep-all;
-}
-
-.apply_message.has_error {
-    background-color: rgba(214, 45, 45, 0.08);
-    color: #c62828;
+/* 신청 흐름으로 넘어가는 버튼 — 넓은 화면에서 과하게 늘어나지 않도록 폭을 묶는다. */
+.apply_start {
+    max-width: 420px;
+    margin-inline: auto;
 }
 
 .apply_notice {
@@ -490,14 +398,12 @@ select.apply_input {
         font-size: 15px;
     }
 
-    .apply_group {
-        padding: 32px 28px;
+    .apply_guide {
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    /* 두 칸짜리 줄은 태블릿부터 나란히 놓는다. */
-    .apply_row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--space_5);
+    .apply_guide_title {
+        font-size: 20px;
     }
 }
 

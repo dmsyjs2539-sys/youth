@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보 제3자 제공 동의 | 미래청년교육연구소</title>
+    <meta name="description" content="컨설팅 신청에 필요한 개인정보 제3자 제공 동의 전문입니다.">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/apply.css">
+</head>
+<body>
+    <a class="skip_link" href="#main_content">본문 바로가기</a>
+
+    <header class="header header_solid" id="header">
+        <div class="header_inner">
+            <a class="header_logo" href="index.html" aria-label="미래청년교육연구소 홈">
+                <img class="header_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="header_logo_text">미래청년교육연구소</span>
+            </a>
+
+            <nav class="global_nav" id="global_nav" aria-label="전체 메뉴" hidden>
+                <ul class="global_nav_list">
+                    <li><a class="global_nav_link" href="brand/index.html">연구소 소개</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_menu">연구 자료</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_menu">교류 기관</a></li>
+                    <li><a class="global_nav_link" href="program.html">강의 및 컨설팅 신청</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_field">연구 분야</a></li>
+                </ul>
+            </nav>
+
+            <div class="header_actions">
+                <ul class="auth_list">
+                    <li><a class="auth_link auth_link_login" href="login.html">로그인</a></li>
+                    <li><a class="auth_link auth_link_signup" href="signup.html">회원가입</a></li>
+                </ul>
+
+                <a class="header_account" href="login.html" aria-label="로그인 · 회원가입">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8.2" r="3.6"/>
+                        <path d="M4.9 20.2a7.1 7.1 0 0 1 14.2 0" stroke-linecap="round"/>
+                    </svg>
+                </a>
+
+                <button
+                    class="header_menu_button"
+                    type="button"
+                    id="menu_button"
+                    aria-label="전체 메뉴 열기"
+                    aria-expanded="false"
+                    aria-controls="global_nav"
+                >
+                    <span class="menu_icon" aria-hidden="true">
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="apply_page" id="main_content">
+        <div class="apply_shell">
+            <a class="apply_back" href="apply_step3.html" aria-label="약관 동의로 돌아가기">
+                <svg viewBox="0 0 13 22" aria-hidden="true" focusable="false">
+                    <path d="M11.5 1L1.5 11L11.5 21" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
+            <form class="apply_card" id="apply_form_terms" data-agree-key="agreeThirdParty" novalidate>
+                <h1 class="apply_card_title">개인정보 제3자 제공 동의</h1>
+
+                <div class="apply_terms_box" tabindex="0" role="region" aria-label="개인정보 제3자 제공 동의 전문">
+                    <p class="apply_terms_text">다음과 같이 개인정보를 제3자에게 제공하고 있습니다.
+
+1. 개인정보를 제공받는 자 : 미래청년교육연구회
+2. 제공받는 자의 개인정보 이용목적 : 강의 및 컨설팅
+3. 제공하는 개인정보 항목 : 사장님 성함, 개인 전화번호, 업장명, 업장 주소, 업장 인스타, 이메일
+4. 제공받는 자의 보유 및 이용기간 : 강의 및 컨설팅 진행 채택시 방중컨설팅 진행 완료시까지, 만약 컨택이 완료되지 않을 경우 30일 내 개인정보 삭제</p>
+                </div>
+
+                <div class="apply_terms_agree">
+                    <input class="apply_check" type="checkbox" id="terms_agree" required>
+                    <label class="apply_check_mark apply_check_mark_large" for="terms_agree"></label>
+                    <label class="apply_terms_agree_text" for="terms_agree">위 안내사항을 모두 확인하였으며, 이에 동의합니다.</label>
+                </div>
+            </form>
+
+            <div class="apply_footer">
+                <p class="apply_message" id="apply_message" role="status" hidden></p>
+                <button class="apply_cta" type="submit" form="apply_form_terms">확인</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer_inner">
+            <p class="footer_logo">
+                <img class="footer_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="footer_logo_text">미래청년교육연구소</span>
+            </p>
+
+            <address class="footer_address">
+                <p>서울시 강남구 봉은사로</p>
+                <p>이메일: <a href="mailto:featureyouth@gmail.com">featureyouth@gmail.com</a></p>
+                <p>전화: <a href="tel:01000000000">010 -0000- 0000</a></p>
+            </address>
+
+            <ul class="footer_policy">
+                <li><a href="index.html#terms">서비스 이용약관</a></li>
+                <li><a href="index.html#privacy">개인정보처리방침</a></li>
+            </ul>
+
+            <p class="footer_copyright">Copyright ⓒ FeatureYouth All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="to_top" id="to_top" type="button" aria-label="맨 위로 이동">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 19.5V5" stroke-linecap="round"/>
+            <path d="M5.5 11.5L12 5L18.5 11.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script src="js/apply.js"></script>
+</body>
+</html>

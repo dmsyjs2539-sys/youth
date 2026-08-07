@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컨설팅 신청하기 · 신청자 정보 | 미래청년교육연구소</title>
+    <meta name="description" content="컨설팅 신청 1단계, 신청자 정보를 입력하는 페이지입니다.">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/apply.css">
+</head>
+<body>
+    <a class="skip_link" href="#main_content">본문 바로가기</a>
+
+    <header class="header header_solid" id="header">
+        <div class="header_inner">
+            <a class="header_logo" href="index.html" aria-label="미래청년교육연구소 홈">
+                <img class="header_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="header_logo_text">미래청년교육연구소</span>
+            </a>
+
+            <nav class="global_nav" id="global_nav" aria-label="전체 메뉴" hidden>
+                <ul class="global_nav_list">
+                    <li><a class="global_nav_link" href="brand/index.html">연구소 소개</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_menu">연구 자료</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_menu">교류 기관</a></li>
+                    <li><a class="global_nav_link" href="program.html">강의 및 컨설팅 신청</a></li>
+                    <li><a class="global_nav_link" href="index.html#section_field">연구 분야</a></li>
+                </ul>
+            </nav>
+
+            <div class="header_actions">
+                <ul class="auth_list">
+                    <li><a class="auth_link auth_link_login" href="login.html">로그인</a></li>
+                    <li><a class="auth_link auth_link_signup" href="signup.html">회원가입</a></li>
+                </ul>
+
+                <a class="header_account" href="login.html" aria-label="로그인 · 회원가입">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8.2" r="3.6"/>
+                        <path d="M4.9 20.2a7.1 7.1 0 0 1 14.2 0" stroke-linecap="round"/>
+                    </svg>
+                </a>
+
+                <button
+                    class="header_menu_button"
+                    type="button"
+                    id="menu_button"
+                    aria-label="전체 메뉴 열기"
+                    aria-expanded="false"
+                    aria-controls="global_nav"
+                >
+                    <span class="menu_icon" aria-hidden="true">
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                        <span class="menu_icon_bar"></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="apply_page" id="main_content">
+        <div class="apply_shell">
+            <a class="apply_back" href="program.html#tab_apply" aria-label="이전 화면으로">
+                <svg viewBox="0 0 13 22" aria-hidden="true" focusable="false">
+                    <path d="M11.5 1L1.5 11L11.5 21" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
+            <h1 class="apply_page_title">컨설팅 신청하기</h1>
+
+            <form class="apply_card" id="apply_form_profile" novalidate>
+                <h2 class="apply_card_title">신청자 정보</h2>
+
+                <div class="apply_fields">
+                    <div class="apply_field">
+                        <label class="apply_field_label" for="apply_name">성명</label>
+                        <input
+                            class="apply_field_input"
+                            id="apply_name"
+                            name="name"
+                            type="text"
+                            autocomplete="name"
+                            placeholder="홍길동"
+                            required
+                        >
+                    </div>
+
+                    <div class="apply_field">
+                        <label class="apply_field_label" for="apply_phone">연락처</label>
+                        <input
+                            class="apply_field_input"
+                            id="apply_phone"
+                            name="phone"
+                            type="tel"
+                            autocomplete="tel"
+                            inputmode="tel"
+                            placeholder="010 1234 5678"
+                            required
+                        >
+                    </div>
+
+                    <div class="apply_field">
+                        <label class="apply_field_label" for="apply_birth">생년월일</label>
+                        <input
+                            class="apply_field_input apply_field_date"
+                            id="apply_birth"
+                            name="birth"
+                            type="date"
+                            autocomplete="bday"
+                            required
+                        >
+                    </div>
+
+                    <fieldset class="apply_field">
+                        <legend class="apply_field_label">성별</legend>
+
+                        <div class="apply_choice">
+                            <button
+                                class="apply_choice_button"
+                                type="button"
+                                data-value="male"
+                                aria-pressed="false"
+                            >남자</button>
+                            <button
+                                class="apply_choice_button"
+                                type="button"
+                                data-value="female"
+                                aria-pressed="false"
+                            >여자</button>
+                        </div>
+
+                        <input type="hidden" id="apply_gender" name="gender" value="">
+                    </fieldset>
+                </div>
+            </form>
+
+            <div class="apply_footer">
+                <p class="apply_message" id="apply_message" role="status" hidden></p>
+                <button class="apply_cta" type="submit" form="apply_form_profile">다음</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer_inner">
+            <p class="footer_logo">
+                <img class="footer_logo_symbol" src="assets/icons/logo_symbol.svg" alt="">
+                <span class="footer_logo_text">미래청년교육연구소</span>
+            </p>
+
+            <address class="footer_address">
+                <p>서울시 강남구 봉은사로</p>
+                <p>이메일: <a href="mailto:featureyouth@gmail.com">featureyouth@gmail.com</a></p>
+                <p>전화: <a href="tel:01000000000">010 -0000- 0000</a></p>
+            </address>
+
+            <ul class="footer_policy">
+                <li><a href="index.html#terms">서비스 이용약관</a></li>
+                <li><a href="index.html#privacy">개인정보처리방침</a></li>
+            </ul>
+
+            <p class="footer_copyright">Copyright ⓒ FeatureYouth All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="to_top" id="to_top" type="button" aria-label="맨 위로 이동">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 19.5V5" stroke-linecap="round"/>
+            <path d="M5.5 11.5L12 5L18.5 11.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script src="js/apply.js"></script>
+</body>
+</html>

@@ -279,140 +279,32 @@
                 <header class="program_panel_head">
                     <h2 class="program_panel_title">컨설팅 신청</h2>
                     <p class="program_panel_desc">
-                        아래 신청서를 작성해 주시면 담당 연구원이 영업일 기준 3일 이내에 연락드립니다.
+                        아래 신청하기 버튼을 누르면 신청서 작성이 시작됩니다.
+                        접수 후 담당 연구원이 영업일 기준 3일 이내에 연락드립니다.
                     </p>
                 </header>
 
-                <form
-                    class="apply_form"
-                    id="apply_form"
-                    data-pending-message="신청이 확인되었습니다. 다만 접수 서버가 아직 연결되지 않아 실제로 전송되지는 않습니다."
-                    novalidate
-                >
-                    <fieldset class="apply_group">
-                        <legend class="apply_legend">신청 정보</legend>
+                <ol class="apply_guide">
+                    <li class="apply_guide_item">
+                        <p class="apply_guide_index">STEP 01</p>
+                        <h3 class="apply_guide_title">신청자 정보</h3>
+                        <p class="apply_guide_desc">성명, 연락처, 생년월일, 성별을 입력합니다</p>
+                    </li>
 
-                        <div class="apply_field">
-                            <label class="apply_label" for="apply_type">신청 유형</label>
-                            <select class="apply_input" id="apply_type" name="type" required>
-                                <option value="">선택해 주세요</option>
-                                <option value="lecture">강의</option>
-                                <option value="consulting">1:1 컨설팅</option>
-                                <option value="both">강의 + 컨설팅</option>
-                                <option value="etc">기타 문의</option>
-                            </select>
-                        </div>
+                    <li class="apply_guide_item">
+                        <p class="apply_guide_index">STEP 02</p>
+                        <h3 class="apply_guide_title">희망 일정</h3>
+                        <p class="apply_guide_desc">상담이 가능한 일자를 달력에서 모두 선택합니다</p>
+                    </li>
 
-                        <div class="apply_row">
-                            <div class="apply_field">
-                                <label class="apply_label" for="apply_name">이름</label>
-                                <input
-                                    class="apply_input"
-                                    id="apply_name"
-                                    name="name"
-                                    type="text"
-                                    autocomplete="name"
-                                    placeholder="홍길동"
-                                    required
-                                >
-                            </div>
+                    <li class="apply_guide_item">
+                        <p class="apply_guide_index">STEP 03</p>
+                        <h3 class="apply_guide_title">약관 동의</h3>
+                        <p class="apply_guide_desc">개인정보 수집·이용과 제3자 제공 동의를 확인합니다</p>
+                    </li>
+                </ol>
 
-                            <div class="apply_field">
-                                <label class="apply_label" for="apply_org">소속</label>
-                                <input
-                                    class="apply_input"
-                                    id="apply_org"
-                                    name="organization"
-                                    type="text"
-                                    autocomplete="organization"
-                                    placeholder="○○대학교 / ○○기관"
-                                >
-                            </div>
-                        </div>
-
-                        <div class="apply_row">
-                            <div class="apply_field">
-                                <label class="apply_label" for="apply_email">이메일</label>
-                                <input
-                                    class="apply_input"
-                                    id="apply_email"
-                                    name="email"
-                                    type="email"
-                                    autocomplete="email"
-                                    placeholder="name@example.com"
-                                    required
-                                >
-                            </div>
-
-                            <div class="apply_field">
-                                <label class="apply_label" for="apply_phone">연락처</label>
-                                <input
-                                    class="apply_input"
-                                    id="apply_phone"
-                                    name="phone"
-                                    type="tel"
-                                    autocomplete="tel"
-                                    placeholder="010-0000-0000"
-                                    required
-                                >
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset class="apply_group">
-                        <legend class="apply_legend">진행 희망 사항</legend>
-
-                        <div class="apply_row">
-                            <div class="apply_field">
-                                <label class="apply_label" for="apply_date">희망 일정</label>
-                                <input
-                                    class="apply_input"
-                                    id="apply_date"
-                                    name="date"
-                                    type="date"
-                                >
-                            </div>
-
-                            <div class="apply_field">
-                                <label class="apply_label" for="apply_count">참여 인원</label>
-                                <input
-                                    class="apply_input"
-                                    id="apply_count"
-                                    name="count"
-                                    type="number"
-                                    min="1"
-                                    placeholder="예: 30"
-                                >
-                            </div>
-                        </div>
-
-                        <div class="apply_field">
-                            <label class="apply_label" for="apply_message">문의 내용</label>
-                            <textarea
-                                class="apply_input apply_textarea"
-                                id="apply_message"
-                                name="message"
-                                rows="5"
-                                placeholder="교육 목표, 대상의 특성, 그 밖에 미리 알려주실 내용을 자유롭게 적어주세요."
-                                required
-                            ></textarea>
-                        </div>
-                    </fieldset>
-
-                    <div class="apply_agree">
-                        <label class="apply_checkbox" for="apply_privacy">
-                            <input type="checkbox" id="apply_privacy" name="privacy" required>
-                            <span>개인정보 수집 및 이용에 동의합니다</span>
-                        </label>
-                        <p class="apply_hint">
-                            수집 항목: 이름, 소속, 이메일, 연락처 · 이용 목적: 신청 상담 회신 · 보유 기간: 상담 종료 후 1년
-                        </p>
-                    </div>
-
-                    <button class="apply_submit" type="submit">신청서 제출</button>
-
-                    <p class="apply_message" id="apply_message_status" role="status" hidden></p>
-                </form>
+                <a class="apply_submit apply_start" href="apply_step1.html">신청하기</a>
 
                 <p class="apply_notice">
                     이 신청서는 화면 틀입니다. 접수 서버가 연결되어 있지 않아 실제로 전송되지 않으며,

@@ -1,14 +1,13 @@
 /*
  * 강의 및 컨설팅 절차 페이지.
  * - 세부 메뉴(강의 절차 / 컨설팅 절차 / 컨설팅 신청) 탭 전환
- * - 컨설팅 신청서 입력값 확인
+ *
+ * 실제 신청서 작성은 apply_step1.html부터 이어지는 별도 페이지가 담당한다(js/apply.js).
  *
  * JS가 없으면 세 패널이 그대로 이어서 보이도록, 숨김은 JS가 붙인다.
  */
 (function () {
     "use strict";
-
-    var DEFAULT_PENDING_MESSAGE = "접수 서버가 아직 연결되지 않아 실제로는 전송되지 않습니다.";
 
     var tabList = document.getElementById("program_tabs");
     var tabs = tabList
@@ -95,74 +94,5 @@
         tabList.addEventListener("keydown", handleTabKeydown);
     }
 
-    /* ---------- 신청서 ---------- */
-
-    function showMessage(messageElement, text, hasError) {
-        messageElement.textContent = text;
-        messageElement.classList.toggle("has_error", Boolean(hasError));
-        messageElement.hidden = false;
-    }
-
-    function findInvalidField(form) {
-        var fields = form.querySelectorAll("[required]");
-        var invalid = null;
-
-        Array.prototype.forEach.call(fields, function (field) {
-            if (invalid) {
-                return;
-            }
-            if (typeof field.checkValidity === "function" && !field.checkValidity()) {
-                invalid = field;
-            }
-        });
-
-        return invalid;
-    }
-
-    function describe(form, field) {
-        var label = form.querySelector('label[for="' + field.id + '"]');
-        var name = label ? label.textContent.trim() : "입력값";
-
-        if (field.type === "checkbox") {
-            return name + " 항목에 체크해 주세요.";
-        }
-
-        if (field.tagName === "SELECT") {
-            return name + " 항목을 선택해 주세요.";
-        }
-
-        return name + " 항목을 확인해 주세요.";
-    }
-
-    function handleApplySubmit(event) {
-        event.preventDefault();
-
-        var form = event.currentTarget;
-        var messageElement = document.getElementById("apply_message_status");
-
-        if (!messageElement) {
-            return;
-        }
-
-        var invalidField = findInvalidField(form);
-
-        if (invalidField) {
-            showMessage(messageElement, describe(form, invalidField), true);
-            invalidField.focus();
-            return;
-        }
-
-        showMessage(messageElement, form.dataset.pendingMessage || DEFAULT_PENDING_MESSAGE, false);
-    }
-
-    function initApplyForm() {
-        var form = document.getElementById("apply_form");
-
-        if (form) {
-            form.addEventListener("submit", handleApplySubmit);
-        }
-    }
-
     initTabs();
-    initApplyForm();
 })();
