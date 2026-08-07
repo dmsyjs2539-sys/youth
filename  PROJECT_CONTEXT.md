@@ -587,6 +587,56 @@
   - 카드 설명 한 줄("연구 성과를 정기적으로 묶어 펴낸 간행물" 등)은 새로 쓴 문구다
   - 실기기 테스트
 
+## 연구 자료 시스템 확장 (2026-08-08)
+
+- Figma 시안: 55:3567(연구보고서01), 55:3691(02), 55:3815(03)
+- 새로 만든 파일
+  - research_list.html — 연구 자료 목록
+  - research_report.html — 연구보고서 상세 (?id= 로 3개 시안을 모두 처리)
+  - js/research_data.js — 연구 자료 단일 데이터 소스
+  - js/research_list.js, js/research_report.js
+- 수정한 파일
+  - index.html: 최신 연구보고서 카드 3장을 각각 research_report.html?id=... 로 연결하고
+    data-requires_auth 부여. 메뉴 카드 '연구 자료'도 목록으로. 카드 3의 제목/코드/저자를
+    데이터와 맞춤(메타인지 → 자기주도적 성장)
+  - 전 페이지(13개) 내비 '연구 자료' → research_list.html + data-requires_auth
+  - research.html: '연구 자료 목록' 버튼을 index.html#section_menu → research_list.html
+  - js/research.js: 비로그인 시 현재 주소(?id= 포함)를 setRedirect로 저장한 뒤 로그인으로 보냄
+  - css/research.css: 목록/상세 스타일 추가 (기존 파일 확장, 새 CSS 파일 만들지 않음)
+- 재사용한 기존 구조 (새로 만들지 않은 것)
+  - 로그인: js/auth.js 데모 계정 + sessionStorage(youth_signed_in_email) 그대로
+  - 게이트: js/session.js의 [data-requires_auth] + youth_redirect_after_login 그대로.
+    FLOW B(보고서 → 로그인 → 그 보고서 상세)는 이 기존 장치만으로 동작한다
+  - 접근 제어/로그아웃: js/research.js를 새 두 페이지에서 그대로 사용
+  - 헤더/푸터/to_top/헤더 사용자 표시는 research.html 마크업을 그대로 복제
+- 데이터 구조
+  - js/research_data.js가 REPORTS(새 3건) + LEGACY(기존 research.html 1건)를 갖고
+    toListItems()로 합쳐 준다. 목록과 상세, 메인 카드가 같은 제목을 바라본다
+  - 초록/목차 본문은 Figma 텍스트 노드 원문. Figma가 줄바꿈에 \n과 U+2028을 섞어 써
+    둘 다 줄바꿈으로 처리했다(안 하면 초록이 한 덩어리가 된다)
+- 고친 문제
+  - js/research_list.js가 만든 카드에 data-reveal을 붙였더니 영영 안 보였다.
+    main.js는 페이지 최초 1회만 [data-reveal]을 모으므로 나중에 만든 요소는
+    관찰 대상이 아니다 → 동적 카드에서는 data-reveal을 빼는 것으로 해결
+  - research_report.html 본문(초록/목록/서지)에서도 data-reveal을 뺐다.
+    긴 문서가 스크롤 등장에 가려지면 백그라운드 탭·앵커 점프에서 안 읽힌다
+- 검증 결과 (node 정적 서버 http://localhost:4173)
+  - FLOW A: 내비 연구 자료 → 로그인 → research_list.html, 전체 4건
+    (기존 1 + 신규 3), 각 카드가 서로 다른 상세로 연결됨
+  - FLOW B: 비로그인 보고서 B 클릭 → 저장값 research_report.html?id=job_readiness →
+    로그인 → 그 상세 도착. 보고서 C도 self_directed로 정확히 도착
+  - 로그인 상태에서 보고서 A 클릭 → 로그인 페이지 거치지 않고 바로 상세
+  - 상세 렌더링: 키워드 10개, 초록 4단락, 목차 28줄, 서지 8줄 (3건 모두 동일 구조)
+  - 잘못된 id → "요청하신 연구 자료를 찾을 수 없습니다" + 목록 링크
+  - 저장 키는 youth_signed_in_email 하나뿐(비밀번호 미저장)
+  - 375px 1열 / 768px 2열 / 1024px 3열, 가로 스크롤 0, 텍스트 잘림 0
+  - 15개 페이지 깨진 링크 0, 없는 에셋 0, 콘솔 오류 0
+- 확인하지 못한 부분
+  - 보고서 표지 이미지는 기존 사이트 사진을 재사용했다(시안 표지 원본 아님)
+  - 보고서 원문 PDF 다운로드는 연결되어 있지 않다(화면에도 그렇게 안내)
+  - 데모 계정이 js/auth.js에 그대로 있어 실제 인증이 아니다
+  - 실기기 테스트
+
 ## 이전 검증 결과 (2026-08-06, 모바일 메인페이지)
 
 - 실행 명령: node 정적 서버 (http://localhost:4173)

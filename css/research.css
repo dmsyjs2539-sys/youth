@@ -1,4 +1,4 @@
-/* 연구 자료 상세 페이지 (research.html) 임시 레이아웃
+/* 연구 자료 — 목록(research_list.html), 상세(research.html / research_report.html)
  * 색상·폰트·간격·모션 토큰은 base.css / animations.css를 그대로 계승한다.
  */
 
@@ -225,26 +225,358 @@
     letter-spacing: -0.02em;
 }
 
-/* ---------- 임시 레이아웃 안내 ---------- */
-
-.research_notice {
-    margin-top: var(--space_10);
-    padding: 14px 16px;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.04);
-    color: var(--color_text_sub);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.6;
-    letter-spacing: -0.02em;
-    word-break: keep-all;
-}
-
 /* ========================================================
  * 반응형
  * ======================================================== */
 
+/* ========================================================
+ * 연구 자료 목록 (research_list.html)
+ * ======================================================== */
+
+.research_list_head {
+    margin-top: var(--space_8);
+    padding-bottom: var(--space_6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.research_list_eyebrow {
+    color: var(--color_brand);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.research_list_title {
+    margin-top: var(--space_3);
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+}
+
+.research_list_desc {
+    margin-top: var(--space_4);
+    color: var(--color_text_sub);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.research_list_count {
+    display: block;
+    margin-top: var(--space_2);
+    color: var(--color_brand);
+    font-weight: 600;
+}
+
+.research_list {
+    display: grid;
+    gap: var(--space_5);
+    margin-top: var(--space_8);
+}
+
+.research_card_link {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius_card);
+    background-color: var(--color_surface);
+    overflow: hidden;
+    transition:
+        transform 0.28s var(--ease_out_soft),
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
+}
+
+.research_card_media {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.research_card_media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease_out_soft);
+}
+
+.research_card_body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space_2);
+    padding: 20px 22px 24px;
+}
+
+.research_card_series {
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: var(--radius_pill);
+    background-color: rgba(43, 161, 255, 0.1);
+    color: var(--color_brand);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.research_card_title {
+    margin-top: var(--space_1);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+/* 목록에서는 초록을 세 줄까지만 보여준다. */
+.research_card_summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--color_text_sub);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.research_card_meta {
+    margin-top: auto;
+    padding-top: var(--space_3);
+    color: var(--color_text_sub);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+/* ========================================================
+ * 연구보고서 상세 (research_report.html)
+ * ======================================================== */
+
+.report_page {
+    padding-bottom: 96px;
+}
+
+/* 시안의 상단 이미지 + 제목 겹침 구성 */
+.report_hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 260px;
+    padding: calc(var(--header_height) + var(--space_10)) var(--page_padding) var(--space_8);
+    overflow: hidden;
+}
+
+.report_hero_media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.report_hero_media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.report_hero_media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.68) 100%);
+}
+
+.report_hero_body {
+    width: 100%;
+    max-width: var(--content_max);
+    margin-inline: auto;
+}
+
+.report_headline {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.report_back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space_2);
+    margin-top: var(--space_6);
+    color: var(--color_text_sub);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.report_back svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+.report_article {
+    margin-top: var(--space_8);
+}
+
+/* 제목 / 저자 / 발행일 / 키워드 서지 항목 */
+.report_fields {
+    display: grid;
+    gap: var(--space_6);
+    padding-bottom: var(--space_8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.report_field dt {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+}
+
+.report_field dd {
+    margin: var(--space_2) 0 0;
+    color: var(--color_text_muted);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.report_keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space_2);
+}
+
+.report_keyword {
+    padding: 5px 11px;
+    border-radius: var(--radius_pill);
+    background-color: rgba(43, 161, 255, 0.09);
+    color: var(--color_brand);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.report_block {
+    margin-top: var(--space_10);
+}
+
+.report_block_title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+}
+
+.report_abstract {
+    display: grid;
+    gap: var(--space_5);
+    margin-top: var(--space_5);
+}
+
+.report_abstract p {
+    color: var(--color_text_muted);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.85;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.report_toc {
+    margin-top: var(--space_5);
+}
+
+.report_toc_part {
+    margin-top: var(--space_5);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.8;
+    letter-spacing: -0.02em;
+}
+
+.report_toc_part:first-child {
+    margin-top: 0;
+}
+
+/* 하위 항목은 한 단 들여써 대분류와 구분한다. */
+.report_toc_item {
+    padding-left: var(--space_4);
+    color: var(--color_text_muted);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
+.report_block_plain {
+    margin-top: var(--space_10);
+    padding-top: var(--space_6);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.report_meta {
+    display: grid;
+    gap: var(--space_1);
+}
+
+.report_meta li {
+    color: var(--color_text_sub);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.7;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+}
+
 @media (min-width: 768px) {
+    /* 목록 카드는 태블릿부터 2열 */
+    .research_list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space_5);
+    }
+
+    .research_list_title {
+        font-size: 38px;
+    }
+
+    .research_card_title {
+        font-size: 19px;
+    }
+
+    .report_hero {
+        min-height: 320px;
+    }
+
+    .report_headline {
+        font-size: 34px;
+    }
+
+    .report_field dt {
+        font-size: 20px;
+    }
+
+    .report_field dd,
+    .report_abstract p,
+    .report_toc_part,
+    .report_toc_item {
+        font-size: 16px;
+    }
+
     .header_user_email {
         display: block;
     }
@@ -278,6 +610,24 @@
 }
 
 @media (min-width: 1024px) {
+    /* 데스크톱은 3열 */
+    .research_list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space_6);
+    }
+
+    .research_list_title {
+        font-size: 44px;
+    }
+
+    .report_hero {
+        min-height: 380px;
+    }
+
+    .report_headline {
+        font-size: 40px;
+    }
+
     .research_page {
         padding-top: calc(var(--header_height) + 88px);
     }
@@ -288,6 +638,20 @@
 }
 
 @media (hover: hover) {
+    .research_card_link:hover {
+        transform: translateY(-4px);
+        border-color: rgba(43, 161, 255, 0.4);
+        box-shadow: 0 18px 36px rgba(43, 161, 255, 0.16);
+    }
+
+    .research_card_link:hover .research_card_media img {
+        transform: scale(1.05);
+    }
+
+    .report_back:hover {
+        color: var(--color_brand);
+    }
+
     .research_back:hover {
         gap: var(--space_3);
     }

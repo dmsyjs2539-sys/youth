@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>개인정보 제3자 제공 동의 | 미래청년비전연구소</title>
-    <meta name="description" content="컨설팅 신청에 필요한 개인정보 제3자 제공 동의 전문입니다.">
+    <title>연구보고서 | 미래청년비전연구소</title>
+    <meta name="description" content="미래청년비전연구소 연구보고서 상세 페이지입니다.">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/apply.css">
+    <link rel="stylesheet" href="css/research.css">
+
+    <script src="js/session.js"></script>
+    <script src="js/research.js"></script>
 </head>
 <body>
     <a class="skip_link" href="#main_content">본문 바로가기</a>
@@ -34,17 +37,10 @@
             </nav>
 
             <div class="header_actions">
-                <ul class="auth_list">
-                    <li><a class="auth_link auth_link_login" href="login.html">로그인</a></li>
-                    <li><a class="auth_link auth_link_signup" href="signup.html">회원가입</a></li>
-                </ul>
-
-                <a class="header_account" href="login.html" aria-label="로그인 · 회원가입">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <circle cx="12" cy="8.2" r="3.6"/>
-                        <path d="M4.9 20.2a7.1 7.1 0 0 1 14.2 0" stroke-linecap="round"/>
-                    </svg>
-                </a>
+                <p class="header_user">
+                    <span class="header_user_email" id="signed_in_email"></span>
+                    <button class="auth_link auth_link_login" type="button" id="sign_out_button">로그아웃</button>
+                </p>
 
                 <button
                     class="header_menu_button"
@@ -64,37 +60,60 @@
         </div>
     </header>
 
-    <main class="apply_page" id="main_content">
-        <div class="apply_shell">
-            <a class="apply_back" href="apply_step3.html" aria-label="약관 동의로 돌아가기">
-                <svg viewBox="0 0 13 22" aria-hidden="true" focusable="false">
-                    <path d="M11.5 1L1.5 11L11.5 21" stroke-linecap="round" stroke-linejoin="round"/>
+    <main class="report_page" id="main_content">
+        <section class="report_hero">
+            <div class="report_hero_media">
+                <img id="report_cover_image" src="assets/images/card_research.jpg" alt="" aria-hidden="true">
+            </div>
+            <div class="report_hero_body">
+                <h1 class="report_headline" id="report_headline"></h1>
+            </div>
+        </section>
+
+        <div class="research_inner">
+            <a class="report_back" href="research_list.html">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M15 5L8 12L15 19" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+                연구 자료 목록
             </a>
 
-            <form class="apply_card" id="apply_form_terms" data-agree-key="agreeThirdParty" novalidate>
-                <h1 class="apply_card_title">개인정보 제3자 제공 동의</h1>
+            <article class="report_article">
+                <dl class="report_fields">
+                    <div class="report_field">
+                        <dt>제목</dt>
+                        <dd id="report_title"></dd>
+                    </div>
+                    <div class="report_field">
+                        <dt>저자</dt>
+                        <dd id="report_authors"></dd>
+                    </div>
+                    <div class="report_field">
+                        <dt>발행일</dt>
+                        <dd id="report_published"></dd>
+                    </div>
+                    <div class="report_field">
+                        <dt>키워드</dt>
+                        <dd>
+                            <ul class="report_keywords" id="report_keywords"></ul>
+                        </dd>
+                    </div>
+                </dl>
 
-                <div class="apply_terms_box" tabindex="0" role="region" aria-label="개인정보 제3자 제공 동의 전문">
-                    <p class="apply_terms_text">다음과 같이 개인정보를 제3자에게 제공하고 있습니다.
+                <section class="report_block">
+                    <h2 class="report_block_title">초록</h2>
+                    <div class="report_abstract" id="report_abstract"></div>
+                </section>
 
-1. 개인정보를 제공받는 자 : 미래청년교육연구회
-2. 제공받는 자의 개인정보 이용목적 : 강의 및 컨설팅
-3. 제공하는 개인정보 항목 : 사장님 성함, 개인 전화번호, 업장명, 업장 주소, 업장 인스타, 이메일
-4. 제공받는 자의 보유 및 이용기간 : 강의 및 컨설팅 진행 채택시 방중컨설팅 진행 완료시까지, 만약 컨택이 완료되지 않을 경우 30일 내 개인정보 삭제</p>
-                </div>
+                <section class="report_block">
+                    <h2 class="report_block_title">목록</h2>
+                    <ol class="report_toc" id="report_toc"></ol>
+                </section>
 
-                <div class="apply_terms_agree">
-                    <input class="apply_check" type="checkbox" id="terms_agree" required>
-                    <label class="apply_check_mark apply_check_mark_large" for="terms_agree"></label>
-                    <label class="apply_terms_agree_text" for="terms_agree">위 안내사항을 모두 확인하였으며, 이에 동의합니다.</label>
-                </div>
-            </form>
-
-            <div class="apply_footer">
-                <p class="apply_message" id="apply_message" role="status" hidden></p>
-                <button class="apply_cta" type="submit" form="apply_form_terms">확인</button>
-            </div>
+                <section class="report_block report_block_plain">
+                    <ul class="report_meta" id="report_meta"></ul>
+                </section>
+            </article>
         </div>
     </main>
 
@@ -128,7 +147,7 @@
     </button>
 
     <script src="js/main.js"></script>
-    <script src="js/session.js"></script>
-    <script src="js/apply.js"></script>
+    <script src="js/research_data.js"></script>
+    <script src="js/research_report.js"></script>
 </body>
 </html>

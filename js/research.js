@@ -10,6 +10,16 @@
     var session = window.youthSession;
 
     if (!session || !session.isSignedIn()) {
+        if (session) {
+            /*
+             * 주소를 직접 입력해 들어온 경우에도 로그인 뒤 이 화면으로 돌아오게
+             * 현재 위치를 적어둔다. (?id= 같은 쿼리까지 함께 보관한다)
+             */
+            session.setRedirect(
+                window.location.pathname.split("/").pop() + window.location.search
+            );
+        }
+
         // replace를 쓰면 뒤로가기로 이 페이지에 다시 들어오지 않는다.
         window.location.replace("login.html");
         return;
